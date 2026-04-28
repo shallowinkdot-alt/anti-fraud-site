@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 违规预警诈骗</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="violation-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                    <li>你将收到一封关于<strong>实验室安全或图书馆违规</strong>的预警邮件</li>
+                    <li>骗子会利用你对<strong>处分、扣分、通报</strong>的恐惧，诱导你立刻点击查看“证据”</li>
+                    <li>体验结束后，你将看到完整拆解和防骗建议</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>越是涉及处分和申诉，越应该先核验渠道，而不是立刻点链接</li>
+                        <li>正式处分通常伴随线下约谈、书面流程或院系通知，不会只靠一封外链邮件</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startViolationSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="violation-email-page" class="simulate-container" style="display: none;">
+            <div class="email-client">
+                <div class="email-toolbar">
+                    <button>📥 收件箱</button>
+                    <button>📌 重点</button>
+                    <button>📁 归档</button>
+                    <button>🗑️ 垃圾邮件</button>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <div class="email-from">实验室管理部 <span>&lt;lab-notice@westlake-lab.org&gt;</span></div>
+                        <div class="email-subject">实验室管理部：关于您在实验室违规行为的预警通报</div>
+                        <div class="email-date">2026年4月29日 下午 18:06</div>
+                    </div>
+                    <div class="email-body">
+                        <p>同学你好：</p>
+                        <p>系统监测到你在近期实验中存在<strong>操作不规范记录</strong>，已形成预警条目并进入实验室安全积分复核流程。若未在规定时间内核查，相关记录可能影响后续实验权限申请。</p>
+                        <div class="highlight-box">
+                            <strong>预警信息</strong>
+                            <ul>
+                                <li>预警类型：实验室安全违规</li>
+                                <li>处理状态：待本人核查 / 待申诉</li>
+                                <li>截止时间：24 小时内</li>
+                            </ul>
+                        </div>
+                        <p>请点击下方链接查看具体违规照片及扣分说明。如对记录有异议，请按指引在线提交申诉材料。</p>
+                        <button class="email-cta" onclick="goToViolationPortal()">查看违规照片与申诉说明 →</button>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">逾期未处理将按系统自动认定结果计入本学期安全记录。</p>
+                        <div class="email-footer">
+                            <p>实验室管理部<br>安全培训与准入办公室<br><br>本邮件由系统自动发送，请勿直接回复。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="violation-portal-page" class="violation-portal-page" style="display: none;">
+            <div class="violation-portal-shell">
+                <div class="violation-portal-header">
+                    <img src="logo.png" alt="西湖大学" class="violation-portal-logo">
+                    <div>
+                        <h1>实验室安全预警核查系统</h1>
+                        <p>Warning Record Review & Appeal Portal</p>
+                    </div>
+                </div>
+
+                <div class="violation-portal-card">
+                    <div class="violation-status-chip">待本人查看证据</div>
+                    <h2>违规预警记录</h2>
+                    <p>检测到与你账号关联的预警记录 1 条。请先查看系统留存证据，再确认是否提交申诉。</p>
+
+                    <div class="violation-proof-card">
+                        <div class="violation-proof-thumb">
+                            <div class="violation-proof-overlay">点击查看完整照片</div>
+                        </div>
+                        <div class="violation-proof-meta">
+                            <div class="violation-proof-item"><span>记录地点</span><strong>综合实验楼 A-403</strong></div>
+                            <div class="violation-proof-item"><span>记录时间</span><strong>2026-04-27 21:14</strong></div>
+                            <div class="violation-proof-item"><span>风险级别</span><strong>中度预警</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="violation-actions">
+                        <button class="software-primary-btn" onclick="goToViolationLogin()">查看完整照片</button>
+                        <button class="violation-secondary-btn" onclick="goToViolationLogin()">提交申诉材料</button>
+                    </div>
+                </div>
+
+                <div class="violation-portal-footer">
+                    <p>Copyright © Westlake University Laboratory Management Office. All Rights Reserved.</p>
+                    <p>实验室安全 | 准入培训 | 违规申诉</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="violation-login-page" class="phishing-page" style="display: none;">
+            <div class="phishing-container">
+                <div class="phishing-left">
+                    <img src="https://iam.westlake.edu.cn/idp/theme/getImg/155e1cdde8cc4593ad059975cb0be758" alt="西湖大学" class="phishing-left-img">
+                    <div class="phishing-left-overlay"></div>
+                </div>
+                <div class="phishing-right">
+                    <div class="phishing-lang-switch">
+                        <span>EN</span>
+                        <span class="lang-active">中</span>
+                    </div>
+                    <div class="phishing-logo">
+                        <img src="logo.png" alt="西湖大学" class="phishing-logo-img">
+                    </div>
+                    <div class="phishing-title">统一身份认证平台</div>
+                    <div class="phishing-tabs">
+                        <div class="phishing-tab active">密码</div>
+                        <div class="phishing-tab">短信</div>
+                        <div class="phishing-tab">邮箱</div>
+                    </div>
+                    <form id="violation-login-form" onsubmit="handleViolationLogin(event)" class="phishing-form">
+                        <div class="form-group">
+                            <div class="form-input-wrap">
+                                <span class="form-input-icon">👤</span>
+                                <input type="text" id="violation-account" placeholder="请输入用户名/手机号/邮箱" required>
+                            </div>
+                            <div id="violation-account-error" class="finance-inline-error" style="display: none;">
+                                <span class="finance-inline-error-icon">×</span>
+                                <span>请填写正确的用户名/手机号/邮箱。</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-input-wrap">
+                                <span class="form-input-icon">🔒</span>
+                                <input type="password" id="violation-password" placeholder="请输入密码" required>
+                                <a href="#" class="forgot-password" onclick="return false;">忘记密码?</a>
+                            </div>
+                        </div>
+                        <div class="remember-row">
+                            <input type="checkbox" id="violation-remember-me">
+                            <label for="violation-remember-me">记住密码</label>
+                        </div>
+                        <button type="submit" class="phishing-btn">立即登录</button>
+                    </form>
+                    <div class="phishing-footer-info">
+                        <p>如无法登陆，请联系 ITS：0571-85771167（8:30-17:30）或<br><a href="#">itservices@westlake.edu.cn</a></p>
+                        <div class="phishing-copyright">Copyright © Westlake University. All Rights Reserved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="violation-result-page" class="violation-portal-page" style="display: none;">
+            <div class="violation-portal-shell">
+                <div class="violation-result-card">
+                    <div class="finance-result-icon">✓</div>
+                    <h2>身份核验通过</h2>
+                    <p>系统正在调取违规照片与申诉记录，请稍候刷新。</p>
+                    <div class="finance-result-list">
+                        <div class="finance-result-item"><span>身份状态</span><strong>已验证</strong></div>
+                        <div class="finance-result-item"><span>证据调取</span><strong>处理中</strong></div>
+                        <div class="finance-result-item"><span>申诉通道</span><strong>待开启</strong></div>
+                    </div>
+                    <p class="finance-result-note">请勿关闭页面，以免影响系统核验。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="violation-alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p>回顾一下刚才发生了什么: 你因为害怕违规记录、扣分或处分，急于点击邮件中的“证据”链接，并在所谓的核查系统里输入了统一身份认证账号密码。</p>
+                <p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p>
+                <p>对方真正想要的不是让你申诉，而是利用你对处分的恐惧，尽快骗到你的登录凭据。</p>
+                <button class="cta-button" onclick="goToViolationEducation()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/simulate_violation.js"></script>
+</body>
+</html>
