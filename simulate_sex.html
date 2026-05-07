@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高清色情視頻和色情電影 - 色情片、色情視頻網站</title>
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        body { background: #0f0f0f; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .sex-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .sex-header { background: #1a1a1a; padding: 12px 0; border-bottom: 1px solid #333; }
+        .sex-header-inner { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+        .sex-logo { font-size: 1.5rem; font-weight: bold; color: #ff4757; }
+        .sex-nav { display: flex; gap: 24px; }
+        .sex-nav a { color: #aaa; text-decoration: none; font-size: 0.9rem; }
+        .sex-nav a:hover { color: #fff; }
+        .sex-search { display: flex; gap: 8px; }
+        .sex-search input { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 8px 16px; border-radius: 4px; width: 200px; }
+        .sex-search button { background: #ff4757; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .ad-banner { display: flex; align-items: center; justify-content: center; background: linear-gradient(90deg, #1a1a2e, #16213e); padding: 20px; cursor: pointer; margin: 20px 0; border-radius: 8px; position: relative; overflow: hidden; }
+        .ad-banner:hover { opacity: 0.9; }
+        .ad-banner img { max-height: 80px; }
+        .ad-text { position: absolute; bottom: 8px; right: 16px; font-size: 0.75rem; color: #666; }
+        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+        .video-card { background: #1a1a1a; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; }
+        .video-card:hover { transform: scale(1.02); }
+        .video-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+        .video-info { padding: 12px; }
+        .video-title { color: #fff; font-size: 0.9rem; margin-bottom: 6px; line-height: 1.4; }
+        .video-meta { color: #666; font-size: 0.8rem; }
+        .age-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .age-modal-content { background: #1a1a1a; padding: 40px; border-radius: 12px; text-align: center; max-width: 400px; }
+        .age-modal-content h2 { color: #ff4757; margin-bottom: 16px; font-size: 1.5rem; }
+        .age-modal-content p { color: #aaa; margin-bottom: 24px; line-height: 1.6; }
+        .age-btn { padding: 12px 40px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin: 0 8px; }
+        .age-btn-yes { background: #ff4757; color: #fff; }
+        .age-btn-no { background: #333; color: #aaa; }
+        .click-hint-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 24px 40px; border-radius: 12px; z-index: 1000; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .click-hint-modal p { color: #333; font-size: 1rem; margin: 0; }
+        .download-toast { position: fixed; bottom: 40px; right: 40px; background: #1a1a1a; color: #fff; padding: 16px 24px; border-radius: 8px; display: flex; align-items: center; gap: 12px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .download-icon { font-size: 1.5rem; }
+        .download-info { text-align: left; }
+        .download-name { font-weight: 600; margin-bottom: 4px; }
+        .download-progress { font-size: 0.85rem; color: #aaa; }
+        .download-bar { width: 200px; height: 4px; background: #333; border-radius: 2px; margin-top: 8px; overflow: hidden; }
+        .download-bar-inner { height: 100%; background: #ff4757; width: 0%; transition: width 0.3s; }
+        .download-complete { color: #4cd137; cursor: pointer; }
+        .download-complete:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="age-modal" class="age-modal">
+            <div class="age-modal-content">
+                <h2>🔞 年齡確認</h2>
+                <p>本網站包含成人內容，僅限18歲以上人士觀看。請確認您已年滿18歲，並同意遵守當地法律法規。</p>
+                <button class="age-btn age-btn-yes" onclick="confirmAge()">我已年滿18歲</button>
+                <button class="age-btn age-btn-no" onclick="leaveSite()">我未滿18歲</button>
+            </div>
+        </div>
+
+        <div id="main-content" style="display:none;">
+            <header class="sex-header">
+                <div class="sex-header-inner">
+                    <div class="sex-logo">🔞 MissAV</div>
+                    <nav class="sex-nav">
+                        <a href="#">首頁</a>
+                        <a href="#">最新</a>
+                        <a href="#">熱門</a>
+                        <a href="#">女優</a>
+                        <a href="#">分類</a>
+                    </nav>
+                    <div class="sex-search">
+                        <input type="text" placeholder="搜索影片...">
+                        <button>搜索</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="sex-container">
+                <div class="ad-banner" onclick="downloadApp()">
+                    <img src="https://missav.run/assets/images/whos-text-zh-cn.png?v=1" alt="" style="margin-right: 20px;">
+                    <img src="https://missav.run/assets/images/123-text-bg.jpg" alt="" style="border-radius: 8px;">
+                    <span class="ad-text">廣告</span>
+                </div>
+
+                <div class="video-grid" onclick="showClickHint(event)">
+                    <div class="video-card">
+                        <img class="video-thumb" src="https://s3.aaaaa.io/images/av/cca277c0374c2b41cc2329ae7d1bbab4.jpg" alt="">
+                        <div class="video-info">
+                            <div class="video-title">【無碼】人妻不倫旅行 溫泉旅館密會</div>
+                            <div class="video-meta">觀看: 12.5萬 · 45:32</div>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img class="video-thumb" src="https://s3.aaaaa.io/images/av/8f31ead912aa453e9971260da36b62d3.jpg" alt="">
+                        <div class="video-info">
+                            <div class="video-title">【中文字幕】美少女初次體驗 完整版</div>
+                            <div class="video-meta">觀看: 8.3萬 · 52:18</div>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img class="video-thumb" src="https://s3.aaaaa.io/images/av/88868546ebba23cbfd20a80eca0f865a.jpg" alt="">
+                        <div class="video-info">
+                            <div class="video-title">【高清】OL職場誘惑 上司的秘密</div>
+                            <div class="video-meta">觀看: 15.2萬 · 38:45</div>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img class="video-thumb" src="https://s3.aaaaa.io/images/av/254b5deb905308cc1bdeaf55b5f9b128.jpg" alt="">
+                        <div class="video-info">
+                            <div class="video-title">【無碼】極上泡姬服務 特別篇</div>
+                            <div class="video-meta">觀看: 9.7萬 · 41:22</div>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img class="video-thumb" src="https://s3.aaaaa.io/images/av/962a10e144603b77566e0af348688e96.jpg" alt="">
+                        <div class="video-info">
+                            <div class="video-title">【中文字幕】女大學生的秘密兼職</div>
+                            <div class="video-meta">觀看: 11.8萬 · 48:15</div>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img class="video-thumb" src="https://s3.aaaaa.io/images/av/6eb11419e6a255794911666efc2a3b72.jpg" alt="">
+                        <div class="video-info">
+                            <div class="video-title">【高清】護士的秘密夜班 完整版</div>
+                            <div class="video-meta">觀看: 7.6萬 · 55:30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="click-hint" class="click-hint-modal" style="display:none;">
+            <p>👆 點擊上方廣告試試~</p>
+        </div>
+
+        <div id="download-toast" class="download-toast" style="display:none;">
+            <div class="download-icon">📥</div>
+            <div class="download-info">
+                <div class="download-name">MissAV_Player_v3.2.1.apk</div>
+                <div class="download-progress">下載中... <span id="download-percent">0%</span></div>
+                <div class="download-bar"><div class="download-bar-inner" id="download-bar-inner"></div></div>
+            </div>
+        </div>
+
+        <div id="download-complete-toast" class="download-toast" style="display:none;">
+            <div class="download-icon">✅</div>
+            <div class="download-info">
+                <div class="download-name download-complete" onclick="openApp()">MissAV_Player_v3.2.1.apk</div>
+                <div class="download-progress" style="color:#4cd137;">下載完成，點擊安裝</div>
+            </div>
+        </div>
+    </div>
+    <script src="static/simulate_sex.js"></script>
+</body>
+</html>
