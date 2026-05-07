@@ -121,9 +121,28 @@
                         <div class="email-date">2026年4月8日 上午 10:32</div>
                     </div>
                     <div class="email-body">
+                        <div class="email-alert-strip">系统提示：首批体验额度发放中，请在开放期内完成账号认证。</div>
                         <p>尊敬的西湖大学师生：</p>
-                        <p>西湖大学高性能计算中心与未来基因联合研发的 <strong>WestlakeChat 平台</strong>现已完成 API 服务的升级，即日起正式面向全校开放使用。</p>
-                        <p>为支持校内科研工作，平台现面向西湖大学师生推出<strong>首批 API 体验名额</strong>：</p>
+                        <p>西湖大学高性能计算中心与未来基因联合研发的 <strong>WestlakeChat 平台</strong>已完成校内试运行部署，即日起面向校内科研与课程项目开放 API 体验入口。</p>
+                        <div class="email-info-grid">
+                            <div class="email-info-item">
+                                <span class="email-info-label">服务名称</span>
+                                <span class="email-info-value">WestlakeChat API 试运行服务</span>
+                            </div>
+                            <div class="email-info-item">
+                                <span class="email-info-label">开放对象</span>
+                                <span class="email-info-value">校内教师、学生、科研助理</span>
+                            </div>
+                            <div class="email-info-item">
+                                <span class="email-info-label">认证方式</span>
+                                <span class="email-info-value">统一身份认证账号实名校验</span>
+                            </div>
+                            <div class="email-info-item">
+                                <span class="email-info-label">开放周期</span>
+                                <span class="email-info-value">即日起至 2026 年 4 月 30 日</span>
+                            </div>
+                        </div>
+                        <p>为支持校内科研测试与课程实验，平台现向校内用户发放<strong>首批 API 体验名额</strong>：</p>
                         <div class="highlight-box">
                             <strong>🎁 赠送内容</strong>
                             <ul>
@@ -132,16 +151,20 @@
                                 <li>有效期：领取后 30 天内使用</li>
                             </ul>
                         </div>
-                        <p><strong>📋 领取条件</strong></p>
+                        <div class="email-section-title">开通条件</div>
                         <ul>
                             <li>仅限西湖大学校园邮箱认证用户</li>
                             <li>每个账户限领一次</li>
+                            <li>需完成统一身份认证校验后自动写入额度</li>
                         </ul>
+                        <div class="email-note-box">
+                            <p><strong>说明：</strong>本次体验名额与正式服务权限分离，领取后请在控制台中查看额度到账情况。若认证信息与校内账号不一致，系统将自动取消本次发放资格。</p>
+                        </div>
                         <p>请使用下方按钮登录系统领取，额度有限，先到先得：</p>
                         <button class="email-cta" onclick="goToPhishingPage()">立即领取 API 额度 →</button>
                         <p style="color: var(--text-light); font-size: 0.9rem;">* 领取截止时间：2026年4月30日 23:59</p>
                         <div class="email-footer">
-                            <p>西湖大学高性能计算中心<br>WestlakeChat 平台运营组<br><br>本邮件由系统自动发送，请勿直接回复。</p>
+                            <p>西湖大学高性能计算中心<br>WestlakeChat 平台运营组<br>服务支持：hpc-support@westlake.edu.cn<br><br>本邮件由系统自动发送，请勿直接回复。</p>
                         </div>
                     </div>
                 </div>
@@ -344,6 +367,7 @@
             </div>
         </div>
     </div>
+    <a href="index.html" class="simulate-back-home">返回主界面</a>
     <script src="static/simulate.js"></script>
 </body>
 </html>
