@@ -24,5 +24,5 @@ function handleLogin(event) {
 }
 
 function goToEducation() {
-    window.location.href = 'education.html?scenario=1';
+    window.location.href = 'education-scenario1.html';
 }

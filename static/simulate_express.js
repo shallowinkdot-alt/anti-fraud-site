@@ -29,5 +29,5 @@ function handleClaimSubmit(event) {
 }
 
 function goToEducation() {
-    window.location.href = 'education.html?scenario=2';
+    window.location.href = 'education-scenario2.html';
 }

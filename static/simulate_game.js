@@ -55,7 +55,7 @@ function showGameAlert() {
 }
 
 function goToGameEducation() {
-    window.location.href = 'education.html?scenario=3';
+    window.location.href = 'education-scenario3.html';
 }
 
 // 支付方式选择

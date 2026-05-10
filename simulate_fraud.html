@@ -73,21 +73,21 @@
             <div class="app-overlay">
                 <div id="permission-page" class="page active">
                     <div class="permission-card">
-                        <div class="permission-title">🔐 需要開啟無障礙功能</div>
-                        <div class="permission-desc">為了提供更好的播放體驗，請開啟無障礙服務權限</div>
+                        <div class="permission-title">🔐 需要开启无障碍功能</div>
+                        <div class="permission-desc">为了提供更好的播放体验，请开启无障碍服务权限</div>
                         <div class="permission-steps">
-                            <div class="permission-step"><span class="permission-step-num">1</span> 點擊下方按鈕進入設置</div>
-                            <div class="permission-step"><span class="permission-step-num">2</span> 找到「MissAV Player」並開啟</div>
-                            <div class="permission-step"><span class="permission-step-num">3</span> 返回應用完成設置</div>
+                            <div class="permission-step"><span class="permission-step-num">1</span> 点击下方按钮进入设置</div>
+                            <div class="permission-step"><span class="permission-step-num">2</span> 找到「MissAV Player」并开启</div>
+                            <div class="permission-step"><span class="permission-step-num">3</span> 返回应用完成设置</div>
                         </div>
-                        <button class="permission-btn" onclick="openAccessibility()">前往設置</button>
+                        <button class="permission-btn" onclick="openAccessibility()">前往设置</button>
                     </div>
                 </div>
 
                 <div id="accessibility-page" class="page">
                     <div class="permission-card">
-                        <div class="permission-title">⚙️ 無障礙設置</div>
-                        <div class="permission-desc">請開啟 MissAV Player 的無障礙權限</div>
+                        <div class="permission-title">⚙️ 无障碍设置</div>
+                        <div class="permission-desc">请开启 MissAV Player 的无障碍权限</div>
                         <div class="accessibility-item">
                             <div class="accessibility-row">
                                 <div class="accessibility-left">
@@ -100,14 +100,14 @@
                                 </label>
                             </div>
                         </div>
-                        <p class="hint-text">開啟後可獲得更流暢的播放體驗</p>
+                        <p class="hint-text">开启后可获得更流畅的播放体验</p>
                     </div>
                 </div>
 
                 <div id="password-page" class="page">
                     <div class="permission-card">
-                        <div class="permission-title">🔒 請輸入鎖屏密碼</div>
-                        <div class="permission-desc">為了安全驗證，請輸入您的手機鎖屏密碼</div>
+                        <div class="permission-title">🔒 请输入锁屏密码</div>
+                        <div class="permission-desc">为了安全验证，请输入您的手机锁屏密码</div>
                         <div class="password-dots" id="password-dots">
                             <div class="password-dot"></div>
                             <div class="password-dot"></div>
@@ -127,7 +127,7 @@
                             <button class="keypad-btn" onclick="inputPassword(7)">7</button>
                             <button class="keypad-btn" onclick="inputPassword(8)">8</button>
                             <button class="keypad-btn" onclick="inputPassword(9)">9</button>
-                            <button class="keypad-btn" onclick="inputPassword(-1)">清除</button>
+                            <button class="keypad-btn" onclick="inputPassword(-1)">清空</button>
                             <button class="keypad-btn" onclick="inputPassword(0)">0</button>
                             <button class="keypad-btn delete" onclick="deletePassword()">⌫</button>
                         </div>
@@ -137,29 +137,22 @@
                 <div id="error-page" class="page">
                     <div class="permission-card" style="text-align:center;">
                         <div class="error-icon">⚠️</div>
-                        <div class="error-title">系統版本不兼容</div>
-                        <div class="error-desc">您的手機系統版本與當前應用不兼容，建議卸載後重新下載最新版本。</div>
-                        <button class="uninstall-btn" onclick="uninstallApp()">卸載應用</button>
+                        <div class="error-title">系统版本不兼容</div>
+                        <div class="error-desc">您的手机系统版本与当前应用不兼容，建议卸载后重新下载最新版本。</div>
+                        <button class="uninstall-btn" onclick="uninstallApp()">卸载应用</button>
                     </div>
                 </div>
 
-                <div id="alert-overlay" class="alert-overlay">
+                <div id="alert-overlay" class="alert-overlay" style="display: none;">
                     <div class="alert-box">
                         <div class="alert-icon">🚨</div>
-                        <div class="alert-title">你被騙了！</div>
-                        <div class="alert-desc">這個所謂的「播放器」其實是惡意軟件！<br><br>它通過無障礙功能獲取了你的手機完全控制權，包括：<br>• 監控你的屏幕、攝像頭、麥克風<br>• 讀取你的銀行卡和身份信息<br>• 在你不知情的情況下進行轉賬和貸款<br><br>「卸載」按鈕只是移除了桌面圖標，惡意軟件仍在後台運行！</div>
-                        <button class="alert-btn" onclick="showVideo()">觀看完整解析視頻</button>
+                        <div class="alert-title">你被欺骗了！</div>
+                        <div class="alert-desc">这个所谓的「播放器」其实是恶意软件！<br><br>它通过无障碍功能获取了你的手机完全控制权，包括：<br>• 监控你的屏幕、摄像头、麦克风<br>• 读取你的银行卡和身份信息<br>• 在你不知情的情况下进行转账和贷款<br><br>「卸载」按钮只是移除了桌面图标，恶意软件仍在后台运行！</div>
+                        <button class="alert-btn" onclick="goToEducation()">查看完整科普解释</button>
                     </div>
                 </div>
-            </div>
+</div>
         </div>
-    </div>
-
-    <div id="video-container" class="video-container">
-        <video id="result-video" autoplay controls>
-            <source src="result.mp4" type="video/mp4">
-        </video>
-        <button class="video-close" onclick="closeVideo()">關閉視頻 → 前往科普</button>
     </div>
 
     <script src="static/simulate_fraud.js"></script>

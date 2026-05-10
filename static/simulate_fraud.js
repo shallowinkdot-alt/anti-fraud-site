@@ -1,4 +1,4 @@
-// 場景四：惡意軟件詐騙 - 手機端模擬邏輯
+// 场景四：恶意软件诈骗 - 手机端模拟逻辑
 
 var passwordInput = '';
 var passwordAttempts = 0;
@@ -58,7 +58,7 @@ function checkPassword() {
     var errorEl = document.getElementById('password-error');
     
     if (passwordAttempts === 1) {
-        errorEl.textContent = '密碼錯誤，請重新輸入';
+        errorEl.textContent = '密码错误，请重新输入';
         errorEl.style.display = 'block';
         passwordInput = '';
         updatePasswordDots();
@@ -71,11 +71,6 @@ function uninstallApp() {
     document.getElementById('alert-overlay').style.display = 'flex';
 }
 
-function showVideo() {
-    document.getElementById('alert-overlay').style.display = 'none';
-    document.getElementById('video-container').style.display = 'flex';
-}
-
-function closeVideo() {
-    window.location.href = 'education.html?scenario=4';
+function goToEducation() {
+    window.location.href = 'education-scenario4.html';
 }
