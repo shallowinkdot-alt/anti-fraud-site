@@ -190,5 +190,5 @@ function showFinanceAlert() {
 }
 
 function goToFinanceEducation() {
-    window.location.href = 'education.html?scenario=6';
+    window.location.href = 'page_scenario_education.html?scenario=6';
 }

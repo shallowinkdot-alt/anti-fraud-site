@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 西湖大学反诈骗教育平台</title>
+    <link rel="stylesheet" href="static/site.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 场景选择页 -->
+        <div id="scenario-select" class="notice-page">
+            <div class="notice-card">
+                <h2>选择体验场景</h2>
+                <p style="color: var(--text-light); margin-bottom: 24px;">请选择你想要体验的诈骗场景</p>
+                <div class="scenario-select">
+                    <div class="scenario-card" onclick="selectScenario(1)">
+                        <div class="scenario-icon">🤖</div>
+                        <div class="scenario-info">
+                            <h3>场景一：免费API Token</h3>
+                            <p class="scenario-platform">高性能计算中心 · WestlakeChat平台</p>
+                            <p class="scenario-desc">伪装成学校官方平台，以赠送免费算力额度为诱饵，骗取校园邮箱账号密码</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(2)">
+                        <div class="scenario-icon">📦</div>
+                        <div class="scenario-info">
+                            <h3>场景二：快递理赔诈骗</h3>
+                            <p class="scenario-platform">淘宝 · 菜鸟裹裹</p>
+                            <p class="scenario-desc">伪装成快递公司，以"包裹损坏"为由，引导填写银行卡信息进行诈骗（手机版）</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(3)">
+                        <div class="scenario-icon">🎮</div>
+                        <div class="scenario-info">
+                            <h3>场景三：游戏账号交易诈骗</h3>
+                            <p class="scenario-platform">7881游戏交易平台 · 原神账号</p>
+                            <p class="scenario-desc">仿冒游戏交易平台发布超值毕业号，以"担保交易"为名骗取买家付款</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(4)">
+                        <div class="scenario-icon">🎓</div>
+                        <div class="scenario-info">
+                            <h3>场景四：学分异常核查诈骗</h3>
+                            <p class="scenario-platform">教务处 · 校内学分申诉平台</p>
+                            <p class="scenario-desc">伪装成教务紧急通知，以学分异常影响注册或毕业为由，诱导输入学号和统一身份认证密码</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(5)">
+                        <div class="scenario-icon">💻</div>
+                        <div class="scenario-info">
+                            <h3>场景五：正版软件授权过期诈骗</h3>
+                            <p class="scenario-platform">IT Center · Software Services</p>
+                            <p class="scenario-desc">伪装成校内正版软件授权续期提醒，以 OneDrive 资料丢失和 Office 失效为由诱导身份验证</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(6)">
+                        <div class="scenario-icon">💰</div>
+                        <div class="scenario-info">
+                            <h3>场景六：补贴发放异常诈骗</h3>
+                            <p class="scenario-platform">财务处 · 财务自助申报系统</p>
+                            <p class="scenario-desc">伪装成生活补助或科研津贴退回通知，诱导填写银行卡、预留手机号和短信验证码</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(7)">
+                        <div class="scenario-icon">⚠️</div>
+                        <div class="scenario-info">
+                            <h3>场景七：违规预警诈骗</h3>
+                            <p class="scenario-platform">实验室管理部 · 预警核查系统</p>
+                            <p class="scenario-desc">伪装成实验室安全或图书馆违规通报，以查看“证据照片”和在线申诉为由诱导登录</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(8)">
+                        <div class="scenario-icon">📉</div>
+                        <div class="scenario-info">
+                            <h3>场景八：冒充网贷客服诈骗</h3>
+                            <p class="scenario-platform">账户安全中心 · 学生账户注销通道</p>
+                            <p class="scenario-desc">伪装成网贷平台客服，以“注销校园贷记录”“否则影响征信”为由诱导身份核验</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(9)">
+                        <div class="scenario-icon">🎧</div>
+                        <div class="scenario-info">
+                            <h3>场景九：冒充售后客服诈骗</h3>
+                            <p class="scenario-platform">服务中心 · 自动续费取消通道</p>
+                            <p class="scenario-desc">伪装成平台售后客服，以“误开会员”“自动扣费”“退款处理”为由诱导身份核验</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(10)">
+                        <div class="scenario-icon">👨‍🏫</div>
+                        <div class="scenario-info">
+                            <h3>场景十：冒充辅导员诈骗</h3>
+                            <p class="scenario-platform">班级微信群 · 微信转账</p>
+                            <p class="scenario-desc">骗子盗取同学账号后伪装成辅导员老师，以收取资料费为由让同学转账</p>
+                        </div>
+                        <div class="scenario-arrow">→</div>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                    <p style="font-size: 0.85rem; color: var(--text-light); text-align: center;">⚠️ 这是一个完全模拟的诈骗场景体验，请勿在真实环境中填写任何敏感信息</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 警告弹窗 -->
+        <div id="alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p id="alert-message">回顾一下刚才发生了什么——你填写了账号密码，然后点击了"领取"。</p>
+                <p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p>
+                <p>如果你真的填写了真实信息，你的账号信息已经被骗子获取了。</p>
+                <button class="cta-button" onclick="goToEducation()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
+    <script src="static/page_simulation_hub.js"></script>
+</body>
+</html>
+                            

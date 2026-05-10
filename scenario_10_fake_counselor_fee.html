@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 冒充辅导员诈骗</title>
+    <link rel="stylesheet" href="static/site.css">
+</head>
+<body>
+    <div id="app">
+        <div id="counselor-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                    <li>你将进入一个看似真实的<strong>班级群缴费通知</strong>场景</li>
+                    <li>骗子会利用<strong>老师权威、群体氛围、缴费时限</strong>推进转账</li>
+                    <li>体验结束后，你将看到完整拆解与防骗建议</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>“老师在群里催交资料费”并不天然等于真实通知</li>
+                        <li>越是班长、老师和同学同时出现的群场景，越容易让人放松警惕</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startCounselorSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="counselor-chat-page" class="mobile-simulate" style="display: none;">
+            <div class="wx-chat-header">
+                <span onclick="return false;">←</span>
+                <span class="wx-chat-title">2025级本科生</span>
+                <span>⋮</span>
+            </div>
+            <div class="mobile-content" style="background: #ededed;">
+                <div class="wx-chat-list">
+                    <div class="wx-time-divider">下午 14:23</div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-li.png" alt="" class="wx-avatar">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">李明辉（班长）</div>
+                            <div class="wx-bubble">@全体成员 同学们注意了！</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-li.png" alt="" class="wx-avatar">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">李明辉（班长）</div>
+                            <div class="wx-bubble">王老师让我转告大家，明天要交本学期的资料费</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-time-divider">下午 14:25</div>
+
+                    <div class="wx-msg-row wx-msg-right">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">我</div>
+                            <div class="wx-bubble wx-bubble-self">收到，请问是多少费用？</div>
+                        </div>
+                        <img src="static/images/avatar-me.png" alt="" class="wx-avatar">
+                    </div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-li.png" alt="" class="wx-avatar">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">李明辉（班长）</div>
+                            <div class="wx-bubble">每人180，包含下学期的基础教材和打印讲义与作业的费用</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-time-divider">下午 14:28</div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-wang.png" alt="" class="wx-avatar">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">王老师</div>
+                            <div class="wx-bubble">@李明辉 把缴费链接发到群里</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-time-divider">下午 14:30</div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-wang.png" alt="" class="wx-avatar">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">王老师</div>
+                            <div class="wx-bubble">另外，明天下午之前要交齐，麻烦各位同学了</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-time-divider">下午 14:32</div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-li.png" alt="" class="wx-avatar">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">李明辉（班长）</div>
+                            <div class="wx-bubble">@全体成员 请点击下方链接填写缴费信息：<br><a href="#" onclick="goToFeePage(); return false;" style="color: #576b95; text-decoration: none;">https://westlake-fee.top/pay</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wx-input-bar">
+                    <input type="text" class="wx-input-field" placeholder="发送消息..." id="qq-input">
+                    <button class="wx-send-btn" onclick="sendCounselorMessage()">发送</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="counselor-fee-page" class="mobile-simulate" style="display: none;">
+            <div class="wx-pay-header"><span class="wx-pay-back" onclick="goBackCounselor('counselor-chat-page')">←</span><span>西湖大学缴费系统</span><span></span></div>
+            <div class="mobile-content" style="background: #f5f5f5;">
+                <div class="fee-container">
+                    <div class="fee-card">
+                        <div class="fee-header"><h2>班费缴纳通知</h2><p style="color: #666; font-size: 0.9rem; margin-top: 4px;">2025级本科生 · 2026春季学期</p></div>
+                        <div class="fee-info">
+                            <div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">缴费项目</p><p style="font-weight: 600;">资料费</p></div>
+                            <div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">缴费金额</p><p style="font-weight: 600; color: #ff5000; font-size: 1.2rem;">¥ 180.00</p></div>
+                            <div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">缴费截止</p><p style="font-weight: 600; color: #e53e3e;" id="fee-deadline"></p></div>
+                        </div>
+                        <form class="fee-form" onsubmit="handleCounselorFeeSubmit(event)">
+                            <div class="mobile-form-group"><label>真实姓名</label><input type="text" id="fee-name" placeholder="请输入您的真实姓名" required><div id="fee-name-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的姓名。</span></div></div>
+                            <div class="mobile-form-group"><label>学号</label><input type="text" id="fee-id" placeholder="请输入您的学号" required><div id="fee-id-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的 11 位学号。</span></div></div>
+                            <div class="mobile-form-group"><label>手机号码</label><input type="tel" id="fee-phone" placeholder="请输入您的手机号码" required><div id="fee-phone-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的 11 位手机号。</span></div></div>
+                            <p style="font-size: 0.8rem; color: #999; margin-bottom: 16px;">* 信息仅用于缴费统计，我们将严格保护您的个人信息</p>
+                            <button type="submit" class="mobile-login-btn">提交并支付</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="counselor-transfer-page" class="wx-transfer-page" style="display: none;">
+            <div class="wx-pay-header"><span class="wx-pay-back" onclick="goBackCounselor('counselor-fee-page')">←</span><span>向王老师转账</span><span></span></div>
+            <div class="wx-transfer-body">
+                <div class="wx-transfer-user"><img src="static/images/avatar-wang.png" alt="" class="wx-transfer-avatar"><div class="wx-transfer-username">王老师</div></div>
+                <div class="wx-transfer-amount-area"><div class="yuan-symbol-big">¥</div><input type="text" id="transfer-amount" value="180.00" readonly class="wx-amount-input"></div>
+                <div class="mobile-form-group" style="margin-top: 16px;"><label>收款银行卡号</label><input type="text" id="transfer-bank-card" placeholder="请输入收款银行卡号" required><div id="transfer-bank-card-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的 16-19 位银行卡号。</span></div></div>
+                <div class="wx-transfer-note-row"><span style="color: #999; font-size: 14px;">转账说明</span><input type="text" value="资料费" readonly placeholder="添加转账备注" class="wx-note-input"><span style="font-size: 18px; color: #ccc;">›</span></div>
+                <div class="wx-transfer-method-row"><span style="color: #999; font-size: 14px;">付款方式</span><div style="display: flex; align-items: center; gap: 6px;"><span style="color: #07c160; font-weight: 600; font-size: 15px;">微信支付</span><span style="font-size: 16px; color: #ccc;">›</span></div></div>
+                <button class="wx-confirm-btn" onclick="confirmCounselorTransfer()">确认转账</button>
+                <p class="wx-confirm-hint">转账给好友可享受0手续费，资金实时到账</p>
+            </div>
+        </div>
+
+        <div id="counselor-password-page" class="wx-pay-page" style="display: none;">
+            <div class="wx-pay-header"><span class="wx-pay-back" onclick="goBackCounselor('counselor-transfer-page')">&lt;</span><span>微信安全支付</span><span></span></div>
+            <div class="wx-pay-body">
+                <div class="wx-pay-merchant"><img src="static/images/avatar-wang.png" alt="" class="wx-pay-merchant-avatar"><div class="wx-pay-merchant-info"><div class="wx-pay-merchant-name">王老师</div><div class="wx-pay-merchant-desc">2025级本科生辅导员</div></div></div>
+                <div class="wx-pay-amount-section"><div class="wx-pay-amount-label">支付金额</div><div class="wx-pay-amount-value"><span class="yuan-symbol-small">¥</span>180.00</div></div>
+                <div class="wx-pay-password-section"><div class="wx-pay-password-label">支付密码</div><div class="wx-pay-password-box"><div class="wx-pwd-dot"></div><div class="wx-pwd-dot"></div><div class="wx-pwd-dot"></div><div class="wx-pwd-dot"></div><div class="wx-pwd-dot"></div><div class="wx-pwd-dot"></div></div><div class="wx-pay-forget-link">忘记支付密码？</div></div>
+                <div class="wx-pay-keypad">
+                    <div class="wx-key-row"><div class="wx-key" data-val="1">1</div><div class="wx-key" data-val="2">2</div><div class="wx-key" data-val="3">3</div></div>
+                    <div class="wx-key-row"><div class="wx-key" data-val="4">4</div><div class="wx-key" data-val="5">5</div><div class="wx-key" data-val="6">6</div></div>
+                    <div class="wx-key-row"><div class="wx-key" data-val="7">7</div><div class="wx-key" data-val="8">8</div><div class="wx-key" data-val="9">9</div></div>
+                    <div class="wx-key-row wx-key-row-last"><div class="wx-key wx-key-empty"></div><div class="wx-key" data-val="0">0</div><div class="wx-key wx-key-del" data-action="del">⌫</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="counselor-transfer-success-page" class="mobile-simulate" style="display: none;">
+            <div class="mobile-header" style="background: #07c160;"><span>←</span><span>支付成功</span><span></span></div>
+            <div class="mobile-content" style="background: #f5f5f5;">
+                <div class="transfer-success-container">
+                    <div class="success-checkmark">✓</div>
+                    <h2 style="color: #333; margin-top: 16px;">转账成功</h2>
+                    <div class="success-amount">¥180.00</div>
+                    <div class="success-details">
+                        <div class="detail-row"><span>交易对象</span><span>王老师</span></div>
+                        <div class="detail-row"><span>交易说明</span><span>资料费</span></div>
+                        <div class="detail-row"><span>支付方式</span><span>微信支付</span></div>
+                        <div class="detail-row"><span>交易时间</span><span id="transfer-time">今天 14:38</span></div>
+                    </div>
+                    <div style="margin-top: 24px; text-align: center;"><p style="color: #666; font-size: 0.9rem;">你的转账将在24小时内到账</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="counselor-alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p id="counselor-alert-message">回顾一下刚才发生了什么——你在微信群里收到了“王老师”的消息，点击链接填写了真实姓名、学号、手机号，然后通过微信转账了180元“资料费”。</p>
+                <p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p>
+                <p>如果你真的填写了真实信息并完成转账，你的个人信息和资金都已经落入骗子手中。</p>
+                <button class="cta-button" onclick="goToCounselorEducation()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
+    <script src="static/scenario_10_fake_counselor_fee.js"></script>
+</body>
+</html>

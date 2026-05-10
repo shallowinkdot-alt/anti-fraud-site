@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>模拟体验 - 学分异常核查诈骗</title>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/site.css">
 </head>
 <body>
     <div id="app">
@@ -96,18 +96,18 @@
                     <div class="phishing-left-overlay"></div>
                 </div>
                 <div class="phishing-right">
-                    <div class="phishing-lang-switch">
-                        <span>EN</span>
-                        <span class="lang-active">中</span>
+                    <div class="phishing-lang-switch loan-lang-switch">
+                        <button type="button" id="credit-lang-en" class="loan-lang-btn" onclick="setCreditLanguage('en')">EN</button>
+                        <button type="button" id="credit-lang-zh" class="loan-lang-btn lang-active" onclick="setCreditLanguage('zh')">中</button>
                     </div>
                     <div class="phishing-logo">
                         <img src="logo.png" alt="西湖大学" class="phishing-logo-img">
                     </div>
-                    <div class="phishing-title">统一身份认证平台</div>
+                    <div id="credit-login-title" class="phishing-title">统一身份认证平台</div>
                     <div class="phishing-tabs">
-                        <div class="phishing-tab active">密码</div>
-                        <div class="phishing-tab">短信</div>
-                        <div class="phishing-tab">邮箱</div>
+                        <div id="credit-tab-password" class="phishing-tab active">密码</div>
+                        <div id="credit-tab-sms" class="phishing-tab">短信</div>
+                        <div id="credit-tab-email" class="phishing-tab">邮箱</div>
                     </div>
                     <form id="credit-login-form" onsubmit="handleCreditLogin(event)" class="phishing-form">
                         <div class="form-group">
@@ -117,24 +117,24 @@
                             </div>
                             <div id="credit-account-error" class="finance-inline-error" style="display: none;">
                                 <span class="finance-inline-error-icon">×</span>
-                                <span>请填写正确的用户名/手机号/邮箱。</span>
+                                <span id="credit-account-error-text">请填写正确的用户名/手机号/邮箱。</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-input-wrap">
                                 <span class="form-input-icon">🔒</span>
                                 <input type="password" id="credit-password" placeholder="请输入密码" required>
-                                <a href="#" class="forgot-password" onclick="return false;">忘记密码?</a>
+                                <a href="#" id="credit-forgot-password" class="forgot-password" onclick="return false;">忘记密码?</a>
                             </div>
                         </div>
                         <div class="remember-row">
                             <input type="checkbox" id="credit-remember-me">
-                            <label for="credit-remember-me">记住密码</label>
+                            <label id="credit-remember-label" for="credit-remember-me">记住密码</label>
                         </div>
-                        <button type="submit" class="phishing-btn">立即登录</button>
+                        <button type="submit" id="credit-submit-btn" class="phishing-btn">立即登录</button>
                     </form>
                     <div class="phishing-footer-info">
-                        <p>如无法登陆，请联系 ITS：0571-85771167（8:30-17:30）或<br><a href="#">itservices@westlake.edu.cn</a></p>
+                        <p id="credit-footer-text">如无法登陆，请联系 ITS：0571-85771167（8:30-17:30）或<br><a href="#">itservices@westlake.edu.cn</a></p>
                         <div class="phishing-copyright">Copyright © Westlake University. All Rights Reserved</div>
                     </div>
                 </div>
@@ -176,6 +176,6 @@
         </div>
     </div>
 
-    <script src="static/simulate_credit.js"></script>
+    <script src="static/scenario_04_credit_audit.js"></script>
 </body>
 </html>
