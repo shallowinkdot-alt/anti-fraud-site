@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防骗科普 - 西湖大学反诈骗教育平台</title>
+    <link rel="stylesheet" href="static/site.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-title">
+                <img src="logo.png" alt="西湖大学校徽" class="logo" style="width: 48px; height: 48px;">
+                <span class="site-title">西湖大学反诈骗教育平台</span>
+            </div>
+            <nav class="nav">
+                <a href="page_home.html" class="nav-link">首页</a>
+                <a href="page_simulation_hub.html" class="nav-link">模拟体验</a>
+                <a href="page_scenario_education.html" class="nav-link active">防骗科普</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 场景一科普内容 -->
+    <div id="scenario1-content">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景一：仿冒官方身份认证诈骗</h2>
+                
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗的核心手法是<strong>仿冒学校或机构官方系统</strong>，诱导用户在伪造的登录页面输入账号密码。骗子通常以"领取福利""系统升级""账户验证"等为由发送钓鱼邮件或短信，链接指向精心伪造的官方认证页面。</p>
+                    <p>一旦用户输入凭据，账号密码即被窃取，骗子可进一步利用该账号实施更多侵害（如发送垃圾邮件、尝试关联平台登录等）。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、技术原理</h2>
+                    <p><strong>1. 邮件发件人伪装</strong></p>
+                    <p>邮件头部的显示名称（如"西湖大学高性能计算中心"）可以任意伪造。真实发件地址往往并非官方域名，而是近似域名或完全无关的地址。</p>
+                    <p><strong>2. 登录页面克隆</strong></p>
+                    <p>骗子通过截图、爬取等方式获取真实登录页面的视觉样式，在非法服务器上搭建高仿页面。页面URL与官方域名存在细微差异，在移动端尤其难以察觉。</p>
+                    <p><strong>3. 信息收集与利用</strong></p>
+                    <p>收集到的账号密码会被用于：尝试登录邮箱、学术平台、社交账号等；作为钓鱼素材向联系人发送更多欺诈信息；在黑市交易出售。</p>
+                    
+                    <div class="tip-box">
+                        <h4>关键事实</h4>
+                        <p>根据公开报道，2024-2025年全国高校发生多起类似事件，涉及数十所高校师生。单起事件的受害人数从数人到数百人不等。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>核对发件人地址：</strong>不轻信显示名称，需查看实际邮箱域名是否为官方域名（如 @westlake.edu.cn）</li>
+                        <li><strong>检查链接目标：</strong>鼠标悬停查看实际跳转URL，而非按钮文字描述</li>
+                        <li><strong>警惕异常诱因：</strong>"免费领取""限时""额度有限"等表述是典型诱饵特征</li>
+                        <li><strong>核实官方渠道：</strong>通过学校官网、官方公众号等已知可信渠道确认信息真伪</li>
+                        <li><strong>注意页面细节：</strong>仿冒页面可能在证书、域名、页面元素等方面存在瑕疵</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>重要账号启用<strong>双因素认证（2FA）</strong>，即使密码泄露也能提供额外保护</li>
+                        <li>不同平台使用<strong>不同密码</strong>，避免一处泄露导致全面沦陷</li>
+                        <li>不点击邮件/短信中的可疑链接，<strong>手动输入官方网址</strong>访问</li>
+                        <li>在公开场合（GitHub、论文、社交媒体）尽量使用<strong>非主要邮箱</strong></li>
+                        <li>发现账号异常后立即<strong>修改密码</strong>并检查关联账号安全状态</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若怀疑已输入密码至仿冒页面：① 立即修改受影响账号密码；② 检查账号近期登录记录是否有异常设备；③ 检查是否开启了转发规则或自动回复；④ 向学校信息化部门报告。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 场景二科普内容 -->
+    <div id="scenario2-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景二：快递理赔类电信诈骗</h2>
+                
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗利用网购场景中的<strong>物流异常</strong>为切入点，冒充快递公司或电商平台客服，以"包裹损坏理赔""包裹丢失赔付""海关扣留处理"等理由引导受害人进入虚假页面填写个人信息及银行资料，最终实施资金盗取。</p>
+                    <p>该类诈骗的高危特征在于：<strong>骗子能准确报出订单详情</strong>（收件人、商品、订单号），大幅降低了受害人的初始警惕性。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案流程</h2>
+                    <p><strong>阶段一：信息获取</strong></p>
+                    <p>通过非法渠道（数据倒卖、平台入侵、内鬼泄露等）批量获取电商订单信息，包括收件人姓名、电话、商品名称、订单号等。</p>
+                    <p><strong>阶段二：接触诱导</strong></p>
+                    <p>通过短信（伪基站/改号软件可伪装发件人为"菜鸟""淘宝"等）、电话或即时通讯工具联系受害人，声称包裹出现异常需要处理。</p>
+                    <p><strong>阶段三：引流至假站</strong></p>
+                    <p>提供看似官方实则域名为仿冒的链接（如 cainiao-express.top 而非 cainiao.com）。移动端由于地址栏显示受限，更难辨识。</p>
+                    <p><strong>阶段四：套取信息</strong></p>
+                    <p>假网站先要求"登录"获取电商平台账号密码，再以"理赔需要"为由收集银行卡号、持卡人姓名、预留手机号等信息。</p>
+                    <p><strong>阶段五：实施盗取</strong></p>
+                    <p>利用收集的信息开通快捷支付、绑定第三方账户或直接进行转账操作，完成资金窃取。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>官方渠道核验：</strong>收到任何"快递异常"通知后，直接打开购物平台官方APP查看物流状态，而非点击短信链接</li>
+                        <li><strong>域名仔细辨别：</strong>注意链接域名是否为官方域名，任何后缀变化（.top/.xyz/.cc 等）均应高度警惕</li>
+                        <li><strong>正规理赔流程：</strong>正规平台的退款/理赔原路返回至支付账户，<strong>绝不会要求填写银行卡完整信息</strong></li>
+                        <li><strong>客服主动联系：</strong>快递公司极少主动发起理赔，如有问题通常由买家主动发起申诉</li>
+                        <li><strong>索要敏感信息：</strong>任何要求提供银行卡密码、验证码、网银密码的行为均为诈骗</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>网购时留意平台隐私设置，<strong>减少个人信息的公开暴露</strong></li>
+                        <li>银行卡设置<strong>单日交易限额</strong>，降低单次损失上限</li>
+                        <li>开启银行的<strong>交易短信通知</strong>，第一时间发现异常动账</li>
+                        <li>不将同一张银行卡与过多第三方支付平台绑定</li>
+                        <li>接到疑似客服电话时，<strong>主动挂断后通过官方APP内客服渠道回拨核实</strong></li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若已在假页面填写了银行卡信息：① 立即致电银行挂失/冻结卡片；② 修改涉事电商平台密码；③ 检查快捷支付绑定的第三方账户并解绑可疑授权；④ 保留证据（短信、通话记录、页面截图）并向公安机关报案；⑤ 向反诈中心96110举报。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 场景三科普内容 -->
+    <div id="scenario3-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景三：游戏账号交易诈骗</h2>
+                
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗以<strong>虚拟商品交易</strong>为载体，骗子搭建仿冒的游戏账号交易平台（如仿冒7881、交易猫等），发布远低于市场价的"极品账号"，诱导买家上钩后通过虚假的"担保交易""平台托管"流程骗取钱财。</p>
+                    <p>与普通网购不同，游戏账号属于<strong>虚拟资产，无实物交付</strong>，交易过程高度依赖平台信用机制——而这一点恰恰被骗子利用。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案流程</h2>
+                    <p><strong>阶段一：搭建假平台</strong></p>
+                    <p>骗子克隆正规游戏交易平台（7881、交易猫、淘手游等）的页面样式、UI布局和交互逻辑，注册一个域名相似的假冒网站。页面看起来与真平台几乎一致。</p>
+                    <p><strong>阶段二：发布诱饵账号</strong></p>
+                    <p>在假平台上批量发布"超值账号"——高等级、满命角色、精炼武器齐全，价格却只有市场价的30%-50%。这些信息通常会被搜索引擎收录或通过社群传播。</p>
+                    <p><strong>阶段三：建立信任</strong></p>
+                    <p>当买家联系后，"卖家"（实为骗子）表现得专业且热情：详细介绍账号配置、主动降价示好、强调走"平台担保交易"安全可靠。聊天记录中的话术经过精心设计，消除买家疑虑。</p>
+                    <p><strong>阶段四：引导付款至假平台</strong></p>
+                    <p>关键一步：买家被引导在<strong>假平台的支付页面</strong>完成付款。页面显示"资金已进入平台托管账户""确认收货后才转给卖家"，但实际资金直接进入了骗子的账户。</p>
+                    <p><strong>阶段五：消失或拖延</strong></p>
+                    <p>付款后，骗子可能立即失联；也可能继续扮演"客服"以各种理由要求追加付款（保证金、手续费、解冻费等），直到受害人意识到被骗。</p>
+                    
+                    <div class="tip-box">
+                        <h4>核心欺骗点</h4>
+                        <p>整个骗局最致命的设计在于：<strong>"担保交易"是假的</strong>。真正的担保交易需要第三方可信机构介入资金监管，而假平台的"担保"只是页面上的一行文字，没有任何实际保障作用。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>价格异常低廉：</strong>远低于市场价（低于正常价50%以上）的账号几乎可以确定为骗局</li>
+                        <li><strong>域名仔细核对：</strong>假平台域名通常是近似的变体（如 7881-trade.com 而非 7881.com），注意检查地址栏</li>
+                        <li><strong>"担保交易"陷阱：</strong>任何非官方认证的"担保交易"都不具备法律效力，资金安全无法保证</li>
+                        <li><strong>索要额外费用：</strong>正规平台不会收取"保证金""解冻费""手续费"等名目的额外款项</li>
+                        <li><strong>缺乏官方资质：</strong>查看网站底部的ICP备案号、增值电信业务许可证等信息是否真实可查</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>仅使用<strong>知名大型平台</strong>进行虚拟物品交易（如Steam市场、官方渠道等）</li>
+                        <li>交易前务必<strong>核实平台真实性</strong>：搜索平台名称+评价/投诉，查看是否有大量负面反馈</li>
+                        <li>对"超低价"保持警惕——<strong>天上不会掉馅饼</strong>，异常低价必有猫腻</li>
+                        <li>绝不向个人账户转账，所有交易应通过<strong>平台内置支付系统</strong>完成</li>
+                        <li>保留所有聊天记录、转账凭证、页面截图作为维权证据</li>
+                        <li>发现被骗后第一时间联系支付平台申请退款（部分情况下可追回），并报警处理</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若已付款至假平台：① 立即联系支付渠道（支付宝/微信/银行）发起申诉和冻结请求；② 保存全部证据（网址、聊天记录、支付截图）；③ 向公安机关报案并提供完整证据链；④ 在黑猫投诉等平台曝光该假网站；⑤ 向反诈中心96110举报。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario4-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景四：学分/毕业资格异常核查诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗瞄准学生最敏感的<strong>注册、学分和毕业资格</strong>问题，冒充教务处发送“培养方案学分清查异常”“毕业资格待锁定”“课程模块缺失”等紧急通知，引导学生点击所谓的“校内学分申诉平台”链接。</p>
+                    <p>页面通常高度仿冒学校统一身份认证系统，使受害人误以为只是一次常规核验。一旦输入学号和统一身份认证密码，账号凭据就会直接落入骗子手中。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 利用高压场景制造服从</strong></p>
+                    <p>“影响本学期注册”“可能无法按期毕业”“24小时内不处理自动锁定”等措辞，会迅速放大学生的焦虑感，让人来不及通过正常渠道核实。</p>
+                    <p><strong>2. 仿冒校内系统降低怀疑</strong></p>
+                    <p>骗子会复用学校标识、统一身份认证页面、办公口吻和教务术语，让整个流程看起来像校内正式通知。</p>
+                    <p><strong>3. 窃取统一身份认证凭据</strong></p>
+                    <p>一旦 CAS 账号密码泄露，骗子可能进一步登录邮箱、教务、门户或关联系统，甚至冒充学生本人向同学、老师继续发送钓鱼消息。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>真正涉及培养方案、学分认定、注册限制等事项，通常会通过辅导员、学院通知、官方门户站内信或教务系统内消息同步告知，而不是只给一封带外链的紧急邮件。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>先看发件人后缀：</strong>显示名称可以伪装成“教务处”，但邮箱后缀若不是学校官方域名，应立即警惕</li>
+                        <li><strong>警惕“限时锁定”话术：</strong>凡是用毕业、注册、处分等后果强行制造倒计时，都是典型心理操控手法</li>
+                        <li><strong>不要从邮件外链登录：</strong>统一身份认证应通过你熟悉的学校官网、信息门户或教务系统入口进入</li>
+                        <li><strong>核对通知渠道：</strong>教务变动通常会同步出现在官方门户站内信、学院群通知、辅导员转发等可信渠道</li>
+                        <li><strong>注意页面目标是否异常：</strong>如果登录后没有真实课程列表、培养方案明细、申诉记录等校内业务数据，很可能只是套壳钓鱼页</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>涉及教务事项时，优先通过<strong>官方门户或教务系统</strong>手动进入，不点击陌生链接</li>
+                        <li>遇到“学分异常”“毕业资格异常”等通知时，先联系<strong>辅导员、学院秘书或教务老师</strong>核实</li>
+                        <li>养成检查发件人完整地址、链接域名和页面地址栏的习惯</li>
+                        <li>为邮箱和重要账号启用<strong>双因素认证</strong>，降低密码泄露后的风险</li>
+                        <li>不要在任何非确认官方页面输入统一身份认证密码</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若怀疑已在假平台输入了学号和 CAS 密码：① 立即修改统一身份认证密码；② 检查校园邮箱和门户最近登录记录；③ 查看是否存在异常转发、异常通知或账号操作；④ 立即向学校信息化部门、辅导员或教务部门报告；⑤ 保留邮件、链接和页面截图作为证据。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario5-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景五：校园网/正版软件授权过期诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗利用学生对<strong>校内正版软件资源</strong>的依赖，冒充学校 IT 中心发送“Microsoft 365 教育版授权即将到期”“OneDrive 资料可能丢失”“正版软件服务需续期”等通知，引导用户点击所谓的“自助续期”入口。</p>
+                    <p>页面通常做得非常简洁、专业，还会附上学校 Logo、IT 中心版权声明、软件服务说明等元素，让人误以为只是一次普通的账号核验。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 利用资源依赖制造紧迫感</strong></p>
+                    <p>对于依赖 Word、Excel、PowerPoint、OneDrive、MATLAB、Adobe 等资源的学生来说，“授权失效”“云端资料中断”“明日到期”会直接触发焦虑和立即处理的冲动。</p>
+                    <p><strong>2. 用专业感包装降低防备</strong></p>
+                    <p>骗子会刻意把页面做得极简、工整、专业，甚至模仿 IT 服务门户的风格，因为这种页面比花哨页面更容易获得信任。</p>
+                    <p><strong>3. 借“身份验证”窃取凭据</strong></p>
+                    <p>所谓“自助续期”本质上并不是软件授权操作，而是把用户进一步引流到仿冒的统一身份认证页，套取账号密码。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>学校正版软件授权、校园网账户和微软教育版资源，通常应通过你熟悉的校内信息门户、官方 IT 服务页面或学校统一入口访问，而不是从陌生邮件中的第三方链接直接登录。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>不要被“专业页面”迷惑：</strong>界面简洁、带 Logo、带版权声明，并不代表它就是真的</li>
+                        <li><strong>先核对邮件来源和链接域名：</strong>尤其注意是否跳转到了非学校官方域名或陌生后缀页面</li>
+                        <li><strong>警惕“资料即将丢失”类措辞：</strong>这是典型的高压诱导，目的是让你在焦虑中跳过核验步骤</li>
+                        <li><strong>不要从邮件里的第三方链接输入凭据：</strong>这是本类诈骗最核心的风险点</li>
+                        <li><strong>优先手动进入官方入口：</strong>如果真担心授权到期，应自己打开学校官网、信息门户或 IT 服务平台核实</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>涉及正版软件、校园网、云存储资源时，始终通过<strong>官方入口手动访问</strong>，不要依赖邮件直链</li>
+                        <li>不要在邮件跳转的第三方页面输入个人凭据，尤其是统一身份认证账号密码</li>
+                        <li>如收到“授权过期”提醒，可先去<strong>学校 IT 中心官网或服务大厅</strong>查证</li>
+                        <li>为重要账号启用<strong>双因素认证</strong>，降低凭据泄露后的连带风险</li>
+                        <li>发现可疑邮件后，及时向学校信息化部门报告，避免更多同学受骗</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若你已在“自助续期”页面输入了账号密码：① 立即修改统一身份认证密码；② 检查邮箱、OneDrive、微软账号和校园门户近期登录记录；③ 查看是否存在异常文件访问、邮件转发或账号绑定变更；④ 向学校 IT 部门报告并保留邮件、链接、截图等证据。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario6-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景六：助学金/科研津贴发放失败诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗利用学生对<strong>补贴、助学金、奖学金、科研劳务费</strong>等到账信息的高度敏感，冒充学校财务处发送“发放失败”“银行卡校验异常”“资金退回待处理”等通知，引导用户进入所谓的“财务自助申报系统”。</p>
+                    <p>骗子的目标不只是收集基础身份信息，而是进一步套取<strong>银行卡号、银行预留手机号，甚至短信验证码</strong>，为后续盗刷、快捷支付绑定或转账操作创造条件。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 用“钱没到账”迅速触发关注</strong></p>
+                    <p>相比普通通知，“生活补助被退回”“科研津贴延迟到下学期补发”这类信息更容易让学生立刻点击处理，因为它直接关系到现实利益。</p>
+                    <p><strong>2. 伪装成财务修正流程</strong></p>
+                    <p>骗子会让页面看起来像校内财务系统，要求补全姓名、银行卡号、预留手机号，并声称需要短信验证码完成“银行卡校验”。</p>
+                    <p><strong>3. 获取关键金融信息</strong></p>
+                    <p>银行卡号、手机号和验证码一旦落入骗子手中，风险远高于一般账号密码泄露，可能直接导致资金被盗。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>正规财务系统一般不会通过外部链接直接收集银行短信验证码。凡是以“补贴发放修正”为名要求填写验证码的页面，都应视为高风险。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>警惕“补贴退回”类紧急通知：</strong>这类内容极易利用到账焦虑推动你快速操作</li>
+                        <li><strong>核对财务通知渠道：</strong>正规财务信息通常会通过校内系统、学院通知或官方财务平台处理</li>
+                        <li><strong>不要轻信外链页面采集银行卡信息：</strong>尤其是完整卡号和银行预留手机号</li>
+                        <li><strong>验证码是高敏感信息：</strong>任何以“校验银行卡”“重新发放补贴”为名索取短信验证码的行为都极不正常</li>
+                        <li><strong>先联系官方老师核实：</strong>对助学金、劳务费、奖学金等事项，可先问辅导员、导师或财务老师</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>涉及补助、劳务、奖学金发放异常时，优先通过<strong>学校官方财务系统</strong>或已知入口核实</li>
+                        <li>不要在外部链接页面填写银行卡号、预留手机号和短信验证码</li>
+                        <li>牢记：<strong>银行验证码不是学校财务系统应收集的信息</strong></li>
+                        <li>收到可疑财务邮件后，先联系辅导员、学院秘书、课题组老师或财务部门确认</li>
+                        <li>若已泄露金融信息，第一时间联系银行采取冻结、挂失、限额等措施</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若你已填写银行卡号、手机号或验证码：① 立即联系银行冻结账户或关闭快捷支付；② 修改相关支付平台与银行绑定设置；③ 查看是否有异常扣款或授权；④ 保留邮件、页面、短信记录等证据；⑤ 尽快向学校和公安机关报案。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario7-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景七：学术诚信/实验室安全违规预警诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗利用学生对<strong>违规处罚、扣分通报、实验室准入限制</strong>的恐惧，冒充实验室管理部、图书馆管理部门或学术诚信办公室发送“违规预警”“异常记录”“待处理证据”类邮件。</p>
+                    <p>邮件往往强调存在<strong>照片证据、扣分说明、在线申诉入口</strong>，诱使学生在慌张中立刻点击链接，随后进入仿冒系统输入统一身份认证账号密码。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 用处分恐惧压缩判断时间</strong></p>
+                    <p>“已记录违规”“将影响实验权限”“逾期按系统认定处理”等表述，会让人优先想着赶紧看证据、赶紧申诉，而不是先核验通知真假。</p>
+                    <p><strong>2. 用“照片证据”激发强烈点击欲</strong></p>
+                    <p>一旦提到“违规照片”“监控截图”“扣分明细”，很多人会出于紧张和好奇立刻点开，以确认是不是自己。</p>
+                    <p><strong>3. 借申诉流程套取凭据</strong></p>
+                    <p>骗子会伪装成“需先验证身份才能查看照片或提交申诉”，把受害人引流到假登录页，最终窃取账号密码。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>任何涉及处分、扣分、实验室准入、学术诚信等正式事项，通常会伴随线下约谈、老师通知、院系沟通或系统内正式流程，而不是仅凭一封外链邮件处理完毕。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>警惕“证据照片”诱导：</strong>越是强调“点开立即查看证据”，越可能是在制造情绪驱动点击</li>
+                        <li><strong>核对正式通知流程：</strong>涉及处分的通知一般不会只有一个外链申诉入口</li>
+                        <li><strong>不要因为害怕就立刻登录：</strong>先通过辅导员、导师、实验室老师或官方平台核实</li>
+                        <li><strong>查看域名和发件地址：</strong>显示名称可伪造，实际邮箱和链接地址更关键</li>
+                        <li><strong>正式申诉通常有完整流程：</strong>如果页面只有“登录查看证据”，却没有制度依据、处理人、申诉编号等信息，应高度怀疑</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>遇到违规、处分、扣分相关通知时，先联系<strong>辅导员、实验室老师、图书馆老师或院系管理人员</strong>核实</li>
+                        <li>不要通过邮件中的陌生链接直接登录统一身份认证系统</li>
+                        <li>通过你熟悉的<strong>官方门户、教务系统、实验室管理平台</strong>手动进入查看是否真的存在相关记录</li>
+                        <li>对“24小时内必须处理”的措辞保持警惕，这通常是典型的心理施压手段</li>
+                        <li>若已输入密码，应立即修改统一身份认证密码并检查邮箱、门户、校园平台登录状态</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若你已在假“违规核查系统”中输入账号密码：① 立即修改统一身份认证密码；② 检查校园邮箱和门户是否有异常登录；③ 通知相关老师说明情况，避免对方继续冒充你发送消息；④ 保留邮件、链接和页面截图作为证据，并向学校信息化部门报告。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario8-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景八：冒充网贷客服诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗通常冒充“网贷平台客服”“账户安全中心”“金融监管清退专员”等身份，声称受害人名下存在<strong>学生账户、校园贷额度、历史授信记录</strong>，若不立即处理将影响征信、入职、落户或身份核验。</p>
+                    <p>骗子会把处理流程包装成“注销账户”“关闭额度”“清退身份”，先套取账号信息，再进一步诱导转账、共享屏幕、下载会议软件，甚至要求把资金转入所谓的“安全账户”。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 利用征信恐惧推进决策</strong></p>
+                    <p>“影响征信”“保留贷款记录”“以后无法消除”这类表述，会让很多人即便没有真实借贷经历，也急于立刻澄清和处理。</p>
+                    <p><strong>2. 制造伪专业感</strong></p>
+                    <p>骗子会使用“授信额度”“学生身份注销”“监管要求”“账户清退回执”等专业词汇，让人误以为正在经历一套正规的金融流程。</p>
+                    <p><strong>3. 先拿账号，再骗资金</strong></p>
+                    <p>不少受害人一开始只以为自己是在“核验身份”，但后续常常会被进一步引导到转账、贷款、刷脸认证、验证码提交等高风险步骤。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>正规的贷款平台、银行或征信机构，不会通过临时聊天窗口要求你“清空额度”“注销学生账户”，更不会要求你把钱转入所谓的“安全账户”。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>没有贷款，也可能被说有记录：</strong>这是常见话术，不代表你真的存在借贷行为</li>
+                        <li><strong>“影响征信”是核心施压手段：</strong>目的是让你在恐慌中放弃核验</li>
+                        <li><strong>注销账户不应靠陌生客服远程指导：</strong>尤其不要接受共享屏幕、下载软件、远程协助</li>
+                        <li><strong>任何“安全账户”都是骗局：</strong>资金一旦转出，通常极难追回</li>
+                        <li><strong>不要在非官方入口提交账号信息：</strong>更不要配合短信验证码、刷脸认证等敏感操作</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>接到此类电话或聊天通知时，先挂断或停止操作，改为通过<strong>官方 APP、官方客服热线</strong>自行核实</li>
+                        <li>不要因为“征信”两个字就立即配合任何在线处理流程</li>
+                        <li>不要向陌生客服透露统一身份认证密码、验证码、银行卡信息</li>
+                        <li>不要下载陌生屏幕共享、会议、远程控制软件</li>
+                        <li>涉及贷款和征信问题时，可同步咨询学校老师、银行官方客服或警方反诈热线</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若你已向此类“客服”提交账号密码或开始转账：① 立即停止操作并挂断联系；② 修改相关账号密码；③ 冻结银行卡、支付账户或提高风控等级；④ 保留聊天、通话、转账记录；⑤ 立即报警并联系银行止付。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario9-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景九：冒充售后客服诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗通常冒充电商平台、支付平台、视频/音乐/云存储服务的<strong>售后客服</strong>，声称受害人刚刚误开通了某项会员服务、保险服务或自动续费项目，如不立即处理将持续扣费。</p>
+                    <p>骗子会先用“现在可帮你关闭”“可以原路退款”降低警惕，再把受害人引导到假页面或假流程中，进一步骗取账号密码、验证码甚至资金操作权限。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 用扣费焦虑逼你立刻处理</strong></p>
+                    <p>“每月自动扣费”“今天不关明天继续扣”“已进入计费周期”等说法，会让人本能地想赶紧止损。</p>
+                    <p><strong>2. 用退款承诺建立信任</strong></p>
+                    <p>骗子往往不是一上来就骗钱，而是先说“我们帮你退款”，让你误以为对方是在帮你解决问题。</p>
+                    <p><strong>3. 把你带进伪处理流程</strong></p>
+                    <p>接下来会出现“身份验证”“关闭服务通道”“退款核验”等步骤，实质上是在套取账号信息，甚至为后续转账或验证码操作铺路。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>正规的售后服务通常不会要求你进入陌生链接重新登录，更不会通过临时客服聊天窗口让你完成高风险账号验证。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>“误开会员”是高频话术：</strong>目的是让你在不确定中优先选择“先关闭再说”</li>
+                        <li><strong>先核实服务是否真的存在：</strong>通过官方 APP 内的订单、订阅、账户设置自己查看</li>
+                        <li><strong>不要点击陌生客服发来的处理入口：</strong>尤其不要在外部页面重新登录账号</li>
+                        <li><strong>退款不应依赖复杂身份核验：</strong>越是要求多步骤验证，越值得怀疑</li>
+                        <li><strong>后续常有二次套路：</strong>包括验证码、转账、屏幕共享、下载远程软件等</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>涉及会员、扣费、退款问题时，优先通过<strong>官方 App / 官网内置客服</strong>核实</li>
+                        <li>不要相信主动联系你的陌生“售后客服”</li>
+                        <li>不要在外部链接中输入账号密码或验证码</li>
+                        <li>不要因为“马上继续扣费”就放弃核验流程</li>
+                        <li>如已泄露账号信息，应立即修改密码并检查支付、订阅和绑定状态</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若你已在假售后页面输入了账号密码：① 立即修改相关账号密码；② 检查支付平台、会员订阅和自动扣费状态；③ 留意是否有异常验证码、登录提醒或支付申请；④ 保存聊天、链接和页面截图；⑤ 必要时联系平台官方客服与警方处理。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario10-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景十：冒充辅导员/老师诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>此类诈骗通常发生在班级群、年级群、课题组群或学院通知群中。骗子会先盗取某位同学或群成员账号，再冒充<strong>辅导员、班主任、老师</strong>发起“资料费”“班费”“材料费”“报名费”等缴费通知。</p>
+                    <p>为了提高可信度，骗子往往会安排“班长”“同学”配合发言，或者直接引用群聊上下文，让受害人误以为这是一项真实而紧急的校内事务。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 先伪装老师身份建立权威</strong></p>
+                    <p>一旦看到“王老师”“辅导员”“班长转发”，很多人会下意识降低怀疑，尤其是在自己本来就身处班级群时。</p>
+                    <p><strong>2. 用同伙配合制造群体氛围</strong></p>
+                    <p>“班长补充说明”“老师催交”“其他同学跟进”这些元素组合起来，会让你觉得这就是一项正常群通知。</p>
+                    <p><strong>3. 借缴费流程收集信息并直接骗款</strong></p>
+                    <p>骗子会先让你填写姓名、学号、手机号等信息，再引导你通过微信或其他个人转账方式付款，完成诈骗。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>真正涉及班费、资料费、报名费等正式通知，通常会有稳定的校内渠道、明确的收费依据和可核验的通知来源，不会只靠群里一个临时链接和个人收款完成。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>先核验老师身份：</strong>群名片和头像都可能被模仿，不能只凭显示名称判断</li>
+                        <li><strong>警惕“班长+老师”组合拳：</strong>这是常见的可信度增强手法</li>
+                        <li><strong>不要点击陌生缴费链接：</strong>尤其是跳到陌生域名、个人收款页或非官方支付页面</li>
+                        <li><strong>个人转账不是正规收费方式：</strong>如果收款对象是个人微信/支付宝，更要提高警惕</li>
+                        <li><strong>群通知越急越要冷静：</strong>“明天下午前交齐”“现在就填”往往是压缩你核验时间</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>遇到老师在群里发缴费通知时，先通过<strong>私聊老师本人、线下确认、已知官方通知渠道</strong>核实</li>
+                        <li>不要向个人账户转“班费”“资料费”“报名费”</li>
+                        <li>不要在陌生链接里填写学号、手机号等个人信息</li>
+                        <li>发现群成员账号异常发言时，及时提醒群内其他同学并请管理员核实</li>
+                        <li>如果已经转账，应立即保存记录并尽快联系平台和警方止损</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>若你已按群通知完成转账：① 第一时间联系老师和班长核实；② 尽快联系支付平台说明可疑交易；③ 保留群聊、链接、转账截图等证据；④ 通知其他同学避免继续受骗；⑤ 向学校和公安机关报案。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 通用结尾 -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="slogan-box">
+                <h2>知己知彼，百战不殆</h2>
+                <p>了解骗子的套路，才能更好地保护自己和身边的人</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="page_school_incident_analysis.html" class="cta-button">查看校内警情分析</a>
+                <a href="page_simulation_hub.html" id="retry-link" class="cta-button" style="background: var(--primary); margin-left: 16px;">再次体验</a>
+                <a href="page_home.html" class="cta-button" style="background: var(--secondary); margin-left: 16px;">返回首页</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>西湖大学反诈骗教育平台 · 仅供校内安全教育使用</p>
+            <p class="footer-note">本平台所有模拟均为虚构场景，不涉及真实诈骗行为</p>
+        </div>
+    </footer>
+
+    <script>
+        // 根据URL参数显示对应场景的科普内容
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const scenario = urlParams.get('scenario');
+            const retryLink = document.getElementById('retry-link');
+
+            document.getElementById('scenario1-content').style.display = 'none';
+            document.getElementById('scenario2-content').style.display = 'none';
+            document.getElementById('scenario3-content').style.display = 'none';
+            document.getElementById('scenario4-content').style.display = 'none';
+            document.getElementById('scenario5-content').style.display = 'none';
+            document.getElementById('scenario6-content').style.display = 'none';
+            document.getElementById('scenario7-content').style.display = 'none';
+            document.getElementById('scenario8-content').style.display = 'none';
+            document.getElementById('scenario9-content').style.display = 'none';
+            document.getElementById('scenario10-content').style.display = 'none';
+            retryLink.href = 'page_simulation_hub.html';
+            
+            if (scenario == 2) {
+                document.getElementById('scenario2-content').style.display = 'block';
+                retryLink.href = 'scenario_02_express_claim.html';
+            } else if (scenario == 3) {
+                document.getElementById('scenario3-content').style.display = 'block';
+                retryLink.href = 'scenario_03_game_account_trade.html';
+            } else if (scenario == 4) {
+                document.getElementById('scenario4-content').style.display = 'block';
+                retryLink.href = 'scenario_04_credit_audit.html';
+            } else if (scenario == 5) {
+                document.getElementById('scenario5-content').style.display = 'block';
+                retryLink.href = 'scenario_05_software_license.html';
+            } else if (scenario == 6) {
+                document.getElementById('scenario6-content').style.display = 'block';
+                retryLink.href = 'scenario_06_finance_subsidy.html';
+            } else if (scenario == 7) {
+                document.getElementById('scenario7-content').style.display = 'block';
+                retryLink.href = 'scenario_07_violation_warning.html';
+            } else if (scenario == 8) {
+                document.getElementById('scenario8-content').style.display = 'block';
+                retryLink.href = 'scenario_08_fake_loan_support.html';
+            } else if (scenario == 9) {
+                document.getElementById('scenario9-content').style.display = 'block';
+                retryLink.href = 'scenario_09_fake_after_sales.html';
+            } else if (scenario == 10) {
+                document.getElementById('scenario10-content').style.display = 'block';
+                retryLink.href = 'scenario_10_fake_counselor_fee.html';
+            } else {
+                document.getElementById('scenario1-content').style.display = 'block';
+                retryLink.href = 'scenario_01_api_token.html';
+            }
+        });
+    </script>
+</body>
+</html>

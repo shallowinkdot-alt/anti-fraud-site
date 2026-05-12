@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 正版软件授权过期诈骗</title>
+    <link rel="stylesheet" href="static/site.css">
+</head>
+<body>
+    <div id="app">
+        <div id="software-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                    <li>你将收到一封关于<strong>校内正版软件授权过期</strong>的提醒邮件</li>
+                    <li>骗子会利用你对 <strong>Microsoft 365 / OneDrive / 正版软件资源</strong> 的依赖制造紧张感</li>
+                    <li>体验结束后，你将看到完整的套路拆解和防骗建议</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>越是看起来“简洁专业”的 IT 提醒，越要先核对来源</li>
+                        <li>不要在邮件跳转的第三方页面输入校内账号密码</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startSoftwareSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="software-email-page" class="simulate-container" style="display: none;">
+            <div class="email-client">
+                <div class="email-toolbar">
+                    <button>📥 收件箱</button>
+                    <button>📁 归档</button>
+                    <button>⭐ 星标</button>
+                    <button>🗑️ 垃圾邮件</button>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <div class="email-from">Westlake IT Center <span>&lt;license-renewal@westlake-it.help&gt;</span></div>
+                        <div class="email-subject">IT 中心：您的校内正版软件授权即将失效</div>
+                        <div class="email-date">2026年4月28日 下午 17:42</div>
+                    </div>
+                    <div class="email-body">
+                        <div class="email-alert-strip">License Notice: Your campus software entitlement requires renewal verification.</div>
+                        <p>同学你好：</p>
+                        <p>检测到你的学生账号关联的 <strong>Microsoft 365 教育版授权将于明日到期</strong>。若未及时续期，可能导致 OneDrive 云端资料同步中断，并影响 Word、Excel、PowerPoint 等正版软件的继续使用。</p>
+                        <div class="email-info-grid">
+                            <div class="email-info-item">
+                                <span class="email-info-label">服务产品</span>
+                                <span class="email-info-value">Microsoft 365 Education</span>
+                            </div>
+                            <div class="email-info-item">
+                                <span class="email-info-label">关联资源</span>
+                                <span class="email-info-value">OneDrive / Outlook / Office</span>
+                            </div>
+                            <div class="email-info-item">
+                                <span class="email-info-label">授权状态</span>
+                                <span class="email-info-value">即将失效</span>
+                            </div>
+                            <div class="email-info-item">
+                                <span class="email-info-label">续期方式</span>
+                                <span class="email-info-value">身份验证后自动续期</span>
+                            </div>
+                        </div>
+                        <div class="highlight-box">
+                            <strong>授权状态提醒</strong>
+                            <ul>
+                                <li>授权产品：Microsoft 365 Education</li>
+                                <li>受影响资源：OneDrive / Outlook / Office 桌面端</li>
+                                <li>到期时间：明日 23:59</li>
+                            </ul>
+                        </div>
+                        <div class="email-section-title">处理说明</div>
+                        <ul>
+                            <li>续期完成后，授权状态将在 5-10 分钟内同步</li>
+                            <li>如你的账号当前绑定多台设备，请以主账号重新验证</li>
+                            <li>若在到期前未完成续期，部分云端服务可能暂停同步</li>
+                        </ul>
+                        <p>请点击下方“自助续期”按钮完成身份验证，系统将在验证成功后自动延长授权周期。</p>
+                        <button class="email-cta" onclick="goToSoftwarePortal()">自助续期 →</button>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">如未在到期前完成续期，关联云端资源可能无法正常访问。</p>
+                        <div class="email-footer">
+                            <p>Westlake University IT Center<br>Software & License Services<br>Support: itservices@westlake.edu.cn<br><br>This message was generated automatically. Please do not reply directly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="software-portal-page" class="software-portal-page" style="display: none;">
+            <div class="software-portal-shell">
+                <div class="software-portal-brand">
+                    <img src="logo.png" alt="西湖大学" class="software-portal-logo">
+                    <div>
+                        <h1>Westlake IT Software Services</h1>
+                        <p>Campus Software License Self-Service Portal</p>
+                    </div>
+                </div>
+
+                <div class="software-portal-card">
+                    <div class="software-portal-status">
+                        <span class="software-status-dot"></span>
+                        <span>License Verification Required</span>
+                    </div>
+                    <h2>微软教育版授权自助续期</h2>
+                    <p>为避免 OneDrive 资料和正版 Office 使用受影响，请先完成校内身份验证。</p>
+
+                    <div class="software-summary-box">
+                        <div class="software-summary-item">
+                            <span>授权产品</span>
+                            <strong>Microsoft 365 Education</strong>
+                        </div>
+                        <div class="software-summary-item">
+                            <span>状态</span>
+                            <strong>即将到期</strong>
+                        </div>
+                        <div class="software-summary-item">
+                            <span>处理方式</span>
+                            <strong>身份验证后自动续期</strong>
+                        </div>
+                    </div>
+
+                    <div class="email-note-box">
+                        <p><strong>续期说明：</strong>完成身份验证后，系统将自动核验账号所属身份、在册状态与授权绑定关系。续期结果将同步至软件服务中心，无需单独提交工单。</p>
+                    </div>
+
+                    <button class="software-primary-btn" onclick="goToSoftwareLogin()">继续身份验证</button>
+                </div>
+
+                <div class="software-portal-footer">
+                    <p>Copyright © Westlake University IT Center. All Rights Reserved.</p>
+                    <p>正版软件服务 | 账号支持 | 数据存储支持</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="software-login-page" class="phishing-page" style="display: none;">
+            <div class="phishing-container">
+                <div class="phishing-left">
+                    <img src="https://iam.westlake.edu.cn/idp/theme/getImg/155e1cdde8cc4593ad059975cb0be758" alt="西湖大学" class="phishing-left-img">
+                    <div class="phishing-left-overlay"></div>
+                </div>
+                <div class="phishing-right">
+                    <div class="phishing-lang-switch loan-lang-switch">
+                        <button type="button" id="software-lang-en" class="loan-lang-btn" onclick="setSoftwareLanguage('en')">EN</button>
+                        <button type="button" id="software-lang-zh" class="loan-lang-btn lang-active" onclick="setSoftwareLanguage('zh')">中</button>
+                    </div>
+                    <div class="phishing-logo">
+                        <img src="logo.png" alt="西湖大学" class="phishing-logo-img">
+                    </div>
+                    <div id="software-login-title" class="phishing-title">统一身份认证平台</div>
+                    <div class="phishing-tabs">
+                        <div id="software-tab-password" class="phishing-tab active">密码</div>
+                        <div id="software-tab-sms" class="phishing-tab">短信</div>
+                        <div id="software-tab-email" class="phishing-tab">邮箱</div>
+                    </div>
+                    <form id="software-login-form" onsubmit="handleSoftwareLogin(event)" class="phishing-form">
+                        <div class="form-group">
+                            <div class="form-input-wrap">
+                                <span class="form-input-icon">👤</span>
+                                <input type="text" id="software-account" placeholder="请输入用户名/手机号/邮箱" required>
+                            </div>
+                            <div id="software-account-error" class="finance-inline-error" style="display: none;">
+                                <span class="finance-inline-error-icon">×</span>
+                                <span id="software-account-error-text">请填写正确的用户名/手机号/邮箱。</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-input-wrap">
+                                <span class="form-input-icon">🔒</span>
+                                <input type="password" id="software-password" placeholder="请输入密码" required>
+                                <a href="#" id="software-forgot-password" class="forgot-password" onclick="return false;">忘记密码?</a>
+                            </div>
+                        </div>
+                        <div class="remember-row">
+                            <input type="checkbox" id="software-remember-me">
+                            <label id="software-remember-label" for="software-remember-me">记住密码</label>
+                        </div>
+                        <button type="submit" id="software-submit-btn" class="phishing-btn">立即登录</button>
+                    </form>
+                    <div class="phishing-footer-info">
+                        <p id="software-footer-text">如无法登陆，请联系 ITS：0571-85771167（8:30-17:30）或<br><a href="#">itservices@westlake.edu.cn</a></p>
+                        <div class="phishing-copyright">Copyright © Westlake University. All Rights Reserved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="software-result-page" class="software-portal-page" style="display: none;">
+            <div class="software-portal-shell">
+                <div class="software-result-card">
+                    <div class="software-result-icon">✓</div>
+                    <h2>续期请求已提交</h2>
+                    <p>系统正在同步你的校内授权状态，请稍候刷新结果。</p>
+                    <div class="software-summary-box">
+                        <div class="software-summary-item">
+                            <span>账号状态</span>
+                            <strong>验证成功</strong>
+                        </div>
+                        <div class="software-summary-item">
+                            <span>授权状态</span>
+                            <strong>同步中</strong>
+                        </div>
+                        <div class="software-summary-item">
+                            <span>预计完成</span>
+                            <strong>1-3 分钟</strong>
+                        </div>
+                    </div>
+                    <p class="software-result-note">请勿关闭页面或重复提交，以免影响授权同步。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="software-alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p>回顾一下刚才发生了什么: 你因为担心 Microsoft 365 授权到期、OneDrive 资料丢失，在邮件引导下进入了一个看似专业的“校内正版软件续期门户”，随后输入了统一身份认证账号密码。</p>
+                <p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p>
+                <p>这个所谓的“自助续期”页面只是一个套壳钓鱼站。真正被提交给对方的不是续期请求，而是你的账号凭据。</p>
+                <button class="cta-button" onclick="goToSoftwareEducation()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/scenario_05_software_license.js"></script>
+</body>
+</html>

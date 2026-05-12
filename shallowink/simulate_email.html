@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场景一：免费API Token - 西湖大学反诈骗教育平台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 体验说明页 -->
+        <div id="notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                    <li>你将<strong>以当事人视角</strong>体验骗子设计的话术与套路</li>
+                    <li>体验过程中，请<strong>像平时一样操作</strong>，不要刻意规避</li>
+                    <li>体验结束后，你将看到<strong>完整的套路解析</strong></li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>这不是考试，没有对错之分</li>
+                        <li>关键是<strong>感受</strong>——感受你为什么会上钩</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <!-- 邮箱界面 -->
+        <div id="email-page" class="simulate-container" style="display: none;">
+            <div class="email-client">
+                <div class="email-toolbar">
+                    <button>📥 收件箱</button>
+                    <button>📤 已发送</button>
+                    <button>📝 草稿</button>
+                    <button>🗑️ 垃圾邮件</button>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <div class="email-from">西湖大学高性能计算中心 <span>&lt;noreply@hpc.westlake.edu.cn&gt;</span></div>
+                        <div class="email-subject">关于 WestlakeChat API 服务上线暨免费试用通知</div>
+                        <div class="email-date">2026年4月8日 上午 10:32</div>
+                    </div>
+                    <div class="email-body">
+                        <p>尊敬的西湖大学师生：</p>
+                        <p>西湖大学高性能计算中心与未来基因联合研发的 <strong>WestlakeChat 平台</strong>现已完成 API 服务的升级，即日起正式面向全校开放使用。</p>
+                        <p>为支持校内科研工作，平台现面向西湖大学师生推出<strong>首批 API 体验名额</strong>：</p>
+                        <div class="highlight-box">
+                            <strong>🎁 赠送内容</strong>
+                            <ul>
+                                <li>100 元 API 调用额度</li>
+                                <li>支持 GPT-4.1、Claude Sonnet、Gemini 等主流大模型</li>
+                                <li>有效期：领取后 30 天内使用</li>
+                            </ul>
+                        </div>
+                        <p><strong>📋 领取条件</strong></p>
+                        <ul>
+                            <li>仅限西湖大学校园邮箱认证用户</li>
+                            <li>每个账户限领一次</li>
+                        </ul>
+                        <p>请使用下方按钮登录系统领取，额度有限，先到先得：</p>
+                        <button class="email-cta" onclick="goToPhishingPage()">立即领取 API 额度 →</button>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">* 领取截止时间：2026年4月30日 23:59</p>
+                        <div class="email-footer">
+                            <p>西湖大学高性能计算中心<br>WestlakeChat 平台运营组<br><br>本邮件由系统自动发送，请勿直接回复。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 钓鱼登录页 - 伪装成西湖大学统一身份认证平台 -->
+        <div id="phishing-page" class="phishing-page" style="display: none;">
+            <div class="phishing-container">
+                <div class="phishing-left">
+                    <img src="https://iam.westlake.edu.cn/idp/theme/getImg/155e1cdde8cc4593ad059975cb0be758" alt="西湖大学" class="phishing-left-img">
+                    <div class="phishing-left-overlay"></div>
+                </div>
+                <div class="phishing-right">
+                    <div class="phishing-lang-switch">
+                        <span>EN</span><span class="lang-active">中</span>
+                    </div>
+                    <div class="phishing-logo"><img src="logo.png" alt="西湖大学" class="phishing-logo-img"></div>
+                    <div class="phishing-title">统一身份认证平台</div>
+                    <div class="phishing-tabs">
+                        <div class="phishing-tab active">密码</div>
+                        <div class="phishing-tab">短信</div>
+                        <div class="phishing-tab">邮箱</div>
+                    </div>
+                    <form id="login-form" onsubmit="handleLogin(event)" class="phishing-form">
+                        <div class="form-group">
+                            <div class="form-input-wrap">
+                                <span class="form-input-icon">👤</span>
+                                <input type="email" id="email" placeholder="请输入用户名/手机号/邮箱" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-input-wrap">
+                                <span class="form-input-icon">🔒</span>
+                                <input type="password" id="password" placeholder="请输入密码" required>
+                                <a href="#" class="forgot-password" onclick="return false;">忘记密码?</a>
+                            </div>
+                        </div>
+                        <div class="remember-row">
+                            <input type="checkbox" id="remember-me"><label for="remember-me">记住密码</label>
+                        </div>
+                        <button type="submit" class="phishing-btn">立即登录</button>
+                    </form>
+                    <div class="phishing-footer-info">
+                        <p>如无法登陆，请联系 ITS：0571-85771167（8:30-17:30）或<br><a href="#">itservices@westlake.edu.cn</a></p>
+                        <div class="phishing-copyright">Copyright © Westlake University. All Rights Reserved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 领取成功页 -->
+        <div id="success-page" class="success-page" style="display: none;">
+            <div class="success-container">
+                <div class="success-icon">🎉</div>
+                <h2>领取成功！</h2>
+                <p>您的 100 元 API 额度已到账</p>
+                <div class="success-token">
+                    <span>¥ 100.00</span>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">额度将于 2026年5月8日 到期</p>
+                </div>
+                <p style="color: var(--text-light);">正在跳转控制台...</p>
+            </div>
+        </div>
+
+        <!-- 警告弹窗 -->
+        <div id="alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p>回顾一下刚才发生了什么——你填写了账号密码，然后点击了"领取"。</p>
+                <p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p>
+                <p>如果你真的填写了真实信息，你的账号信息已经被骗子获取了。</p>
+                <button class="cta-button" onclick="goToEducation()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+    <script src="static/simulate_email.js"></script>
+</body>
+</html>

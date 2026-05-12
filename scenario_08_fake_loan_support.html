@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 冒充网贷客服诈骗</title>
+    <link rel="stylesheet" href="static/site.css">
+</head>
+<body>
+    <div id="app">
+        <div id="loan-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                    <li>你将收到一段自称来自<strong>网贷平台客服</strong>的风险处理通知</li>
+                    <li>骗子会利用你对<strong>征信、贷款记录、账户安全</strong>的担忧推进操作</li>
+                    <li>体验结束后，你将看到完整拆解与防骗建议</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>凡是要求“清空额度”“关闭账户”“转安全资金”的客服，都应高度警惕</li>
+                        <li>越是强调“今天不处理就影响征信”，越要先停下来核验</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startLoanSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="loan-chat-page" class="loan-chat-page" style="display: none;">
+            <div class="loan-chat-shell">
+                <div class="loan-chat-header">
+                    <span>← 返回</span>
+                    <div>
+                        <strong>官方客服-账户中心</strong>
+                        <p>当前在线</p>
+                    </div>
+                    <span>⋯</span>
+                </div>
+                <div class="loan-chat-body">
+                    <div class="loan-system-tip">以下为模拟聊天记录</div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>您好，这里是某借贷平台账户安全中心。系统检测到您名下学生身份账户仍存在历史授信记录，若未及时注销，后续可能影响征信与校园身份核验。</p></div></div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>根据监管要求，请您今日内完成“学生账户清退”流程，否则系统将保留可借贷状态。</p></div></div>
+                    <div class="loan-msg-row self"><div class="loan-msg self"><p>我没有借过钱，为什么会有记录？</p></div></div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>很多用户是以前注册过校园分期、助学额度或身份证信息被自动关联。您不用担心，我们可以直接帮您在线关闭。</p></div></div>
+                    <div class="loan-process-card">
+                        <h4>待处理事项</h4>
+                        <div class="loan-process-item"><span>账户状态</span><strong>学生身份待注销</strong></div>
+                        <div class="loan-process-item"><span>风险影响</span><strong>可能影响征信</strong></div>
+                        <div class="loan-process-item"><span>处理时限</span><strong>今日 20:00 前</strong></div>
+                    </div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>请点击下方按钮进入“学生账户注销核验通道”，完成身份验证后，系统会自动清退额度并生成注销回执。</p></div></div>
+                    <button class="loan-primary-btn" onclick="goToLoanPortal()">进入学生账户注销通道</button>
+                    <div class="loan-msg-row"><div class="loan-msg service small"><p>如未在时限内处理，平台默认视为您继续保留贷款资格。</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loan-portal-page" class="loan-portal-page" style="display: none;">
+            <div class="loan-portal-shell">
+                <div class="loan-portal-card">
+                    <div class="loan-status-chip">学生账户风险清退通道</div>
+                    <h2>学生身份账户注销核验</h2>
+                    <p>为避免历史授信记录继续保留，请先完成身份核验并确认清退信息。</p>
+                    <div class="loan-summary-box">
+                        <div class="loan-summary-item"><span>核验事项</span><strong>学生账户注销</strong></div>
+                        <div class="loan-summary-item"><span>处理结果</span><strong>清空授信额度</strong></div>
+                        <div class="loan-summary-item"><span>风险提示</span><strong>未处理可能影响征信</strong></div>
+                    </div>
+                    <div class="email-note-box">
+                        <p><strong>办理说明：</strong>身份核验通过后，系统将继续核对名下绑定银行卡信息，并出具账户清退回执。</p>
+                    </div>
+                    <button class="software-primary-btn" onclick="goToLoanLogin()">开始身份核验</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loan-login-page" class="phishing-page" style="display: none;">
+            <div class="phishing-container">
+                <div class="phishing-left">
+                    <img src="https://iam.westlake.edu.cn/idp/theme/getImg/155e1cdde8cc4593ad059975cb0be758" alt="西湖大学" class="phishing-left-img">
+                    <div class="phishing-left-overlay"></div>
+                </div>
+                <div class="phishing-right">
+                    <div class="phishing-lang-switch loan-lang-switch">
+                        <button type="button" id="loan-lang-en" class="loan-lang-btn" onclick="setLoanLanguage('en')">EN</button>
+                        <button type="button" id="loan-lang-zh" class="loan-lang-btn lang-active" onclick="setLoanLanguage('zh')">中</button>
+                    </div>
+                    <div class="phishing-logo"><img src="logo.png" alt="西湖大学" class="phishing-logo-img"></div>
+                    <div id="loan-login-title" class="phishing-title">统一身份认证平台</div>
+                    <div class="phishing-tabs"><div id="loan-tab-password" class="phishing-tab active">密码</div><div id="loan-tab-sms" class="phishing-tab">短信</div><div id="loan-tab-email" class="phishing-tab">邮箱</div></div>
+                    <form id="loan-login-form" onsubmit="handleLoanLogin(event)" class="phishing-form">
+                        <div class="form-group">
+                            <div class="form-input-wrap"><span class="form-input-icon">👤</span><input type="text" id="loan-account" placeholder="请输入用户名/手机号/邮箱" required></div>
+                            <div id="loan-account-error" class="finance-inline-error" style="display: none;"><span class="finance-inline-error-icon">×</span><span id="loan-account-error-text">请填写正确的用户名/手机号/邮箱。</span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-input-wrap"><span class="form-input-icon">🔒</span><input type="password" id="loan-password" placeholder="请输入密码" required><a href="#" id="loan-forgot-password" class="forgot-password" onclick="return false;">忘记密码?</a></div>
+                        </div>
+                        <div class="remember-row"><input type="checkbox" id="loan-remember-me"><label id="loan-remember-label" for="loan-remember-me">记住密码</label></div>
+                        <button type="submit" id="loan-submit-btn" class="phishing-btn">立即登录</button>
+                    </form>
+                    <div class="phishing-footer-info"><p id="loan-footer-text">如无法登陆，请联系 ITS：0571-85771167（8:30-17:30）或<br><a href="#">itservices@westlake.edu.cn</a></p><div class="phishing-copyright">Copyright © Westlake University. All Rights Reserved</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loan-result-page" class="loan-portal-page" style="display: none;">
+            <div class="loan-portal-shell">
+                <div class="loan-portal-card">
+                    <div class="finance-result-icon">✓</div>
+                    <h2>身份核验通过</h2>
+                    <p>系统正在同步账户状态与名下授信记录，请勿中断处理流程。</p>
+                    <div class="loan-summary-box">
+                        <div class="loan-summary-item"><span>身份状态</span><strong>已验证</strong></div>
+                        <div class="loan-summary-item"><span>账户处理</span><strong>同步中</strong></div>
+                        <div class="loan-summary-item"><span>注销回执</span><strong>待生成</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loan-alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p>回顾一下刚才发生了什么：你因为担心名下存在贷款记录、担心影响征信或校园身份核验，在“客服”的催促下进入了所谓的注销通道，并提交了统一身份认证信息。</p>
+                <p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p>
+                <p>真正的目的不是帮你注销贷款，而是利用“征信焦虑”获取你的账号信息，并在后续继续诱导转账、共享屏幕或进入所谓的“安全账户处理”流程。</p>
+                <button class="cta-button" onclick="goToLoanEducation()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+    <script src="static/scenario_08_fake_loan_support.js"></script>
+</body>
+</html>

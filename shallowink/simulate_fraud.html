@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MissAV Player</title>
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .phone-frame { width: 375px; height: 667px; background: #1a1a1a; border-radius: 40px; padding: 12px; box-shadow: 0 25px 80px rgba(0,0,0,0.5), inset 0 0 0 2px #333; position: relative; }
+        .phone-frame::before { content: ''; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 80px; height: 24px; background: #0a0a0a; border-radius: 20px; z-index: 10; }
+        .phone-screen { width: 100%; height: 100%; background: url('https://tse4.mm.bing.net/th/id/OIP.cEX5OsWCYqwQXyxpQumpWQHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3') center/cover no-repeat; border-radius: 30px; overflow: hidden; position: relative; }
+        .app-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+        .status-bar { position: absolute; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; color: #fff; font-size: 0.85rem; z-index: 5; background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); }
+        .page { display: none; padding: 16px 16px 24px; }
+        .page.active { display: block; }
+        .permission-card { background: #fff; border-radius: 20px; padding: 24px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+        .permission-title { font-size: 1.15rem; font-weight: 600; color: #333; margin-bottom: 14px; text-align: center; }
+        .permission-desc { font-size: 0.88rem; color: #666; line-height: 1.6; margin-bottom: 18px; text-align: center; }
+        .permission-steps { background: #f8f9fa; border-radius: 12px; padding: 14px; margin-bottom: 18px; }
+        .permission-step { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 0.85rem; color: #333; }
+        .permission-step-num { width: 22px; height: 22px; background: #ff4757; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; }
+        .permission-btn { width: 100%; background: linear-gradient(135deg, #ff4757, #ff6b81); color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        .permission-btn:active { transform: scale(0.98); }
+        .accessibility-item { background: #f5f5f5; padding: 14px; border-radius: 12px; margin-bottom: 14px; }
+        .accessibility-row { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: #fff; border-radius: 10px; }
+        .accessibility-left { display: flex; align-items: center; gap: 12px; }
+        .accessibility-icon { font-size: 1.4rem; }
+        .accessibility-name { font-size: 0.95rem; color: #333; }
+        .switch { position: relative; display: inline-block; width: 48px; height: 26px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .3s; border-radius: 26px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+        input:checked + .slider { background-color: #4cd137; }
+        input:checked + .slider:before { transform: translateX(22px); }
+        .password-dots { display: flex; justify-content: center; gap: 14px; margin: 24px 0 16px; }
+        .password-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ccc; transition: all 0.2s; }
+        .password-dot.filled { background: #333; border-color: #333; }
+        .password-error { color: #ff4757; font-size: 0.85rem; text-align: center; margin-bottom: 16px; min-height: 20px; }
+        .password-keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .keypad-btn { background: #f5f5f5; border: none; padding: 16px; font-size: 1.3rem; border-radius: 12px; cursor: pointer; transition: background 0.1s; }
+        .keypad-btn:active { background: #e0e0e0; }
+        .keypad-btn.delete { background: #ffebee; color: #ff4757; }
+        .error-icon { font-size: 3.5rem; margin-bottom: 16px; }
+        .error-title { font-size: 1.2rem; font-weight: 600; color: #333; margin-bottom: 12px; }
+        .error-desc { font-size: 0.88rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .uninstall-btn { width: 100%; background: #ff4757; color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        .alert-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+        .alert-box { background: #fff; padding: 28px 24px; border-radius: 20px; text-align: center; max-width: 100%; }
+        .alert-icon { font-size: 3.5rem; margin-bottom: 14px; }
+        .alert-title { font-size: 1.4rem; font-weight: 700; color: #e53e3e; margin-bottom: 12px; }
+        .alert-desc { font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 20px; text-align: left; }
+        .alert-btn { background: linear-gradient(135deg, #e53e3e, #ff6b6b); color: #fff; border: none; padding: 14px 28px; border-radius: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+        .video-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000; z-index: 1000; display: none; align-items: center; justify-content: center; }
+        .video-container video { width: 100%; height: 100%; object-fit: contain; }
+        .video-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); color: #fff; border: none; padding: 12px 24px; border-radius: 24px; cursor: pointer; font-size: 0.9rem; }
+        .hint-text { font-size: 0.78rem; color: #999; text-align: center; margin-top: 12px; }
+        @media (max-width: 420px) {
+            .phone-frame { width: 100%; max-width: 375px; height: calc(100vh - 40px); max-height: 667px; border-radius: 30px; padding: 8px; }
+            .phone-frame::before { top: 12px; width: 60px; height: 20px; }
+            .phone-screen { border-radius: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="phone-screen">
+            <div class="status-bar">
+                <div class="status-bar-left"><span>21:37</span></div>
+                <div class="status-bar-right"><span>📶</span><span>🔋 87%</span></div>
+            </div>
+            <div class="app-overlay">
+                <div id="permission-page" class="page active">
+                    <div class="permission-card">
+                        <div class="permission-title">🔐 需要开启无障碍功能</div>
+                        <div class="permission-desc">为了提供更好的播放体验，请开启无障碍服务权限</div>
+                        <div class="permission-steps">
+                            <div class="permission-step"><span class="permission-step-num">1</span> 点击下方按钮进入设置</div>
+                            <div class="permission-step"><span class="permission-step-num">2</span> 找到「MissAV Player」并开启</div>
+                            <div class="permission-step"><span class="permission-step-num">3</span> 返回应用完成设置</div>
+                        </div>
+                        <button class="permission-btn" onclick="openAccessibility()">前往设置</button>
+                    </div>
+                </div>
+
+                <div id="accessibility-page" class="page">
+                    <div class="permission-card">
+                        <div class="permission-title">⚙️ 无障碍设置</div>
+                        <div class="permission-desc">请开启 MissAV Player 的无障碍权限</div>
+                        <div class="accessibility-item">
+                            <div class="accessibility-row">
+                                <div class="accessibility-left">
+                                    <span class="accessibility-icon">🎬</span>
+                                    <span class="accessibility-name">MissAV Player</span>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="access-switch" onchange="toggleAccessibility()">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="hint-text">开启后可获得更流畅的播放体验</p>
+                    </div>
+                </div>
+
+                <div id="password-page" class="page">
+                    <div class="permission-card">
+                        <div class="permission-title">🔒 请输入锁屏密码</div>
+                        <div class="permission-desc">为了安全验证，请输入您的手机锁屏密码</div>
+                        <div class="password-dots" id="password-dots">
+                            <div class="password-dot"></div>
+                            <div class="password-dot"></div>
+                            <div class="password-dot"></div>
+                            <div class="password-dot"></div>
+                            <div class="password-dot"></div>
+                            <div class="password-dot"></div>
+                        </div>
+                        <div id="password-error" class="password-error"></div>
+                        <div class="password-keypad">
+                            <button class="keypad-btn" onclick="inputPassword(1)">1</button>
+                            <button class="keypad-btn" onclick="inputPassword(2)">2</button>
+                            <button class="keypad-btn" onclick="inputPassword(3)">3</button>
+                            <button class="keypad-btn" onclick="inputPassword(4)">4</button>
+                            <button class="keypad-btn" onclick="inputPassword(5)">5</button>
+                            <button class="keypad-btn" onclick="inputPassword(6)">6</button>
+                            <button class="keypad-btn" onclick="inputPassword(7)">7</button>
+                            <button class="keypad-btn" onclick="inputPassword(8)">8</button>
+                            <button class="keypad-btn" onclick="inputPassword(9)">9</button>
+                            <button class="keypad-btn" onclick="inputPassword(-1)">清空</button>
+                            <button class="keypad-btn" onclick="inputPassword(0)">0</button>
+                            <button class="keypad-btn delete" onclick="deletePassword()">⌫</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="error-page" class="page">
+                    <div class="permission-card" style="text-align:center;">
+                        <div class="error-icon">⚠️</div>
+                        <div class="error-title">系统版本不兼容</div>
+                        <div class="error-desc">您的手机系统版本与当前应用不兼容，建议卸载后重新下载最新版本。</div>
+                        <button class="uninstall-btn" onclick="uninstallApp()">卸载应用</button>
+                    </div>
+                </div>
+
+                <div id="alert-overlay" class="alert-overlay" style="display: none;">
+                    <div class="alert-box">
+                        <div class="alert-icon">🚨</div>
+                        <div class="alert-title">你被欺骗了！</div>
+                        <div class="alert-desc">这个所谓的「播放器」其实是恶意软件！<br><br>它通过无障碍功能获取了你的手机完全控制权，包括：<br>• 监控你的屏幕、摄像头、麦克风<br>• 读取你的银行卡和身份信息<br>• 在你不知情的情况下进行转账和贷款<br><br>「卸载」按钮只是移除了桌面图标，恶意软件仍在后台运行！</div>
+                        <button class="alert-btn" onclick="goToEducation()">查看完整科普解释</button>
+                    </div>
+                </div>
+</div>
+        </div>
+    </div>
+
+    <script src="static/simulate_fraud.js"></script>
+</body>
+</html>

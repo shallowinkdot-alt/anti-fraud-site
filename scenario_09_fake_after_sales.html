@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 冒充售后客服诈骗</title>
+    <link rel="stylesheet" href="static/site.css">
+</head>
+<body>
+    <div id="app">
+        <div id="after-sales-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                    <li>你将收到一位自称平台<strong>售后客服</strong>的服务通知</li>
+                    <li>骗子会利用你对<strong>自动扣费、误开会员、退款处理</strong>的担忧推进操作</li>
+                    <li>体验结束后，你将看到完整拆解与防骗建议</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>越是强调“现在不处理就会继续扣费”，越要先核验渠道</li>
+                        <li>正规售后一般不会要求你进入陌生页面重新做身份核验</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startAfterSalesSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="after-sales-chat-page" class="loan-chat-page" style="display: none;">
+            <div class="loan-chat-shell">
+                <div class="loan-chat-header">
+                    <span>← 返回</span>
+                    <div>
+                        <strong>官方售后客服-服务中心</strong>
+                        <p>当前在线</p>
+                    </div>
+                    <span>⋯</span>
+                </div>
+                <div class="loan-chat-body">
+                    <div class="loan-system-tip">以下为模拟聊天记录</div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>您好，这里是某电商平台售后服务中心。系统检测到您的账户刚刚开通了“年度增值会员服务”，如非本人操作，可立即为您取消。</p></div></div>
+                    <div class="loan-msg-row self"><div class="loan-msg self"><p>我没有开通过，这个会扣费吗？</p></div></div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>该服务默认 12 个月自动续费，若您不需要，请在本次服务窗口内完成取消。超过处理时限，系统会按已开通状态继续计费。</p></div></div>
+                    <div class="loan-process-card">
+                        <h4>待处理事项</h4>
+                        <div class="loan-process-item"><span>服务类型</span><strong>年度增值会员</strong></div>
+                        <div class="loan-process-item"><span>风险提示</span><strong>可能继续自动扣费</strong></div>
+                        <div class="loan-process-item"><span>处理时限</span><strong>10 分钟内</strong></div>
+                    </div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>请点击下方按钮进入“服务取消与退款核验通道”，完成身份验证后，系统将自动关闭服务并返还本次费用。</p></div></div>
+                    <button class="loan-primary-btn" onclick="goToAfterSalesPortal()">进入服务取消与退款通道</button>
+                    <div class="loan-msg-row"><div class="loan-msg service small"><p>若逾期未处理，平台将默认保留当前订阅状态。</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="after-sales-portal-page" class="loan-portal-page" style="display: none;">
+            <div class="loan-portal-shell">
+                <div class="loan-portal-card">
+                    <div class="loan-status-chip">服务取消与退款核验通道</div>
+                    <h2>自动续费取消处理</h2>
+                    <p>为防止后续自动扣费，请先完成身份核验并确认退款处理信息。</p>
+                    <div class="loan-summary-box">
+                        <div class="loan-summary-item"><span>处理事项</span><strong>关闭年度会员服务</strong></div>
+                        <div class="loan-summary-item"><span>退款说明</span><strong>按原路径退回</strong></div>
+                        <div class="loan-summary-item"><span>当前状态</span><strong>待本人确认</strong></div>
+                    </div>
+                    <div class="email-note-box">
+                        <p><strong>办理说明：</strong>核验通过后，系统将同步关闭自动续费状态，并生成退款回执。请确保账号为本人正在使用的主账号。</p>
+                    </div>
+                    <button class="software-primary-btn" onclick="goToAfterSalesLogin()">开始身份核验</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="after-sales-login-page" class="finance-portal-page" style="display: none;">
+            <div class="finance-portal-shell">
+                <div class="finance-portal-card">
+                    <div class="finance-status-banner">待核验: 退款收款信息确认</div>
+                    <h2>退款回执信息核实</h2>
+                    <p>请核对并补全下列退款核验信息，系统将在处理完成后关闭服务并按原路径退回费用。</p>
+
+                    <div class="email-note-box">
+                        <p><strong>办理说明：</strong>本次核实用于确认退款回执信息与收款要素。提交后系统将同步关闭自动续费状态，并进入原路径退款处理流程。</p>
+                    </div>
+
+                    <form class="finance-form" onsubmit="handleAfterSalesLogin(event)">
+                        <div class="finance-form-group">
+                            <label>退款接收人姓名</label>
+                            <input type="text" id="after-sales-name" placeholder="请输入退款接收人姓名" required>
+                            <div id="after-sales-name-error" class="finance-inline-error" style="display: none;">
+                                <span class="finance-inline-error-icon">×</span>
+                                <span>请输入正确的姓名。</span>
+                            </div>
+                        </div>
+                        <div class="finance-form-group">
+                            <label>退款银行卡号</label>
+                            <input type="text" id="after-sales-bank-card" placeholder="请输入退款银行卡号" required>
+                            <div id="after-sales-bank-card-error" class="finance-inline-error" style="display: none;">
+                                <span class="finance-inline-error-icon">×</span>
+                                <span>请输入正确的 16-19 位银行卡号。</span>
+                            </div>
+                        </div>
+                        <div class="finance-form-group">
+                            <label>退款银行卡预留手机号</label>
+                            <input type="tel" id="after-sales-bank-phone" placeholder="请输入退款银行卡预留手机号" required>
+                            <div id="after-sales-bank-phone-error" class="finance-inline-error" style="display: none;">
+                                <span class="finance-inline-error-icon">×</span>
+                                <span>请输入正确的 11 位手机号。</span>
+                            </div>
+                        </div>
+                        <div class="finance-form-group">
+                            <label>图形验证码</label>
+                            <div class="finance-code-row">
+                                <input type="text" id="after-sales-code" placeholder="请输入图形验证码" required>
+                                <button type="button" id="after-sales-captcha-display" class="finance-captcha-display" onclick="refreshAfterSalesCaptcha()" aria-label="点击切换验证码">
+                                    <canvas id="after-sales-captcha-canvas" width="140" height="48"></canvas>
+                                </button>
+                            </div>
+                            <div id="after-sales-code-error" class="finance-inline-error" style="display: none;">
+                                <span class="finance-inline-error-icon">×</span>
+                                <span>验证码错误，请重新输入。</span>
+                            </div>
+                            <p class="finance-form-note">* 看不清可点击右侧验证码切换。</p>
+                        </div>
+                        <p class="finance-form-note">* 为确保退款准确原路退回，请完成退款信息核验。</p>
+                        <button type="submit" class="finance-submit-btn">提交退款核验并关闭服务</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="after-sales-result-page" class="loan-portal-page" style="display: none;">
+            <div class="loan-portal-shell">
+                <div class="loan-portal-card">
+                    <div class="finance-result-icon">✓</div>
+                    <h2>退款核验已提交</h2>
+                    <p>系统正在同步关闭服务状态并生成退款回执，请勿中断退款处理流程。</p>
+                    <div class="loan-summary-box">
+                        <div class="loan-summary-item"><span>核验状态</span><strong>已提交</strong></div>
+                        <div class="loan-summary-item"><span>服务关闭</span><strong>处理中</strong></div>
+                        <div class="loan-summary-item"><span>退款回执</span><strong>生成中</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="after-sales-alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p>回顾一下刚才发生了什么：你因为担心“误开会员”“自动续费”“继续扣费”，在所谓售后客服的催促下进入了处理通道，并提交了统一身份认证信息。</p>
+                <p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p>
+                <p>骗子真正想要的不是帮你退款，而是利用“扣费焦虑”和“退款承诺”把你引导到假页面，获取账号信息，后续还可能继续诱导转账或验证码操作。</p>
+                <button class="cta-button" onclick="goToAfterSalesEducation()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
+    <script src="static/scenario_09_fake_after_sales.js"></script>
+</body>
+</html>

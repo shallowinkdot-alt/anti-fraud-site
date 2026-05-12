@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场景一：仿冒官方身份认证诈骗 - 西湖大学反诈骗教育平台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-title">
+                <img src="logo.png" alt="西湖大学校徽" class="logo" style="width: 48px; height: 48px;">
+                <span class="site-title">西湖大学反诈骗教育平台</span>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="index.html#simulate" class="nav-link">模拟体验</a>
+                <a href="education-scenario1.html" class="nav-link active">防骗科普</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 场景一科普内容 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">场景一：仿冒官方身份认证诈骗</h2>
+            
+            <div class="edu-card">
+                <h2>一、骗局概述</h2>
+                <p>此类诈骗的核心手法是<strong>仿冒学校或机构官方系统</strong>，诱导用户在伪造的登录页面输入账号密码。骗子通常以"领取福利""系统升级""账户验证"等为由发送钓鱼邮件或短信，链接指向精心伪造的官方认证页面。</p>
+                <p>一旦用户输入凭据，账号密码即被窃取，骗子可进一步利用该账号实施更多侵害（如发送垃圾邮件、尝试关联平台登录等）。</p>
+            </div>
+
+            <div class="edu-card">
+                <h2>二、技术原理</h2>
+                <p><strong>1. 邮件发件人伪装</strong></p>
+                <p>邮件头部的显示名称（如"西湖大学高性能计算中心"）可以任意伪造。真实发件地址往往并非官方域名，而是近似域名或完全无关的地址。</p>
+                <p><strong>2. 登录页面克隆</strong></p>
+                <p>骗子通过截图、爬取等方式获取真实登录页面的视觉样式，在非法服务器上搭建高仿页面。页面URL与官方域名存在细微差异，在移动端尤其难以察觉。</p>
+                <p><strong>3. 信息收集与利用</strong></p>
+                <p>收集到的账号密码会被用于：尝试登录邮箱、学术平台、社交账号等；作为钓鱼素材向联系人发送更多欺诈信息；在黑市交易出售。</p>
+                
+                <div class="tip-box">
+                    <h4>关键事实</h4>
+                    <p>根据公开报道，2024-2025年全国高校发生多起类似事件，涉及数十所高校师生。单起事件的受害人数从数人到数百人不等。</p>
+                </div>
+            </div>
+
+            <div class="edu-card">
+                <h2>三、识别要点</h2>
+                <ul>
+                    <li><strong>核对发件人地址：</strong>不轻信显示名称，需查看实际邮箱域名是否为官方域名（如 @westlake.edu.cn）</li>
+                    <li><strong>检查链接目标：</strong>鼠标悬停查看实际跳转URL，而非按钮文字描述</li>
+                    <li><strong>警惕异常诱因：</strong>"免费领取""限时""额度有限"等表述是典型诱饵特征</li>
+                    <li><strong>核实官方渠道：</strong>通过学校官网、官方公众号等已知可信渠道确认信息真伪</li>
+                    <li><strong>注意页面细节：</strong>仿冒页面可能在证书、域名、页面元素等方面存在瑕疵</li>
+                </ul>
+            </div>
+
+            <div class="edu-card">
+                <h2>四、防护建议</h2>
+                <ul>
+                    <li>重要账号启用<strong>双因素认证（2FA）</strong>，即使密码泄露也能提供额外保护</li>
+                    <li>不同平台使用<strong>不同密码</strong>，避免一处泄露导致全面沦陷</li>
+                    <li>不点击邮件/短信中的可疑链接，<strong>手动输入官方网址</strong>访问</li>
+                    <li>在公开场合（GitHub、论文、社交媒体）尽量使用<strong>非主要邮箱</strong></li>
+                    <li>发现账号异常后立即<strong>修改密码</strong>并检查关联账号安全状态</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <h4>应急处置步骤</h4>
+                    <p>若怀疑已输入密码至仿冒页面：① 立即修改受影响账号密码；② 检查账号近期登录记录是否有异常设备；③ 检查是否开启了转发规则或自动回复；④ 向学校信息化部门报告。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 通用结尾 -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="slogan-box">
+                <h2>知己知彼，百战不殆</h2>
+                <p>了解骗子的套路，才能更好地保护自己和身边的人</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="index.html#simulate" class="cta-button">再次体验</a>
+                <a href="index.html" class="cta-button" style="background: var(--primary); margin-left: 16px;">返回首页</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>西湖大学反诈骗教育平台 · 仅供校内安全教育使用</p>
+            <p class="footer-note">本平台所有模拟均为虚构场景，不涉及真实诈骗行为</p>
+        </div>
+    </footer>
+</body>
+</html>

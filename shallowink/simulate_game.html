@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原神账号 - 7881游戏交易平台</title>
+    <link rel="stylesheet" href="static/style.css">
+    <title>账号属性卡片</title>
+    <style>
+        /* 全局重置，消除默认边距 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        .game-breadcrumb {
+        display: flex;
+        justify-content: space-between; /* 左右自动分开 */
+        align-items: center;
+        padding: 8px 0;
+        margin: 0;
+        }
+        .game-breadcrumb-inner {
+        margin-left: 0 !important;
+        padding-left: 3 !important;
+        }
+        /* 右侧文字正常显示 */
+        .breadcrumb-right {
+        color: #999;
+        font-size: 14px;
+        white-space: nowrap;
+        }
+        /* 最外层容器：浅灰背景 + 圆角 + 内边距 */
+        .attr-box {
+            display: grid;
+            /* 强制4列布局，每列平分宽度，超出自动换行 */
+            grid-template-columns: repeat(4, 1fr);
+            /* 卡片之间的间距（上下/左右） */
+            gap: 10px;
+            padding: 8px 15px;
+            background-color: #f5f7fa;
+            border-radius: 16px;
+            max-width: 1200px;
+            margin: 15px auto;
+        }
+
+        /* 单个卡片样式（字号已调小） */
+        .attr-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        /* 标题文字 */
+        .attr-item h3 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+
+        /* 说明文字 */
+        .attr-item p {
+            font-size: 14px;
+            color: #999999;
+        }
+
+        /* 响应式适配：小屏幕自动改为2列 */
+        @media (max-width: 768px) {
+            .attr-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body style="background: #f5f5f5;">
+    <!-- 7881风格顶部导航 -->
+    <header class="game-header">
+        <div class="game-header-inner">
+            <div class="game-logo-area">
+                <span class="game-logo-text">7881</span>
+                <span class="game-logo-sub">游戏交易平台</span>
+            </div>
+            <nav class="game-nav">
+                <a href="#" class="game-nav-link">首页</a>
+                <a href="#" class="game-nav-link active">账号交易</a>
+                <a href="#" class="game-nav-link">道具交易</a>
+                <a href="#" class="game-nav-link">手游充值</a>
+                <a href="#" class="game-nav-link">游戏币</a>
+            </nav>
+            <div class="game-user-area">
+                <span class="game-user-icon">👤</span>
+                <span>我的7881</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 面包屑导航 -->
+    <div class="game-breadcrumb">
+        <div class="game-breadcrumb-inner">
+            <a href="#">首页</a> &gt; <a href="#">账号购买</a> &gt; <a href="#">原神</a> &gt; <a href="#">账号详情</a>
+        </div>
+        <div class="breadcrumb-right">
+            <span>👤 ***3376 20:52:31 浏览了这个商品</span>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div id="app">
+        <!-- 页面一：账号详情页（仿7881） -->
+        <div id="game-account-page" class="game-main">
+            <div class="game-container">
+                <!-- 上半部分：左侧图片 + 右侧价格信息（参考截图布局） -->
+                <div class="account-showcase-layout">
+                    <!-- 左侧：账号截图 + 角色展示 -->
+                    <div class="showcase-left">
+                        <!-- 账号截图轮播区 -->
+                        <div class="screenshot-gallery">
+                            <div class="gallery-main" id="gallery-main">
+                                <img src="https://userpic.7881.com/temporary/goods/v1/2026/index_v2_1_201612599253035.png?x-oss-process=style/cover&random=201612599253035.1771033201467.0.9860965936416721" alt="账号截图1" class="gallery-img active" id="gallery-img-1">
+                                <img src="https://public-image.pxb7.com/AutoGame/AutoGameMainContent/2006_request/211967187165273/content/211967187165273_1.jpg?x-oss-process=style/shuiyin-70-1920" alt="账号截图2" class="gallery-img" id="gallery-img-2" style="display:none;">
+                                <img src="https://public-image.pxb7.com/AutoGame/AutoGameMainContent/2006_request/211967187165273/content/211967187165273_10.jpg?x-oss-process=style/shuiyin-70-1920" alt="账号截图3" class="gallery-img" id="gallery-img-3" style="display:none;">
+                            </div>
+                            <div class="gallery-thumbs">
+                                <img src="https://userpic.7881.com/temporary/goods/v1/2026/index_v2_1_201612599253035.png?x-oss-process=style/cover&random=201612599253035.1771033201467.0.9860965936416721" class="thumb-active" onclick="switchGallery(1)" alt="">
+                                <img src="https://public-image.pxb7.com/AutoGame/AutoGameMainContent/2006_request/211967187165273/content/211967187165273_1.jpg?x-oss-process=style/shuiyin-70-1920" onclick="switchGallery(2)" alt="">
+                                <img src="https://public-image.pxb7.com/AutoGame/AutoGameMainContent/2006_request/211967187165273/content/211967187165273_10.jpg?x-oss-process=style/shuiyin-70-1920" onclick="switchGallery(3)" alt="">
+                            </div>
+                            <div class="gallery-counter">2 / 51</div>
+                        </div>
+
+                        <!-- 底部收藏栏 -->
+                        <div class="showcase-footer-bar">
+                            <span class="favorite-btn">☆ 收藏</span>
+                            <span class="publish-time">3小时内发布</span>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：价格与操作面板 -->
+                    <div class="showcase-right">
+                        <!-- 价格区域 -->
+                        <div class="price-area">
+                            <div class="price-main">
+                                <span class="price-symbol">¥</span>
+                                <span class="price-big">1299</span>
+                                <span class="price-original">¥2560</span>
+                                <span class="price-saved">已省¥1261.00</span>
+                            </div>
+                            <button class="share-btn">📤</button>
+                        </div>
+
+                        <!-- 标签 -->
+                        <div class="product-tags">
+                            <span class="tag-orange">🔥 无货立赔</span>
+                            <span class="tag-green">⚡ 即时结算</span>
+                            <span class="tag-blue">✅ 官方验号</span>
+                            <span class="tag-purple">💳 支持花呗</span>
+                        </div>
+
+                        <!-- 商品详情表 -->
+                        <div class="attr-box">
+                        <div class="attr-item">
+                            <h3 title="手机账号">手机账号</h3>
+                            <p title="账号类型">账号类型</p>
+                        </div>
+                        <div class="attr-item">
+                            <h3 title="不出售邮箱">不出售邮箱</h3>
+                            <p title="是否出售邮箱">是否出售邮箱</p>
+                        </div>
+                        <div class="attr-item">
+                            <h3 title="已绑定Tap">已绑定Tap</h3>
+                            <p title="是否绑定Tap">是否绑定Tap</p>
+                        </div>
+                        <div class="attr-item">
+                            <h3 title="可提供实名">可提供实名</h3>
+                            <p title="提供游戏实名">提供游戏实名</p>
+                        </div>
+                        <div class="attr-item">
+                            <h3 title="女主">女主</h3>
+                            <p title="主角性别">主角性别</p>
+                        </div>
+                        <div class="attr-item">
+                            <h3 title="60">60</h3>
+                            <p title="等级">等级</p>
+                        </div>
+                        <div class="attr-item">
+                            <h3 title="178">178</h3>
+                            <p title="金卡数量">金卡数量</p>
+                        </div>
+                        </div>
+
+                        <!-- 关键词标签 -->
+                        <div class="keyword-tags">
+                            <span>米哈游官服</span>|<span>QQ邮箱</span>|<span>QQ邮箱出售</span>|<span>女主</span>|<span>未绑定TAP</span>|<span>未绑定PSN</span>|<span>提供换绑码</span>
+                        </div>
+
+                        <!-- 操作按钮 -->
+                        <div class="action-buttons">
+                            <button class="btn-consult" onclick="goToContactPage()">咨询</button>
+                            <button class="btn-bargain" onclick="goToContactPage()">还价</button>
+                            <button class="btn-buy-now" onclick="goToContactPage()">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 下方详细信息区 -->
+                <div class="account-detail-bottom">
+                    <div class="detail-tabs">
+                        <div class="detail-tab active">商品详情</div>
+                        <div class="detail-tab">交易须知</div>
+                        <div class="detail-tab">售后保障</div>
+                    </div>
+                    <div class="detail-content">
+                        <h4 style="margin-bottom: 16px; color: #333;">账号详细配置</h4>
+                        
+                        <div class="game-info-section" style="border-radius: 8px;">
+                            <div class="game-section-title"><span class="game-section-icon">⭐</span> 五星角色（37个）</div>
+                                <!-- 角色头像网格 -->
+                            <style>
+                            /* 1. 调整网格容器：缩小间距，让整体更紧凑 */
+                            .char-grid {
+                            display: flex;          /* 保持原有的流式布局（如果原先是grid可改为grid） */
+                            flex-wrap: wrap;        /* 允许换行 */
+                            gap: 2px;               /* 缩小卡片之间的间距（原间距如果是16px，现在改为8px，按需调整） */
+                            }
+
+                            /* 2. 缩小卡片容器：宽度减半，高度自适应 */
+                            .char-card {
+                            width: 100px;            /* 卡片宽度缩小为原来的一半（根据你原尺寸调整，比如原100px→现50px） */
+                            overflow: hidden;       /* 防止图片超出卡片边界 */
+                            }
+
+                            /* 3. 图片填满缩小后的卡片，保持比例 */
+                            .char-card img {
+                            width: 100%;            /* 图片宽度100%填满卡片 */
+                            height: auto;           /* 高度自动保持比例，不变形 */
+                            display: block;         /* 消除图片底部间隙 */
+                            }
+                            </style>
+                            <div class="char-grid-section">
+                                <div class="char-grid">
+                                    <div class="char-card"><img src="pic/5.png" alt="恰斯卡"></div>
+                                    <div class="char-card"><img src="pic/4.png" alt="那维莱特"></div>
+                                    <div class="char-card"><img src="pic/7.png" alt="瓦雷莎"></div>
+                                    <div class="char-card"><img src="pic/1.png" alt="哥伦比娅"></div>
+                                    <div class="char-card"><img src="pic/6.png" alt="夜兰"></div>
+                                    <div class="char-card"><img src="pic/9.png" alt="流浪者"></div>
+                                    <div class="char-card"><img src="pic/3.png" alt="杜林"></div>
+                                    <div class="char-card"><img src="pic/10.png" alt="提纳里"></div>
+                                    <div class="char-card"><img src="pic/2.png" alt="兹白"></div>
+                                    <div class="char-card"><img src="pic/8.png" alt="克洛琳德"></div>
+                                </div>
+                            </div>
+                            <div class="game-tag-list">
+                                <span class="game-tag tag-rare">满命夜兰</span>
+                                <span class="game-tag tag-rare">满命纳西妲</span>
+                                <span class="game-tag tag-rare">满命达达利亚</span>
+                                <span class="game-tag tag-rare">满命莫娜</span>
+                                <span class="game-tag tag-rare">满命魈</span>
+                                <span class="game-tag tag-rare">满命迪卢克</span>
+                                <span class="game-tag">0命芙宁娜</span>
+                                <span class="game-tag">0命艾尔海森</span>
+                                <span class="game-tag">0命枫原万叶</span>
+                                <span class="game-tag">0命钟离(2命)</span>
+                                <span class="game-tag">0命雷电将军</span>
+                                <span class="game-tag">0命珊瑚宫心海</span>
+                                <span class="game-tag">0命神里绫华</span>
+                                <span class="game-tag">0命甘雨</span>
+                                <span class="game-tag">0命可莉</span>
+                                <span class="game-tag">0命温迪</span>
+                                <span class="game-tag">0命优菈</span>
+                                <span class="game-tag">0命阿蕾奇诺</span>
+                                <span class="game-tag">0命妮露</span>
+                                <span class="game-tag">0命流浪者</span>
+                                <span class="game-tag">5命琴</span>
+                                <span class="game-tag">4命七七</span>
+                                <span class="game-tag">1命胡桃</span>
+                                <span class="game-tag">0命八重神子</span>
+                                <span class="game-tag">0命提纳里(2命)</span>
+                                <span class="game-tag">0命希诺宁</span>
+                                <span class="game-tag">0命基尼奇</span>
+                                <span class="game-tag">0命玛薇卡</span>
+                                <span class="game-tag">0命莱欧斯利</span>
+                                <span class="game-tag">0命丝柯克</span>
+                                <span class="game-tag">0命恰斯卡</span>
+                                <span class="game-tag">0命爱可菲(2命)</span>
+                                <span class="game-tag">0命阿贝多</span>
+                                <span class="game-tag">0命菲林斯</span>
+                                <span class="game-tag">0命梦见月瑞希</span>
+                                <span class="game-tag">0命神里绫人</span>
+                                <span class="game-tag">1命迪希雅</span>
+                                <span class="game-tag">0命宵宫</span>
+                                <span class="game-tag">0命荒泷一斗</span>
+                                <span class="game-tag">0命申鹤</span>
+                            </div>
+                        </div>
+
+                        <div class="game-info-section" style="border-radius: 8px; margin-top: 16px;">
+                            <div class="game-section-title"><span class="game-section-icon">🗡️</span> 五星武器（22把）</div>
+                            <div class="game-tag-list">
+                                <span class="game-tag weapon-tag">精2狼的末路</span>
+                                <span class="game-tag weapon-tag">精2雾切之回光</span>
+                                <span class="game-tag weapon-tag">精2四风原典</span>
+                                <span class="game-tag weapon-tag">精2千夜浮梦</span>
+                                <span class="game-tag weapon-tag">精2山王长牙</span>
+                                <span class="game-tag weapon-tag">精2若水</span>
+                                <span class="game-tag weapon-tag">精1冬极白星</span>
+                                <span class="game-tag weapon-tag">精1风鹰剑</span>
+                                <span class="game-tag weapon-tag">精1无工之剑</span>
+                                <span class="game-tag weapon-tag">精1神乐之真意</span>
+                                <span class="game-tag weapon-tag">精1天空之刃</span>
+                                <span class="game-tag weapon-tag">精1苍古自由之誓</span>
+                                <span class="game-tag weapon-tag">精1和璞鸢</span>
+                                <span class="game-tag weapon-tag">精1薙草之稻光</span>
+                                <span class="game-tag weapon-tag">精1赤角石溃杵</span>
+                                <span class="game-tag weapon-tag">精1松籁响起之时</span>
+                                <span class="game-tag weapon-tag">精1护摩之杖</span>
+                                <span class="game-tag weapon-tag">精1图莱杜拉的回忆</span>
+                                <span class="game-tag weapon-tag">精1磐岩结绿</span>
+                                <span class="game-tag weapon-tag">精1飞雷之弦振</span>
+                                <span class="game-tag weapon-tag">精1终末嗟叹之诗</span>
+                                <span class="game-tag weapon-tag">精1贯虹之槊</span>
+                                <span class="game-tag weapon-tag">精1赤月之形</span>
+                            </div>
+                        </div>
+
+                        <div class="game-info-section" style="border-radius: 8px; margin-top: 16px;">
+                            <div class="game-section-title"><span class="game-section-icon">👗</span> 皮肤（7套）</div>
+                            <div class="game-tag-list">
+                                <span class="game-tag skin-tag">纱中幽兰（夜兰）</span>
+                                <span class="game-tag skin-tag">叶隐芳名（魈）</span>
+                                <span class="game-tag skin-tag">帆影游风（枫原万叶）</span>
+                                <span class="game-tag skin-tag">海风之梦（珊瑚宫心海）</span>
+                                <span class="game-tag skin-tag">殷红终夜（可莉）</span>
+                                <span class="game-tag skin-tag">闪耀协奏（琴）</span>
+                                <span class="game-tag skin-tag">极夜真梦（宵宫）</span>
+                            </div>
+                        </div>
+
+                        <div class="game-info-section" style="border-radius: 8px; margin-top: 16px;">
+                            <div class="game-section-title"><span class="game-section-icon">📝</span> 卖家说明</div>
+                            <div class="game-seller-note">
+                                <p>毕业号，全图鉴角色基本都有。满命夜兰+满命纳西妲双C毕业，深渊随便打。</p>
+                                <p>精2狼末+精2雾切+精2若水，武器池也基本毕业了。</p>
+                                <p>因退坑出号，诚心要的来，可小刀。走平台担保交易，安全放心！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面二：联系卖家 / 确认购买页 -->
+        <div id="game-contact-page" class="game-main" style="display: none;">
+            <div class="game-container">
+                <div class="game-contact-layout">
+                    <div class="game-contact-left">
+                        <div class="contact-chat-header">
+                            <span class="chat-back" onclick="backToAccountPage()">← 返回</span>
+                            <span class="chat-seller-name">卖家: 懒猫退坑中</span>
+                            <span class="chat-badge">信誉卖家</span>
+                        </div>
+                        <div class="contact-chat-body">
+                            <div class="chat-msg chat-msg-other">
+                                <div class="chat-avatar">🐱</div>
+                                <div class="chat-bubble">
+                                    <p>你好！这个号还在的，诚心出~</p>
+                                    <span class="chat-time">19:35</span>
+                                </div>
+                            </div>
+                            <div class="chat-msg chat-msg-other">
+                                <div class="chat-avatar">🐱</div>
+                                <div class="chat-bubble">
+                                    <p>满命夜兰+满命纳西妲都在，还有精2狼末和雾切，深渊满星没问题。你主要玩什么队伍？</p>
+                                    <span class="chat-time">19:36</span>
+                                </div>
+                            </div>
+                            <div class="chat-msg chat-msg-self">
+                                <div class="chat-bubble">
+                                    <p>挺感兴趣的，能便宜点吗？</p>
+                                    <span class="chat-time">19:38</span>
+                                </div>
+                            </div>
+                            <div class="chat-msg chat-msg-other">
+                                <div class="chat-avatar">🐱</div>
+                                <div class="chat-bubble">
+                                    <p>这个配置市场价至少1500+了，我挂1299已经是良心价了😂 不过看你诚心要，1250可以出，不能再低了~</p>
+                                    <span class="chat-time">19:39</span>
+                                </div>
+                            </div>
+                            <div class="chat-msg chat-msg-other">
+                                <div class="chat-avatar">🐱</div>
+                                <div class="chat-bubble">
+                                    <p>对了，我们走<strong style="color:#e53e3e;">平台担保交易</strong>吧，你付款后资金先冻结在平台，确认收货后我才收到钱，双方都安全 👍</p>
+                                    <span class="chat-time">19:40</span>
+                                </div>
+                            </div>
+                            <div class="chat-system-msg">
+                                <span>📌 卖家发起了担保交易请求</span>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" class="chat-input" placeholder="输入消息..." readonly value="好的，走担保交易吧">
+                            <button class="chat-send-btn" onclick="goToPaymentPage()">发送</button>
+                        </div>
+                    </div>
+                    <div class="game-contact-right">
+                        <div class="order-summary-card">
+                            <h3>订单摘要</h3>
+                            <div class="order-item">
+                                <span class="order-item-name">原神_账号_米哈游官服_天空岛</span>
+                                <span class="order-item-price">¥1,250</span>
+                            </div>
+                            <div class="order-divider"></div>
+                            <div class="order-total">
+                                <span>应付金额</span>
+                                <span class="order-total-price">¥1,250.00</span>
+                            </div>
+                            <button class="order-pay-btn" onclick="goToPaymentPage()">去支付 →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面三：支付页面（假担保交易） -->
+        <div id="game-payment-page" class="game-payment-wrapper" style="display: none;">
+            <div class="game-payment-inner">
+                <div class="payment-header">
+                    <span class="payment-back" onclick="backToContactPage()">← 返回</span>
+                    <span class="payment-title">7881担保交易 - 安全支付</span>
+                </div>
+                
+                <div class="payment-body">
+                    <div class="payment-security-banner">
+                        <span class="security-icon">🔒</span>
+                        <div>
+                            <strong>平台担保交易中</strong>
+                            <p>您的资金已进入平台托管账户，确认收货后才会转给卖家</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-order-detail">
+                        <h4>商品信息</h4>
+                        <div class="payment-order-row">
+                            <span>商品名称</span>
+                            <span>原神_账号_米哈游官服_天空岛_游戏官方</span>
+                        </div>
+                        <div class="payment-order-row">
+                            <span>商品编号</span>
+                            <span>201612606594761</span>
+                        </div>
+                        <div class="payment-order-row">
+                            <span>卖家昵称</span>
+                            <span>懒猫退坑中（信誉值 4.9★）</span>
+                        </div>
+                        <div class="payment-order-row order-amount-row">
+                            <span>交易金额</span>
+                            <span class="payment-amount">¥1,250.00</span>
+                        </div>
+                    </div>
+
+                    <form id="game-payment-form" onsubmit="handleGamePayment(event)">
+                        <div class="payment-method-section">
+                            <h4>选择支付方式</h4>
+                            <div class="payment-method-list">
+                                <label class="payment-method-option selected">
+                                    <input type="radio" name="payMethod" value="alipay" checked>
+                                    <span class="method-icon">💳</span>
+                                    <span class="method-name">支付宝</span>
+                                    <span class="method-check">✓</span>
+                                </label>
+                                <label class="payment-method-option">
+                                    <input type="radio" name="payMethod" value="wechat">
+                                    <span class="method-icon">💚</span>
+                                    <span class="method-name">微信支付</span>
+                                    <span class="method-check"></span>
+                                </label>
+                                <label class="payment-method-option">
+                                    <input type="radio" name="payMethod" value="bank">
+                                    <span class="method-icon">🏦</span>
+                                    <span class="method-name">网银支付</span>
+                                    <span class="method-check"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="payment-form-section">
+                            <h4>付款人信息（用于交易凭证）</h4>
+                            <div class="payment-field">
+                                <label>真实姓名</label>
+                                <input type="text" id="game-realname" placeholder="请输入付款人真实姓名" required>
+                            </div>
+                            <div class="payment-field">
+                                <label>联系电话</label>
+                                <input type="tel" id="game-phone" placeholder="请输入手机号码" required>
+                            </div>
+                            <div class="payment-field">
+                                <label>支付宝/微信号</label>
+                                <input type="text" id="game-payaccount" placeholder="请输入支付账号" required>
+                            </div>
+                        </div>
+
+                        <div class="payment-agreement">
+                            <label>
+                                <input type="checkbox" id="game-agree" required checked>
+                                <span>我已阅读并同意《7881平台担保交易服务协议》，了解资金将先由平台托管</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="payment-submit-btn">
+                            <span>确认支付 ¥1,250.00</span>
+                        </button>
+                    </form>
+
+                    <div class="payment-footer-tips">
+                        <p>🔒 7881采用银行级加密技术保护您的支付信息安全</p>
+                        <p>⏰ 卖家将在您付款后24小时内完成账号交接</p>
+                        <p>❌ 如未收到账号，可在7天内申请全额退款</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面四：支付成功/等待交接页 -->
+        <div id="game-success-page" class="game-payment-wrapper" style="display: none;">
+            <div class="game-payment-inner">
+                <div class="payment-body" style="padding-top: 60px;">
+                    <div class="game-success-icon">✅</div>
+                    <h2 style="color: #276749; font-size: 1.5rem; margin-bottom: 8px;">支付成功！</h2>
+                    <p style="color: #666; margin-bottom: 30px;">您的付款已进入平台担保账户，正在等待卖家完成账号交接...</p>
+                    
+                    <div class="success-status-card">
+                        <div class="status-step done">
+                            <span class="step-num">1</span>
+                            <span class="step-text">买家付款 ✓</span>
+                        </div>
+                        <div class="status-line active"></div>
+                        <div class="status-step current">
+                            <span class="step-num">2</span>
+                            <span class="step-text">等待卖家交接账号</span>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-step">
+                            <span class="step-num">3</span>
+                            <span class="step-text">确认收货</span>
+                        </div>
+                    </div>
+
+                    <div class="success-info-box">
+                        <div class="info-row"><span>订单编号:</span><span>GF20260415000128</span></div>
+                        <div class="info-row"><span>支付金额:</span><span style="color: #e53e3e; font-weight: bold;">¥1,250.00</span></div>
+                        <div class="info-row"><span>支付方式:</span><span>支付宝</span></div>
+                        <div class="info-row"><span>预计交接:</span><span>24小时内</span></div>
+                    </div>
+
+                    <p style="color: #999; font-size: 0.85rem; text-align: center; margin-top: 24px;">
+                        页面即将跳转到订单详情...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 警告弹窗 -->
+        <div id="game-alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box" style="max-width: 560px;">
+                <div class="alert-icon">🚨</div>
+                <h2>你被骗了！</h2>
+                <p id="game-alert-message">回顾一下刚才发生了什么——你在一个所谓的"游戏交易平台"上看到一个超值的游戏账号，联系了卖家，然后通过"担保交易"支付了1250元。</p>
+                <p style="font-weight: 600; color: var(--primary); margin-top: 16px;">但这一切，全都是假的。</p>
+                <p style="margin-top: 12px;">这个"7881交易平台"是骗子搭建的假冒网站。你支付的1250元直接进入了骗子的口袋，根本不存在什么"担保交易"。那个"卖家"和"客服"都是同一个人——或者同一个团伙。</p>
+                <p style="margin-top: 8px;"><strong>真正的游戏账号交易平台不会要求你在站外或非正规渠道付款。</strong></p>
+                <button class="cta-button" onclick="goToGameEducation()" style="width: 100%; margin-top: 24px;">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="game-footer">
+        <div class="game-footer-inner">
+            <div class="game-footer-links">
+                <a href="#">关于我们</a> | <a href="#">联系方式</a> | <a href="#">用户协议</a> | <a href="#">隐私政策</a> | <a href="#">帮助中心</a>
+            </div>
+            <p>Copyright © 7881游戏交易平台 All Rights Reserved</p>
+            <p class="footer-disclaimer">增值电信业务经营许可证：浙B2-201XXXXX | 浙公网安备 3301060200XXXX号</p>
+        </div>
+    </footer>
+
+    <script src="static/simulate_game.js"></script>
+</body>
+</html>
