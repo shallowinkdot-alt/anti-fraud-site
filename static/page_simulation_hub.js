@@ -19,5 +19,9 @@ function selectScenario(scenario) {
         window.location.href = 'scenario_09_fake_after_sales.html';
     } else if (scenario === 10) {
         window.location.href = 'scenario_10_fake_counselor_fee.html';
+    } else if (scenario === 11) {
+        window.location.href = 'scenario_11_pirated_patch.html';
+    } else if (scenario === 12) {
+        window.location.href = 'scenario_12_sex.html';
     }
 }
