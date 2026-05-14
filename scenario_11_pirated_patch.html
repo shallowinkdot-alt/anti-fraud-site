@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 盗版游戏补丁木马风险</title>
+    <link rel="stylesheet" href="static/site.css">
+    <style>
+        .patch11-site-page {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #f5f7fb 0%, #eef2f7 100%);
+            color: #111827;
+        }
+        .patch11-shell {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px 48px;
+        }
+        .patch11-nav {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(148,163,184,0.2);
+        }
+        .patch11-nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .patch11-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #111827;
+        }
+        .patch11-brand img {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+        }
+        .patch11-brand-title {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .patch11-brand-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 22px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: rgba(59,130,246,0.14);
+            color: #2563eb;
+            font-size: 0.75rem;
+            margin-left: 10px;
+        }
+        .patch11-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+        .patch11-nav-links a:hover {
+            color: #2563eb;
+        }
+        .patch11-nav-side {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .patch11-nav-side img {
+            height: 38px;
+            border-radius: 10px;
+        }
+        .patch11-breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            padding: 18px 0 14px;
+        }
+        .patch11-breadcrumb span:last-child {
+            color: #111827;
+        }
+        .patch11-hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 28px;
+            border-radius: 26px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.74);
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 24px 60px rgba(15,23,42,0.08);
+            padding: 24px;
+        }
+        .patch11-cover {
+            position: relative;
+            min-height: 250px;
+            border-radius: 22px;
+            overflow: hidden;
+        }
+        .patch11-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .patch11-cover-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15,23,42,0.38), transparent 54%);
+        }
+        .patch11-cover-button {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            background: rgba(255,255,255,0.92);
+            border: none;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .patch11-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .patch11-title-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        .patch11-title-row h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+        .patch11-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 28px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+        .patch11-chip-primary { background: #dbeafe; color: #1d4ed8; }
+        .patch11-chip-danger { background: #fee2e2; color: #b91c1c; }
+        .patch11-subtitle {
+            color: #6b7280;
+            font-size: 0.92rem;
+        }
+        .patch11-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .patch11-tag {
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            background: #eff6ff;
+            color: #1e40af;
+        }
+        .patch11-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .patch11-primary-btn,
+        .patch11-ghost-btn {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 0.96rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .patch11-primary-btn {
+            background: #2563eb;
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(37,99,235,0.24);
+        }
+        .patch11-primary-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        .patch11-ghost-btn {
+            background: transparent;
+            border: 1px solid #d1d5db;
+            color: #374151;
+        }
+        .patch11-ghost-btn:hover {
+            background: #f8fafc;
+        }
+        .patch11-author-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding-top: 8px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .patch11-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .patch11-author img {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+        }
+        .patch11-author-meta strong {
+            display: block;
+            font-size: 0.95rem;
+        }
+        .patch11-author-meta span {
+            color: #6b7280;
+            font-size: 0.82rem;
+        }
+        .patch11-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: #6b7280;
+            font-size: 0.86rem;
+        }
+        .patch11-tabs {
+            display: flex;
+            gap: 22px;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0 0;
+            margin-top: 18px;
+        }
+        .patch11-tab {
+            position: relative;
+            padding: 12px 0;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .patch11-tab.active {
+            color: #2563eb;
+        }
+        .patch11-tab.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 2px;
+            background: #2563eb;
+        }
+        .patch11-content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 280px;
+            gap: 24px;
+            padding-top: 24px;
+        }
+        .patch11-card {
+            background: rgba(255,255,255,0.82);
+            border: 1px solid rgba(148,163,184,0.16);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 18px 40px rgba(15,23,42,0.05);
+        }
+        .patch11-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .patch11-risk-box {
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            color: #9a3412;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+        }
+        .patch11-resource-card {
+            border: 1px solid #dbe2ea;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.94));
+            padding: 20px;
+        }
+        .patch11-resource-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+        .patch11-resource-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .patch11-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .patch11-pill-size {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .patch11-resource-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .patch11-resource-sub {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+        }
+        .patch11-resource-desc {
+            color: #374151;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .patch11-resource-desc p,
+        .patch11-resource-desc li {
+            margin-bottom: 8px;
+        }
+        .patch11-resource-desc ul {
+            padding-left: 18px;
+            margin: 10px 0;
+        }
+        .patch11-download-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-top: 18px;
+        }
+        .patch11-download-note {
+            color: #dc2626;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+        .patch11-comment-list {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .patch11-comment-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 14px 16px;
+            background: #fff;
+        }
+        .patch11-comment-item strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+        }
+        .patch11-comment-item p {
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+        .patch11-side-card img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+        }
+        .patch11-side-card h3 {
+            font-size: 1rem;
+            margin: 16px 0 8px;
+        }
+        .patch11-side-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        .patch11-installer-page,
+        .patch11-progress-page,
+        .patch11-success-page {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #edf2f7 0%, #dbe7f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 20px;
+        }
+        .patch11-installer-window,
+        .patch11-progress-window,
+        .patch11-success-window {
+            width: 100%;
+            max-width: 960px;
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(15,23,42,0.14);
+            border: 1px solid #dbe2ea;
+        }
+        .patch11-installer-window {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+        }
+        .patch11-installer-side {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            color: #fff;
+            padding: 30px 24px;
+        }
+        .patch11-installer-side h2 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+        .patch11-installer-side p {
+            color: rgba(255,255,255,0.72);
+            font-size: 0.9rem;
+            margin-bottom: 22px;
+        }
+        .patch11-step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .patch11-step-item {
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.76);
+            font-size: 0.9rem;
+        }
+        .patch11-step-item.active {
+            background: rgba(96,165,250,0.22);
+            color: #fff;
+            font-weight: 600;
+        }
+        .patch11-installer-main {
+            padding: 32px;
+        }
+        .patch11-installer-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 28px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: #fee2e2;
+            color: #b91c1c;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .patch11-installer-main h3 {
+            font-size: 1.65rem;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+        .patch11-installer-main p {
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+        .patch11-warning-panel {
+            border-radius: 16px;
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            padding: 18px;
+            color: #9a3412;
+            margin-bottom: 18px;
+        }
+        .patch11-warning-panel ul {
+            padding-left: 18px;
+            margin-top: 10px;
+        }
+        .patch11-path-box {
+            border: 1px solid #d1d5db;
+            border-radius: 14px;
+            padding: 14px 16px;
+            background: #f8fafc;
+            margin-bottom: 16px;
+        }
+        .patch11-path-box strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+        .patch11-check-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .patch11-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+        .patch11-check-item input {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+        }
+        .patch11-inline-error {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background: #fff1f2;
+            color: #be123c;
+            border: 1px solid #fecdd3;
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+        .patch11-progress-window,
+        .patch11-success-window {
+            max-width: 760px;
+            padding: 36px;
+        }
+        .patch11-progress-header,
+        .patch11-success-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .patch11-progress-icon,
+        .patch11-success-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .patch11-progress-icon {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        .patch11-success-icon {
+            background: #dcfce7;
+            color: #15803d;
+        }
+        .patch11-progress-bar {
+            width: 100%;
+            height: 12px;
+            border-radius: 999px;
+            background: #e5e7eb;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+        .patch11-progress-fill {
+            width: 0;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            transition: width 0.4s ease;
+        }
+        .patch11-progress-log {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 22px;
+        }
+        .patch11-log-item {
+            border: 1px solid #e5e7eb;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 12px 14px;
+            color: #374151;
+            font-size: 0.92rem;
+        }
+        .patch11-success-box {
+            border: 1px solid #d1fae5;
+            background: #f0fdf4;
+            color: #166534;
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 16px;
+        }
+        @media (max-width: 980px) {
+            .patch11-hero,
+            .patch11-content-grid,
+            .patch11-installer-window {
+                grid-template-columns: 1fr;
+            }
+            .patch11-nav-inner {
+                height: auto;
+                padding: 14px 20px;
+                flex-wrap: wrap;
+            }
+            .patch11-nav-links {
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            .patch11-author-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        @media (max-width: 640px) {
+            .patch11-shell {
+                padding: 0 14px 32px;
+            }
+            .patch11-hero,
+            .patch11-card,
+            .patch11-installer-main,
+            .patch11-progress-window,
+            .patch11-success-window {
+                padding: 18px;
+            }
+            .patch11-title-row h1 {
+                font-size: 1.55rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="patch11-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的风险场景体验</li>
+                    <li>前情提要：你是一个<strong>二次元爱好者</strong>，准备下载《千恋＊万花》的 <strong>R18 补丁</strong></li>
+                    <li>你将进入一个看似真实的<strong>民间游戏补丁资源站</strong>，体验它如何一步步诱导你下载未知程序</li>
+                    <li>体验结束后，你将看到完整的套路拆解和防护建议</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>“补丁被杀毒软件误报”是高频话术，不代表文件一定安全</li>
+                        <li>任何要求你关闭防病毒、允许管理员权限的“补丁安装器”，都值得立刻停下来重新判断</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startPatch11Scenario()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="patch11-site-page" class="patch11-site-page" style="display: none;">
+            <div class="patch11-nav">
+                <div class="patch11-nav-inner">
+                    <div class="patch11-brand">
+                        <img src="https://www.moyu.moe/favicon.webp" alt="鲲 Galgame">
+                        <div>
+                            <span class="patch11-brand-title">鲲 Galgame</span>
+                            <span class="patch11-brand-badge">补丁</span>
+                        </div>
+                    </div>
+                    <div class="patch11-nav-links">
+                        <a href="#" onclick="return false;">下载补丁</a>
+                        <a href="#" onclick="return false;">发布补丁</a>
+                        <a href="#" onclick="return false;">关于我们</a>
+                    </div>
+                    <div class="patch11-nav-side">
+                        <img src="https://www.moyu.moe/a/moyumoe1-button.avif" alt="活动横幅">
+                    </div>
+                </div>
+            </div>
+
+            <div class="patch11-shell">
+                <div class="patch11-breadcrumb">
+                    <span>资源下载</span>
+                    <span>›</span>
+                    <span>Galgame</span>
+                    <span>›</span>
+                    <span>补丁资源下载</span>
+                    <span>›</span>
+                    <span>千恋＊万花</span>
+                </div>
+
+                <section class="patch11-hero">
+                    <div class="patch11-cover">
+                        <img src="https://image.moyu.moe/patch/412/banner/banner.avif" alt="千恋＊万花">
+                        <div class="patch11-cover-overlay"></div>
+                        <button class="patch11-cover-button" type="button" onclick="return false;">查看封面</button>
+                    </div>
+                    <div class="patch11-meta">
+                        <div class="patch11-title-row">
+                            <h1>千恋＊万花</h1>
+                            <span class="patch11-chip patch11-chip-primary">Windows</span>
+                            <span class="patch11-chip patch11-chip-danger">R18 补丁</span>
+                        </div>
+                        <p class="patch11-subtitle">Senren * Banka / 汉化修正 / 无码补丁 / 资源整合</p>
+                        <div class="patch11-tags">
+                            <span class="patch11-tag">简体中文</span>
+                            <span class="patch11-tag">修正补丁</span>
+                            <span class="patch11-tag">资源整合包</span>
+                            <span class="patch11-tag">全 CG 存档</span>
+                            <span class="patch11-tag">Windows</span>
+                            <span class="patch11-tag">人工整理</span>
+                        </div>
+                        <div class="patch11-actions">
+                            <button class="patch11-primary-btn" type="button" onclick="scrollPatch11ToResources()">下载</button>
+                            <button class="patch11-ghost-btn" type="button" onclick="return false;">收藏</button>
+                            <button class="patch11-ghost-btn" type="button" onclick="return false;">分享</button>
+                        </div>
+                        <div class="patch11-author-row">
+                            <div class="patch11-author">
+                                <img src="https://image.moyu.moe/user/avatar/user_207/avatar-mini.avif" alt="发布者">
+                                <div class="patch11-author-meta">
+                                    <strong>诺瓦最可爱了</strong>
+                                    <span>发布于 1 年前 · 资源更新于 2 个月前</span>
+                                </div>
+                            </div>
+                            <div class="patch11-stats">
+                                <span>👁 9.2w</span>
+                                <span>⬇ 1.8w</span>
+                                <span>❤ 90</span>
+                                <span>🧩 8</span>
+                                <span>💬 1</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="patch11-tabs">
+                    <div class="patch11-tab">Galgame 信息</div>
+                    <div class="patch11-tab active">补丁资源下载</div>
+                    <div class="patch11-tab">游戏评论</div>
+                </div>
+
+                <div class="patch11-content-grid" id="patch11-resource-section">
+                    <div>
+                        <div class="patch11-card">
+                            <div class="patch11-risk-box">
+                                <strong>请注意：</strong>本站的 Galgame 补丁下载资源均为用户自行上传，请自行鉴别资源安全性。
+                            </div>
+
+                            <h2>资源链接</h2>
+
+                            <div class="patch11-resource-card">
+                                <div class="patch11-resource-head">
+                                    <div class="patch11-resource-badges">
+                                        <span class="patch11-pill">其它</span>
+                                        <span class="patch11-pill">简体中文</span>
+                                        <span class="patch11-pill">Windows</span>
+                                        <span class="patch11-pill">自定义链接下载</span>
+                                        <span class="patch11-pill patch11-pill-size">357.79MB</span>
+                                        <span class="patch11-pill">5963 人下载</span>
+                                    </div>
+                                    <button class="patch11-ghost-btn" type="button" onclick="return false;">⋯</button>
+                                </div>
+
+                                <div class="patch11-resource-title">千恋万花 R18 修正补丁整合包</div>
+                                <div class="patch11-resource-sub">适用 PC 版，包含补丁资源、修复脚本与简体中文说明文件</div>
+
+                                <div class="patch11-resource-desc">
+                                    <p>资源说明：</p>
+                                    <ul>
+                                        <li>适用 PC 版，压缩包内含补丁资源与快速安装器</li>
+                                        <li>如遇到杀毒软件拦截，请暂时关闭 Defender 后再运行安装器</li>
+                                        <li>若出现黑屏、闪退或读取失败，可勾选“修复运行库”和“添加信任目录”</li>
+                                        <li>推荐使用整合包，避免手动替换 patch 文件导致报错</li>
+                                    </ul>
+                                    <p>备注：部分系统会将补丁安装器误报为木马，属于正常现象，请放心使用。</p>
+                                </div>
+
+                                <div class="patch11-download-row">
+                                    <button class="patch11-primary-btn" type="button" onclick="openPatch11Installer('mirror')">本地高速下载</button>
+                                    <button class="patch11-ghost-btn" type="button" onclick="openPatch11Installer('cloud')">网盘下载</button>
+                                    <span class="patch11-download-note">如浏览器提示风险，请保留并继续。</span>
+                                </div>
+                            </div>
+
+                            <div class="patch11-comment-list">
+                                <div class="patch11-comment-item">
+                                    <strong>风见灯里 · 7 个月前</strong>
+                                    <p>Win11 正常，记得先把杀毒关掉，不然安装器会被秒删。</p>
+                                </div>
+                                <div class="patch11-comment-item">
+                                    <strong>猫猫补丁组 · 3 个月前</strong>
+                                    <p>整合包比自己替换 patch 方便，运行前加白名单就行，我这边没问题。</p>
+                                </div>
+                                <div class="patch11-comment-item">
+                                    <strong>YUZU_ONLY · 1 个月前</strong>
+                                    <p>下载器会申请管理员权限，别担心，这是为了写入目录和修复启动项。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="patch11-card patch11-side-card">
+                        <img src="https://www.moyu.moe/a/moyumoe1.avif" alt="补丁站广告">
+                        <h3>站内说明</h3>
+                        <p>站内资源由用户上传整理，如遇到网盘风控、补丁误报、启动黑屏等问题，优先使用“高速下载整合包”。</p>
+                        <h3 style="margin-top: 18px;">热门标签</h3>
+                        <div class="patch11-tags" style="margin-top: 10px;">
+                            <span class="patch11-tag">R18 补丁</span>
+                            <span class="patch11-tag">无码补丁</span>
+                            <span class="patch11-tag">直装整合</span>
+                            <span class="patch11-tag">全 CG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="patch11-installer-page" class="patch11-installer-page" style="display: none;">
+            <div class="patch11-installer-window">
+                <div class="patch11-installer-side">
+                    <h2>Kun Patch Resource Downloader</h2>
+                    <p>高速解压安装器 v4.2.1</p>
+                    <div class="patch11-step-list">
+                        <div class="patch11-step-item active">1. 环境检查</div>
+                        <div class="patch11-step-item">2. 下载补丁资源</div>
+                        <div class="patch11-step-item">3. 注入游戏文件</div>
+                        <div class="patch11-step-item">4. 完成修复</div>
+                    </div>
+                </div>
+                <div class="patch11-installer-main">
+                    <div class="patch11-installer-chip">需要管理员权限</div>
+                    <h3>千恋＊万花 R18 补丁高速安装器</h3>
+                    <p>检测到你下载的是“修正补丁整合包”。由于补丁需要解包和替换游戏资源，安装前请确保系统允许该程序写入目录并绕过安全扫描。</p>
+
+                    <div class="patch11-warning-panel">
+                        <strong>安装前说明</strong>
+                        <ul>
+                            <li>若 Windows Defender 拦截本程序，请先关闭实时防护</li>
+                            <li>若浏览器提示“此文件可能有害”，请保留并继续</li>
+                            <li>若游戏安装在 Program Files 目录，请允许管理员权限</li>
+                        </ul>
+                    </div>
+
+                    <div class="patch11-path-box">
+                        <strong>默认安装路径</strong>
+                        <span>D:\Games\SenrenBanka\</span>
+                    </div>
+
+                    <div class="patch11-check-list">
+                        <label class="patch11-check-item">
+                            <input type="checkbox" id="patch11-disable-defender">
+                            <span>我已临时关闭 Windows Defender 实时防护，并将安装目录加入信任区</span>
+                        </label>
+                        <label class="patch11-check-item">
+                            <input type="checkbox" checked disabled>
+                            <span>安装运行库修复组件（VC++ Runtime / 字体修复 / 启动注入模块）</span>
+                        </label>
+                        <label class="patch11-check-item">
+                            <input type="checkbox" checked disabled>
+                            <span>允许安装器在后台创建补丁缓存与快速启动服务</span>
+                        </label>
+                    </div>
+
+                    <div id="patch11-inline-error" class="patch11-inline-error">
+                        <span class="finance-inline-error-icon">×</span>
+                        <span>继续前，请确认你已关闭实时防护并信任这个未知安装器。</span>
+                    </div>
+
+                    <button class="patch11-primary-btn" type="button" onclick="beginPatch11Install()">我已关闭防护，开始安装</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="patch11-progress-page" class="patch11-progress-page" style="display: none;">
+            <div class="patch11-progress-window">
+                <div class="patch11-progress-header">
+                    <div class="patch11-progress-icon">⬇</div>
+                    <h2>正在安装补丁资源</h2>
+                    <p>请勿关闭安装器，资源正在写入游戏目录并执行环境修复。</p>
+                </div>
+                <div class="patch11-progress-bar">
+                    <div id="patch11-progress-fill" class="patch11-progress-fill"></div>
+                </div>
+                <p id="patch11-progress-text" style="text-align: center; color: #6b7280;">准备下载补丁资源... 0%</p>
+                <div class="patch11-progress-log" id="patch11-progress-log">
+                    <div class="patch11-log-item">等待下载节点响应...</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="patch11-success-page" class="patch11-success-page" style="display: none;">
+            <div class="patch11-success-window">
+                <div class="patch11-success-header">
+                    <div class="patch11-success-icon">✓</div>
+                    <h2>补丁注入完成</h2>
+                    <p>安装器已完成资源释放、启动项修复和兼容层写入。</p>
+                </div>
+                <div class="patch11-success-box">
+                    建议你重启游戏并等待首次启动完成。如果杀毒软件恢复拦截，请重新关闭后再试。
+                </div>
+            </div>
+        </div>
+
+        <div id="patch11-alert-overlay" class="alert-overlay" style="display: none;">
+            <div class="alert-box">
+                <div class="alert-icon">🚨</div>
+                <h2>你可能已经把木马装进电脑了！</h2>
+                <p>回顾一下刚才发生了什么：你为了下载《千恋＊万花》R18 补丁，进入了一个看似熟悉的民间资源站，随后点击了“高速下载”，又按页面提示<strong>关闭了 Windows Defender、信任未知安装器并允许管理员权限</strong>。</p>
+                <p style="font-weight: 600; color: var(--primary);">这一步最危险的，不是“补丁内容”，而是那个你主动放行的可执行程序。</p>
+                <p>如果这真是带木马的下载器，它可能窃取浏览器 Cookie、游戏平台账号、校园邮箱密码，甚至长期驻留在你的电脑里。</p>
+                <button class="cta-button" onclick="goToPatch11Education()">查看完整解析 →</button>
+            </div>
+        </div>
+    </div>
+    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
+    <script src="static/scenario_11_pirated_patch.js"></script>
+</body>
+</html>
