@@ -119,6 +119,24 @@
                     </div>
                     <div class="scenario-arrow">→</div>
                 </a>
+                <a href="page_scenario_education.html?scenario=11" class="scenario-card">
+                    <div class="scenario-icon">🩹</div>
+                    <div class="scenario-info">
+                        <h3>场景十一：盗版游戏补丁木马</h3>
+                        <p class="scenario-platform">盗版资源 / 关闭防护</p>
+                        <p class="scenario-desc">以稀缺补丁为诱饵，引导运行未知安装器</p>
+                    </div>
+                    <div class="scenario-arrow">→</div>
+                </a>
+                <a href="page_scenario_education.html?scenario=12" class="scenario-card">
+                    <div class="scenario-icon">📱</div>
+                    <div class="scenario-info">
+                        <h3>场景十二：擦边直播软件木马</h3>
+                        <p class="scenario-platform">不明 APK / 无障碍权限</p>
+                        <p class="scenario-desc">利用评论区引流和猎奇心理，诱导安装高危软件</p>
+                    </div>
+                    <div class="scenario-arrow">→</div>
+                </a>
             </div>
         </div>
     </section>
@@ -690,6 +708,125 @@
         </section>
     </div>
 
+    <div id="scenario11-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景十一：盗版游戏补丁木马诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、骗局概述</h2>
+                    <p>这类风险通常寄生在<strong>民间补丁站、资源论坛、QQ群分享链接、网盘整合包</strong>中。页面会以“R18 补丁”“无码补丁”“高清重制补丁”“整合包一键安装器”等名义，吸引玩家下载一个看似方便的补丁安装程序。</p>
+                    <p>真正危险的往往不是补丁本身，而是那个要求你<strong>关闭 Defender、允许管理员权限、将目录加入白名单</strong>的可执行文件。一旦运行，木马、信息窃取器或远控后门就可能被一起装进电脑。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、作案逻辑</h2>
+                    <p><strong>1. 用真实游戏和稀缺资源做诱饵</strong></p>
+                    <p>像 R18 补丁、汉化修正、去码资源、整合包这类“难找但很想要”的内容，天然具有高点击率。用户在“终于找到了”的兴奋感下，更容易忽略风险提示。</p>
+                    <p><strong>2. 通过社区语气降低警惕</strong></p>
+                    <p>页面会伪装成熟悉的资源站风格，配上“资源由用户上传”“杀软误报属于正常现象”“Win11 记得先关防护”的评论区话术，营造一种圈内人互相分享经验的可信氛围。</p>
+                    <p><strong>3. 把关闭防护包装成安装步骤</strong></p>
+                    <p>骗子不会直接说“我要装木马”，而是会说“运行库修复”“兼容层注入”“否则会黑屏闪退”“先加白名单再解压”。当用户一步步配合时，等于主动替恶意程序扫清了所有阻碍。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>“被杀毒误报”并不是安全证明。任何要求你关闭实时防护、允许管理员权限、安装额外运行组件、写入启动项的未知补丁程序，都必须默认按高风险对待。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、识别要点</h2>
+                    <ul>
+                        <li><strong>警惕一键安装器：</strong>普通补丁通常只是资源文件、文本说明或 patch 包，不一定需要独立 exe 安装器</li>
+                        <li><strong>警惕“先关杀软再运行”：</strong>这是高危信号，不是常规步骤</li>
+                        <li><strong>看下载物类型：</strong>如果你原本只想拿一个补丁，却被要求运行未知程序、安装服务或修改注册表，应立即停止</li>
+                        <li><strong>留意评论区带节奏：</strong>“我装了没事”“误报正常”“加白名单就行”常被用来打消顾虑</li>
+                        <li><strong>下载站真实不等于资源安全：</strong>即便页面像真的资源站，资源本身也可能是用户上传的恶意文件</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、防护建议</h2>
+                    <ul>
+                        <li>优先从<strong>官方渠道、可信发行方、长期可追溯的社区</strong>获取补丁与资源</li>
+                        <li>不要为安装未知补丁而关闭 Windows Defender 或其他安全软件</li>
+                        <li>如果必须使用第三方资源，先在<strong>虚拟机、沙箱或隔离环境</strong>中测试</li>
+                        <li>不要让未知程序获得管理员权限，不随意添加白名单或关闭实时防护</li>
+                        <li>重要账号启用双因素认证，浏览器不要长期保存高价值账号登录态</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>如果你已经运行了可疑补丁安装器：① 立即断网；② 使用安全软件做全盘查杀；③ 检查启动项、计划任务和后台进程；④ 尽快修改浏览器、游戏平台、邮箱、校园账号等重要密码；⑤ 若涉及支付或账号资产，立即申诉并保留样本、截图、下载链接等证据。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="scenario12-content" style="display: none;">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">场景十二：擦边直播软件木马诈骗</h2>
+
+                <div class="edu-card">
+                    <h2>一、安装之后会发生什么？</h2>
+                    <video id="scenario12-result-video" controls style="width: 100%; max-width: 800px; border-radius: 8px; margin-top: 16px;">
+                        <source src="result.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="edu-card">
+                    <h2>二、骗局概述</h2>
+                    <p>这类诈骗常见于<strong>短视频评论区、弹幕区、群聊截图、浏览器跳转页</strong>。骗子会借“擦边视频”“私密直播”“完整版资源”“神秘软件安装包”等内容引发好奇心，再通过评论区置顶、楼中楼回复或复制链接等方式，把用户一步步导向手机浏览器下载 APK。</p>
+                    <p>真正危险的不是视频本身，而是那款来路不明的软件。它往往会伪装成“播放器”“直播聚合 App”或“私密版客户端”，并在安装后继续诱导用户授予<strong>无障碍权限、悬浮窗权限、后台自启动权限</strong>，最终实现对手机的高权限控制。</p>
+                </div>
+
+                <div class="edu-card">
+                    <h2>三、作案逻辑</h2>
+                    <p><strong>1. 用猎奇和色情暗示吸引点击</strong></p>
+                    <p>“完整版”“直播软件”“浏览器打开即看”这类话术专门利用人的猎奇心理。越是觉得“只是看看链接”，越容易放松警惕。</p>
+                    <p><strong>2. 用评论区氛围制造从众感</strong></p>
+                    <p>骗子不会只放一个生硬链接，而是配合高赞评论、假装真实用户回复、截图佐证等内容，让受害人误以为“很多人都已经下载过了”。</p>
+                    <p><strong>3. 下载 APK 后继续骗取关键权限</strong></p>
+                    <p>安装完成后，恶意 App 会以“播放器黑屏修复”“直播加速”“系统兼容性需要”为由，诱导开启无障碍功能。一旦开启，骗子就可能监控屏幕、模拟点击、读取短信甚至远程操控转账。</p>
+
+                    <div class="tip-box">
+                        <h4>关键提醒</h4>
+                        <p>无障碍权限原本是为辅助功能设计的高敏感权限。任何非系统级、非经过充分验证的软件，只要索要无障碍权限，都应当默认按高风险处理。</p>
+                    </div>
+                </div>
+
+                <div class="edu-card">
+                    <h2>四、识别要点</h2>
+                    <ul>
+                        <li><strong>评论区高赞链接不可信：</strong>高赞、置顶、楼中楼截图都可能是骗子自导自演</li>
+                        <li><strong>浏览器外链下载 APK 极度危险：</strong>正规视频平台不会在评论区引导你去第三方浏览器装直播软件</li>
+                        <li><strong>“被系统拦截很正常”是危险话术：</strong>这是在提前消解你对风险提示的警觉</li>
+                        <li><strong>软件索要无障碍权限时要立刻停下：</strong>普通播放器、直播软件并不需要这种系统级控制能力</li>
+                        <li><strong>猎奇内容越强，越容易成为诈骗外壳：</strong>越是羞于求证的内容，越容易让人独自上钩</li>
+                    </ul>
+                </div>
+
+                <div class="edu-card">
+                    <h2>五、防护建议</h2>
+                    <ul>
+                        <li>不要从评论区、弹幕区、私信外链下载任何 APK</li>
+                        <li>手机尽量只从<strong>官方应用商店</strong>安装软件</li>
+                        <li>对“私密版”“破解版”“去广告版”“直播聚合版”等民间安装包保持高度警惕</li>
+                        <li>不要随便授予无障碍、设备管理、悬浮窗、自启动等敏感权限</li>
+                        <li>重要账户启用双因素认证，并定期检查支付、短信和设备登录状态</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>应急处置步骤</h4>
+                        <p>如果你已经安装了可疑直播软件：① 立即断网并停止继续操作；② 在安全模式或通过可信安全工具卸载相关 App；③ 检查是否开启了无障碍、悬浮窗、设备管理等权限并全部关闭；④ 尽快修改手机里重要账号密码；⑤ 如发现异常扣款、验证码、转账记录，立即联系银行、平台和警方止损。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- 通用结尾 -->
     <section class="section bg-light">
         <div class="container">
@@ -732,6 +869,8 @@
             document.getElementById('scenario8-content').style.display = 'none';
             document.getElementById('scenario9-content').style.display = 'none';
             document.getElementById('scenario10-content').style.display = 'none';
+            document.getElementById('scenario11-content').style.display = 'none';
+            document.getElementById('scenario12-content').style.display = 'none';
             educationSelectSection.style.display = 'none';
             retryLink.style.display = 'none';
             homeLink.style.marginLeft = '0';
@@ -788,6 +927,18 @@
             } else if (scenario == 10) {
                 document.getElementById('scenario10-content').style.display = 'block';
                 retryLink.href = 'scenario_10_fake_counselor_fee.html';
+                retryLink.style.display = 'inline-block';
+                homeLink.style.marginLeft = '16px';
+                homeLink.style.background = 'var(--primary)';
+            } else if (scenario == 11) {
+                document.getElementById('scenario11-content').style.display = 'block';
+                retryLink.href = 'scenario_11_pirated_patch.html';
+                retryLink.style.display = 'inline-block';
+                homeLink.style.marginLeft = '16px';
+                homeLink.style.background = 'var(--primary)';
+            } else if (scenario == 12) {
+                document.getElementById('scenario12-content').style.display = 'block';
+                retryLink.href = 'scenario_12_sex.html';
                 retryLink.style.display = 'inline-block';
                 homeLink.style.marginLeft = '16px';
                 homeLink.style.background = 'var(--primary)';

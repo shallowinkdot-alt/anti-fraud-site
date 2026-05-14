@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟体验 - 擦边直播软件木马风险</title>
+    <link rel="stylesheet" href="static/site.css">
+    <!-- 场景十二图片素材来自 Wikimedia Commons / OpenClipart / Pixabay 的 CC0 或公有领域条目，未使用 AI 绘画素材。 -->
+    <style>
+        .scenario12-shell {
+            min-height: 100vh;
+            padding: 36px 20px 72px;
+            background: linear-gradient(180deg, #edf2f7 0%, #dbe7f5 100%);
+        }
+        .scenario12-phone {
+            width: 390px;
+            max-width: 100%;
+            height: 844px;
+            max-height: calc(100vh - 120px);
+            margin: 0 auto;
+            background: #0f172a;
+            border-radius: 38px;
+            padding: 10px;
+            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+            position: relative;
+        }
+        .scenario12-phone::before {
+            content: "";
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 118px;
+            height: 28px;
+            background: #0b1220;
+            border-radius: 16px;
+            z-index: 20;
+        }
+        .scenario12-screen {
+            width: 100%;
+            height: 100%;
+            background: #f7f8fa;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        .scenario12-statusbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 18px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            pointer-events: none;
+        }
+        .scenario12-status-icons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.82rem;
+        }
+        .scenario12-bili-page,
+        .scenario12-browser-page {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .scenario12-video-wrap {
+            position: relative;
+            width: 100%;
+            height: 390px;
+            background: #000;
+            overflow: hidden;
+        }
+        .scenario12-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
+        .scenario12-video-author {
+            position: absolute;
+            top: 64px;
+            left: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.32);
+            color: #fff;
+            padding: 8px 10px;
+            border-radius: 14px;
+            backdrop-filter: blur(8px);
+        }
+        .scenario12-author-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+            border: 1px solid rgba(255,255,255,0.65);
+        }
+        .scenario12-author-meta strong {
+            display: block;
+            font-size: 0.84rem;
+        }
+        .scenario12-author-meta span {
+            font-size: 0.74rem;
+            opacity: 0.9;
+        }
+        .scenario12-comment-sheet {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 348px;
+            background: #fff;
+            border-radius: 26px 26px 0 0;
+            box-shadow: 0 -14px 40px rgba(15, 23, 42, 0.12);
+            display: flex;
+            flex-direction: column;
+        }
+        .scenario12-sheet-grabber {
+            width: 58px;
+            height: 5px;
+            border-radius: 999px;
+            background: #d1d5db;
+            margin: 10px auto 6px;
+        }
+        .scenario12-sheet-tabs {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 0 18px 12px;
+            border-bottom: 1px solid #eef2f7;
+        }
+        .scenario12-sheet-tab {
+            font-size: 1.05rem;
+            color: #9ca3af;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 6px;
+        }
+        .scenario12-sheet-tab.active {
+            color: #111827;
+        }
+        .scenario12-sheet-tab.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -13px;
+            margin: 0 auto;
+            width: 28px;
+            height: 4px;
+            border-radius: 999px;
+            background: #fb7299;
+        }
+        .scenario12-comment-panel {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 18px 24px;
+            background: #fff;
+        }
+        .scenario12-comment-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .scenario12-comment-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .scenario12-comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+        .scenario12-comment-body {
+            flex: 1;
+            min-width: 0;
+        }
+        .scenario12-comment-topline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+        .scenario12-comment-name {
+            font-size: 0.95rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+        .scenario12-comment-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 18px;
+            padding: 0 6px;
+            border-radius: 4px;
+            background: #fb7185;
+            color: #fff;
+            font-size: 0.68rem;
+            font-weight: 700;
+        }
+        .scenario12-comment-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 18px;
+            padding: 0 6px;
+            border-radius: 4px;
+            background: #f3f4f6;
+            color: #9ca3af;
+            font-size: 0.68rem;
+            font-weight: 700;
+        }
+        .scenario12-comment-text {
+            color: #111827;
+            font-size: 1rem;
+            line-height: 1.55;
+            margin-bottom: 8px;
+        }
+        .scenario12-comment-text a {
+            color: #2b6cb0;
+            word-break: break-all;
+        }
+        .scenario12-comment-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #9ca3af;
+            font-size: 0.84rem;
+            gap: 12px;
+        }
+        .scenario12-comment-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+        .scenario12-reply-card {
+            margin-top: 10px;
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 12px 14px;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+        .scenario12-comment-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 10px;
+            height: 170px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 0.92rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .scenario12-comment-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .scenario12-browser-app {
+            width: 100%;
+            height: 100%;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+        }
+        .scenario12-browser-top {
+            padding-top: 54px;
+            background: #eef2ff;
+            border-bottom: 1px solid #dbe2ea;
+        }
+        .scenario12-browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px 12px;
+        }
+        .scenario12-browser-back {
+            font-size: 1.2rem;
+            color: #475569;
+        }
+        .scenario12-browser-address {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #dbe2ea;
+            border-radius: 999px;
+            padding: 10px 14px;
+            color: #334155;
+            font-size: 0.85rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .scenario12-browser-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+        }
+        .scenario12-browser-card {
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 12px 30px rgba(15,23,42,0.06);
+            padding: 20px;
+        }
+        .scenario12-browser-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 24px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #2563eb;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .scenario12-browser-header {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .scenario12-browser-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 10px 24px rgba(15,23,42,0.18);
+            flex-shrink: 0;
+        }
+        .scenario12-browser-header h2 {
+            font-size: 1.18rem;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        .scenario12-browser-header p {
+            color: #64748b;
+            font-size: 0.86rem;
+        }
+        .scenario12-browser-cover {
+            position: relative;
+            height: 190px;
+            margin: 8px 0 16px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #111827;
+            box-shadow: inset 0 -70px 60px rgba(15,23,42,0.55);
+        }
+        .scenario12-browser-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.96;
+        }
+        .scenario12-browser-cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15,23,42,0.02), rgba(15,23,42,0.72));
+        }
+        .scenario12-browser-cover-badge {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            padding: 7px 10px;
+            background: rgba(236, 72, 153, 0.92);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+        .scenario12-browser-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .scenario12-browser-info-item {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 12px 14px;
+        }
+        .scenario12-browser-info-item span {
+            display: block;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+        .scenario12-browser-info-item strong {
+            color: #111827;
+            font-size: 0.92rem;
+        }
+        .scenario12-browser-note {
+            border-left: 4px solid #fb7185;
+            background: #fff1f2;
+            color: #9f1239;
+            border-radius: 12px;
+            padding: 14px 14px 14px 16px;
+            font-size: 0.88rem;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+        .scenario12-browser-list {
+            padding-left: 18px;
+            color: #475569;
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+        .scenario12-browser-list li {
+            margin-bottom: 8px;
+        }
+        .scenario12-browser-download-btn,
+        .scenario12-browser-install-btn {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .scenario12-browser-download-btn {
+            background: #2563eb;
+            color: #fff;
+            box-shadow: 0 14px 30px rgba(37,99,235,0.2);
+        }
+        .scenario12-browser-download-btn:hover,
+        .scenario12-browser-install-btn:hover {
+            transform: translateY(-1px);
+        }
+        .scenario12-browser-install-btn {
+            display: none;
+            margin-top: 14px;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: #fff;
+        }
+        .scenario12-download-toast {
+            position: absolute;
+            left: 14px;
+            right: 14px;
+            bottom: 22px;
+            background: rgba(15,23,42,0.94);
+            color: #fff;
+            border-radius: 18px;
+            padding: 14px 16px;
+            box-shadow: 0 18px 40px rgba(15,23,42,0.28);
+            display: none;
+            z-index: 20;
+        }
+        .scenario12-download-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .scenario12-download-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        .scenario12-download-meta strong {
+            display: block;
+            font-size: 0.92rem;
+        }
+        .scenario12-download-meta span {
+            display: block;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.74);
+            margin-top: 3px;
+        }
+        .scenario12-download-bar {
+            width: 100%;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.16);
+            overflow: hidden;
+            margin-top: 12px;
+        }
+        .scenario12-download-fill {
+            width: 0;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #60a5fa, #c084fc);
+            transition: width 0.35s ease;
+        }
+        .scenario12-download-complete {
+            display: none;
+            margin-top: 12px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 12px 14px;
+            cursor: pointer;
+        }
+        .scenario12-download-complete strong {
+            display: block;
+            font-size: 0.9rem;
+        }
+        .scenario12-download-complete span {
+            color: #93c5fd;
+            font-size: 0.8rem;
+        }
+        .scenario12-malware-page {
+            width: 100%;
+            height: 100%;
+            background: url('https://tse4.mm.bing.net/th/id/OIP.cEX5OsWCYqwQXyxpQumpWQHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3') center/cover no-repeat;
+            position: relative;
+            display: none;
+        }
+        .scenario12-malware-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .scenario12-malware-view {
+            display: none;
+            padding: 16px 16px 24px;
+        }
+        .scenario12-malware-view.active {
+            display: block;
+        }
+        .scenario12-malware-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .scenario12-malware-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .scenario12-malware-desc {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .scenario12-malware-steps {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+        }
+        .scenario12-malware-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            color: #333;
+        }
+        .scenario12-malware-step-num {
+            width: 22px;
+            height: 22px;
+            background: #ff4757;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .scenario12-malware-btn,
+        .scenario12-malware-uninstall-btn,
+        .scenario12-malware-alert-btn {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .scenario12-malware-btn {
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+            color: #fff;
+        }
+        .scenario12-malware-btn:active,
+        .scenario12-malware-uninstall-btn:active,
+        .scenario12-malware-alert-btn:active {
+            transform: scale(0.98);
+        }
+        .scenario12-malware-accessibility-item {
+            background: #f5f5f5;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+        }
+        .scenario12-malware-accessibility-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: #fff;
+            border-radius: 10px;
+        }
+        .scenario12-malware-accessibility-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .scenario12-malware-accessibility-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            object-fit: cover;
+            display: block;
+        }
+        .scenario12-malware-accessibility-name {
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .scenario12-malware-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+        .scenario12-malware-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .scenario12-malware-slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 26px;
+        }
+        .scenario12-malware-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #fff;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        .scenario12-malware-switch input:checked + .scenario12-malware-slider {
+            background-color: #4cd137;
+        }
+        .scenario12-malware-switch input:checked + .scenario12-malware-slider:before {
+            transform: translateX(22px);
+        }
+        .scenario12-malware-hint {
+            font-size: 0.78rem;
+            color: #999;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .scenario12-malware-password-dots {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 24px 0 16px;
+        }
+        .scenario12-malware-password-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            transition: all 0.2s;
+        }
+        .scenario12-malware-password-dot.filled {
+            background: #333;
+            border-color: #333;
+        }
+        .scenario12-malware-password-error {
+            color: #ff4757;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 16px;
+            min-height: 20px;
+        }
+        .scenario12-malware-keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .scenario12-malware-keypad-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 16px;
+            font-size: 1.3rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+        .scenario12-malware-keypad-btn:active {
+            background: #e0e0e0;
+        }
+        .scenario12-malware-keypad-btn.delete {
+            background: #ffebee;
+            color: #ff4757;
+        }
+        .scenario12-malware-error-card {
+            text-align: center;
+        }
+        .scenario12-malware-error-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+        }
+        .scenario12-malware-error-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        .scenario12-malware-error-desc {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .scenario12-malware-uninstall-btn {
+            background: #ff4757;
+            color: #fff;
+        }
+        .scenario12-malware-alert-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+        }
+        .scenario12-malware-alert-box {
+            background: #fff;
+            padding: 28px 24px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 100%;
+        }
+        .scenario12-malware-alert-icon {
+            font-size: 3.5rem;
+            margin-bottom: 14px;
+        }
+        .scenario12-malware-alert-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #e53e3e;
+            margin-bottom: 12px;
+        }
+        .scenario12-malware-alert-desc {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .scenario12-malware-alert-btn {
+            background: linear-gradient(135deg, #e53e3e, #ff6b6b);
+            color: #fff;
+        }
+        @media (max-width: 480px) {
+            .scenario12-shell {
+                padding: 20px 12px 60px;
+            }
+            .scenario12-phone {
+                height: calc(100vh - 90px);
+                border-radius: 28px;
+                padding: 7px;
+            }
+            .scenario12-phone::before {
+                top: 10px;
+                width: 92px;
+                height: 22px;
+            }
+            .scenario12-screen {
+                border-radius: 22px;
+            }
+            .scenario12-browser-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="scenario12-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的风险场景体验</li>
+                    <li>前情提要：你是一个<strong>“绅士”</strong>，准备下载所谓直播软件一探究竟</li>
+                    <li>你会先在一个<strong>短视频评论区</strong>里看到“擦边直播软件”下载引流，再跳到手机浏览器下载 APK</li>
+                    <li>体验结束后，你将看到完整的套路拆解与防骗建议</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>“评论区神秘链接”“浏览器打开即可看完整版”是典型诱导话术</li>
+                        <li>不明软件不要装，无障碍权限更不要随便给</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startScenario12()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="scenario12-shell" class="scenario12-shell" style="display: none;">
+            <div class="scenario12-phone">
+                <div class="scenario12-screen">
+                    <div class="scenario12-statusbar">
+                        <div>15:55</div>
+                        <div class="scenario12-status-icons">
+                            <span>📶</span>
+                            <span>5G</span>
+                            <span>🔋 50</span>
+                        </div>
+                    </div>
+
+                    <div id="scenario12-bili-page" class="scenario12-bili-page">
+                        <div class="scenario12-video-wrap">
+                            <video id="scenario12-video" src="static/media/scenario12_teaser.mp4" autoplay muted loop playsinline></video>
+                            <div class="scenario12-video-author">
+                                <img class="scenario12-author-avatar" src="static/media/scenario12_avatar_cute.png" alt="UP主头像">
+                                <div class="scenario12-author-meta">
+                                    <strong>是XX酱啦</strong>
+                                    <span>27.6万观看 · 8.3万点赞</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scenario12-comment-sheet">
+                            <div class="scenario12-sheet-grabber"></div>
+                            <div class="scenario12-sheet-tabs">
+                                <div class="scenario12-sheet-tab">简介</div>
+                                <div class="scenario12-sheet-tab active">评论（1644）</div>
+                            </div>
+                            <div class="scenario12-comment-panel">
+                                <div class="scenario12-comment-head">
+                                    <span>热门评论</span>
+                                    <span>按热度</span>
+                                </div>
+
+                                <div class="scenario12-comment-item">
+                                    <img class="scenario12-comment-avatar" src="static/media/scenario12_avatar_cute.png" alt="是XX酱啦头像">
+                                    <div class="scenario12-comment-body">
+                                        <div class="scenario12-comment-topline">
+                                            <span class="scenario12-comment-name">是XX酱啦</span>
+                                            <span class="scenario12-comment-badge">UP</span>
+                                            <span class="scenario12-comment-tag">置顶</span>
+                                        </div>
+                                        <div class="scenario12-comment-text">
+                                            看完不允许犯错！<br>
+                                            长按复制后打开夸克浏览器即可<br>
+                                            <a href="#" onclick="openScenario12Browser(); return false;">https://pan.quark.cn/s/54244656gdf5</a>
+                                        </div>
+                                        <div class="scenario12-comment-meta">
+                                            <span>2025年11月12日 广东 · 回复</span>
+                                            <div class="scenario12-comment-actions">
+                                                <span>👍 888</span>
+                                                <span>👎</span>
+                                                <span>⋯</span>
+                                            </div>
+                                        </div>
+                                        <div class="scenario12-reply-card">
+                                            一只土豆：对不起<br>
+                                            <span style="display: inline-block; margin-top: 8px; color: #2563eb;">共47条回复 ＞</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="scenario12-comment-item">
+                                    <img class="scenario12-comment-avatar" src="static/media/tou1.webp" alt="水中的滑板头像">
+                                    <div class="scenario12-comment-body">
+                                        <div class="scenario12-comment-topline">
+                                            <span class="scenario12-comment-name">水中的滑板</span>
+                                            <span class="scenario12-comment-tag">LV2</span>
+                                        </div>
+                                        <div class="scenario12-comment-text">同志</div>
+                                        <div class="scenario12-comment-image">
+                                            <img src="static/media/scenario12_2.jpg" alt="评论区展示图片">
+                                        </div>
+                                        <div class="scenario12-comment-meta" style="margin-top: 10px;">
+                                            <span>2026-03-08 21:24 · 回复</span>
+                                            <div class="scenario12-comment-actions">
+                                                <span>👍 383</span>
+                                                <span>👎</span>
+                                                <span>⋯</span>
+                                            </div>
+                                        </div>
+                                        <div class="scenario12-reply-card">
+                                            <span style="display: inline-block; color: #2563eb;">共12条回复，点击查看 ＞</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="scenario12-comment-item">
+                                    <img class="scenario12-comment-avatar" src="static/media/tou2.webp" alt="新壤头像">
+                                    <div class="scenario12-comment-body">
+                                        <div class="scenario12-comment-topline">
+                                            <span class="scenario12-comment-name">新壤</span>
+                                            <span class="scenario12-comment-badge">LV6</span>
+                                        </div>
+                                        <div class="scenario12-comment-text">我真的只是路过你们抓错人了啊！</div>
+                                        <div class="scenario12-comment-image" style="height: 140px;">
+                                            <img src="static/media/scenario12_1.png" alt="新壤评论图片">
+                                        </div>
+                                        <div class="scenario12-comment-meta" style="margin-top: 10px;">
+                                            <span>4月19日 浙江 · 回复</span>
+                                            <div class="scenario12-comment-actions">
+                                                <span>👍 45</span>
+                                                <span>👎</span>
+                                                <span>⋯</span>
+                                            </div>
+                                        </div>
+                                        <div class="scenario12-reply-card">
+                                            <span style="color: #2563eb;">共10条回复 ＞</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scenario12-browser-page" class="scenario12-browser-page" style="display: none;">
+                        <div class="scenario12-browser-app">
+                            <div class="scenario12-browser-top">
+                                <div class="scenario12-browser-bar">
+                                    <span class="scenario12-browser-back" onclick="backToScenario12Bili()">←</span>
+                                    <div class="scenario12-browser-address">pan.quark.cn/s/54244656gdf5?entry=bili_comment</div>
+                                    <span style="color: #64748b; font-size: 0.9rem;">⋯</span>
+                                </div>
+                            </div>
+                            <div class="scenario12-browser-body">
+                                <div class="scenario12-browser-card">
+                                    <div class="scenario12-browser-chip">夸克网盘分享</div>
+                                     <div class="scenario12-browser-header">
+                                         <img class="scenario12-browser-icon" src="static/media/icon.webp" alt="MakeLove.tv 图标">
+                                         <div>
+                                             <h2>MakeLove.tv</h2>
+                                             <p>内测直播聚合播放器 · Android 安装包</p>
+                                         </div>
+                                     </div>
+
+                                     <div class="scenario12-browser-info">
+                                        <div class="scenario12-browser-info-item">
+                                            <span>文件大小</span>
+                                            <strong>48.8 MB</strong>
+                                        </div>
+                                        <div class="scenario12-browser-info-item">
+                                            <span>上传时间</span>
+                                            <strong>今天 14:09</strong>
+                                        </div>
+                                        <div class="scenario12-browser-info-item">
+                                            <span>适配系统</span>
+                                            <strong>Android 10+</strong>
+                                        </div>
+                                        <div class="scenario12-browser-info-item">
+                                            <span>资源状态</span>
+                                            <strong>加速下载可用</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="scenario12-browser-note">
+                                        安装说明：首次打开若提示风险、未知来源或安全验证，请点击“继续安装”。如系统拦截，请允许浏览器下载和后台弹窗权限。
+                                    </div>
+
+                                    <ul class="scenario12-browser-list">
+                                        <li>直播资源每天自动更新，安装后需授予播放器相关权限</li>
+                                        <li>若首次进入黑屏，请重新安装并允许所有辅助功能</li>
+                                        <li>安卓 13/14 用户建议先关闭系统“风险应用提醒”</li>
+                                    </ul>
+
+                                    <button id="scenario12-download-btn" class="scenario12-browser-download-btn" type="button" onclick="startScenario12Download()">普通下载 APK</button>
+                                    <button id="scenario12-install-btn" class="scenario12-browser-install-btn" type="button" onclick="goToScenario12Fraud()">打开已下载安装包</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="scenario12-download-toast" class="scenario12-download-toast">
+                            <div class="scenario12-download-top">
+                                <div class="scenario12-download-icon">📥</div>
+                                <div class="scenario12-download-meta">
+                                    <strong>MakeLove_tv_2.7.4.apk</strong>
+                                    <span id="scenario12-download-text">下载中... 0%</span>
+                                </div>
+                            </div>
+                            <div class="scenario12-download-bar">
+                                <div id="scenario12-download-fill" class="scenario12-download-fill"></div>
+                            </div>
+                            <div id="scenario12-download-complete" class="scenario12-download-complete" onclick="goToScenario12Fraud()">
+                                <strong>MakeLove_tv_2.7.4.apk</strong>
+                                <span>下载完成，点击继续安装</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scenario12-malware-page" class="scenario12-malware-page">
+                        <div class="scenario12-malware-overlay">
+                            <div id="scenario12-permission-page" class="scenario12-malware-view active">
+                                <div class="scenario12-malware-card">
+                                    <div class="scenario12-malware-title">🔐 需要开启无障碍功能</div>
+                                    <div class="scenario12-malware-desc">为了提供更好的播放体验，请开启无障碍服务权限</div>
+                                    <div class="scenario12-malware-steps">
+                                        <div class="scenario12-malware-step"><span class="scenario12-malware-step-num">1</span> 点击下方按钮进入设置</div>
+                                        <div class="scenario12-malware-step"><span class="scenario12-malware-step-num">2</span> 找到「MakeLove.tv」并开启</div>
+                                        <div class="scenario12-malware-step"><span class="scenario12-malware-step-num">3</span> 返回应用完成设置</div>
+                                    </div>
+                                    <button class="scenario12-malware-btn" type="button" onclick="openAccessibility()">前往设置</button>
+                                </div>
+                            </div>
+
+                            <div id="scenario12-accessibility-page" class="scenario12-malware-view">
+                                <div class="scenario12-malware-card">
+                                    <div class="scenario12-malware-title">⚙️ 无障碍设置</div>
+                                    <div class="scenario12-malware-desc">请开启 MakeLove.tv 的无障碍权限</div>
+                                    <div class="scenario12-malware-accessibility-item">
+                                        <div class="scenario12-malware-accessibility-row">
+                                            <div class="scenario12-malware-accessibility-left">
+                                                <img class="scenario12-malware-accessibility-icon" src="static/media/icon.webp" alt="MakeLove.tv 图标">
+                                                <span class="scenario12-malware-accessibility-name">MakeLove.tv</span>
+                                            </div>
+                                            <label class="scenario12-malware-switch">
+                                                <input type="checkbox" id="scenario12-access-switch" onchange="toggleAccessibility()">
+                                                <span class="scenario12-malware-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p class="scenario12-malware-hint">开启后可获得更流畅的播放体验</p>
+                                </div>
+                            </div>
+
+                            <div id="scenario12-password-page" class="scenario12-malware-view">
+                                <div class="scenario12-malware-card">
+                                    <div class="scenario12-malware-title">🔒 请输入锁屏密码</div>
+                                    <div class="scenario12-malware-desc">为了安全验证，请输入您的手机锁屏密码</div>
+                                    <div class="scenario12-malware-password-dots" id="scenario12-password-dots">
+                                        <div class="scenario12-malware-password-dot"></div>
+                                        <div class="scenario12-malware-password-dot"></div>
+                                        <div class="scenario12-malware-password-dot"></div>
+                                        <div class="scenario12-malware-password-dot"></div>
+                                        <div class="scenario12-malware-password-dot"></div>
+                                        <div class="scenario12-malware-password-dot"></div>
+                                    </div>
+                                    <div id="scenario12-password-error" class="scenario12-malware-password-error"></div>
+                                    <div class="scenario12-malware-keypad">
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(1)">1</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(2)">2</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(3)">3</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(4)">4</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(5)">5</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(6)">6</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(7)">7</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(8)">8</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(9)">9</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(-1)">清空</button>
+                                        <button class="scenario12-malware-keypad-btn" type="button" onclick="inputPassword(0)">0</button>
+                                        <button class="scenario12-malware-keypad-btn delete" type="button" onclick="deletePassword()">⌫</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="scenario12-error-page" class="scenario12-malware-view">
+                                <div class="scenario12-malware-card scenario12-malware-error-card">
+                                    <div class="scenario12-malware-error-icon">⚠️</div>
+                                    <div class="scenario12-malware-error-title">系统版本不兼容</div>
+                                    <div class="scenario12-malware-error-desc">您的手机系统版本与当前应用不兼容，建议卸载后重新下载最新版本。</div>
+                                    <button class="scenario12-malware-uninstall-btn" type="button" onclick="uninstallApp()">卸载应用</button>
+                                </div>
+                            </div>
+
+                            <div id="scenario12-malware-alert-overlay" class="scenario12-malware-alert-overlay">
+                                <div class="scenario12-malware-alert-box">
+                                    <div class="scenario12-malware-alert-icon">🚨</div>
+                                    <div class="scenario12-malware-alert-title">你被欺骗了！</div>
+                                    <div class="scenario12-malware-alert-desc">这个所谓的「直播软件」其实是恶意软件！<br><br>它通过无障碍功能获取了你的手机完全控制权，包括：<br>• 监控你的屏幕、摄像头、麦克风<br>• 读取你的银行卡和身份信息<br>• 在你不知情的情况下进行转账和贷款<br><br>「卸载」按钮只是移除了桌面图标，恶意软件仍在后台运行！</div>
+                                    <button class="scenario12-malware-alert-btn" type="button" onclick="goToEducation()">查看完整科普解释</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
+    <script src="static/scenario_12_sex.js"></script>
+</body>
+</html>
