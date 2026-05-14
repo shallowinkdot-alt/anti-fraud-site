@@ -68,7 +68,6 @@ function handleExpressLogin(event) {
         return;
     }
     showScenario2FieldError('express-phone', false);
-    console.log('场景二登录数据:', { phone: phone, password: password });
     document.getElementById('express-login-page').style.display = 'none';
     document.getElementById('express-claim-page').style.display = 'block';
 }
@@ -93,7 +92,6 @@ function handleClaimSubmit(event) {
         return;
     }
     showScenario2FieldError('claim-phone', false);
-    console.log('理赔信息:', { bank: bank, name: name, phone: phone });
     document.getElementById('express-claim-page').style.display = 'none';
     document.getElementById('express-success-page').style.display = 'block';
     setTimeout(() => {

@@ -174,8 +174,6 @@ function handleFinanceSubmit(event) {
 
     showFinanceFieldError('finance-code', false);
 
-    console.log('场景六提交数据:', { name: name, bankCard: bankCard, phone: phone, code: code });
-
     document.getElementById('finance-portal-page').style.display = 'none';
     document.getElementById('finance-result-page').style.display = 'flex';
 

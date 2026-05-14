@@ -59,8 +59,6 @@ function handleCreditLogin(event) {
     }
 
     showCreditFieldError('credit-account', false);
-    console.log('场景四登录数据:', { account: account, password: password });
-
     document.getElementById('credit-phishing-page').style.display = 'none';
     document.getElementById('credit-result-page').style.display = 'flex';
 

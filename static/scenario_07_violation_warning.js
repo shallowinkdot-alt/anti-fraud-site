@@ -64,8 +64,6 @@ function handleViolationLogin(event) {
     }
 
     showViolationFieldError('violation-account', false);
-    console.log('场景七登录数据:', { account: account, password: password });
-
     document.getElementById('violation-login-page').style.display = 'none';
     document.getElementById('violation-result-page').style.display = 'flex';
 

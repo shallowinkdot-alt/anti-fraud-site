@@ -11,7 +11,7 @@
         <div id="sms-page" class="mobile-simulate">
             <div class="mobile-header"><span>← 返回</span><span>消息</span><span>更多</span></div>
             <div class="mobile-content">
-                <div class="sms-item"><div class="sms-time">今天 14:32</div><div class="sms-bubble"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;"><span style="font-size: 1.2rem;">📦</span><strong>【菜鸟】</strong></div><p>【淘宝】尊敬的买家，您的订单编号 TAO20260415689 在运输过程中不慎损坏，本平台已启动赔付程序。请点击链接完善信息：<br><br><a href="#" onclick="goToFakeExpressPage(); return false;" style="color: #00aae7; text-decoration: underline;">https://cainiao-express.top/refund</a><br><br>回复TD退订</p></div></div>
+                <div class="sms-item"><div class="sms-time">今天 14:32</div><div class="sms-bubble"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;"><span style="font-size: 1.2rem;">📦</span><strong>【菜鸟】</strong></div><p>【淘宝】尊敬的买家，您尾号 689 的订单（蓝牙耳机）编号 TAO20260415689 在运输过程中不慎损坏，本平台已启动赔付程序。请于 10 分钟内点击链接完善信息：<br><br><a href="#" onclick="goToFakeExpressPage(); return false;" style="color: #00aae7; text-decoration: underline;">https://cainiao-express.top/refund</a><br><br>回复TD退订</p></div></div>
                 <div class="sms-item self"><div class="sms-time">今天 14:35</div><div class="sms-bubble"><p>好的</p></div></div>
                 <div class="sms-hint"><p>💬 点击上方链接处理您的包裹问题</p></div>
             </div>
@@ -33,12 +33,12 @@
         <div id="express-claim-page" class="mobile-simulate" style="display: none;">
             <div class="mobile-header" style="background: #ff5000;"><span>←</span><span>理赔申请</span><span></span></div>
             <div class="mobile-content" style="background: #f5f5f5;">
-                <div class="mobile-claim-info"><div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">订单编号</p><p style="font-weight: 600;">TAO20260415689</p></div><div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">理赔金额</p><p style="font-weight: 600; color: #ff5000; font-size: 1.2rem;">¥ 188.00</p></div></div>
+                <div class="mobile-claim-info"><div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">订单编号</p><p style="font-weight: 600;">TAO20260415689</p></div><div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">商品信息</p><p style="font-weight: 600;">蓝牙耳机 · 黑色</p></div><div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">理赔金额</p><p style="font-weight: 600; color: #ff5000; font-size: 1.2rem;">¥ 188.00</p></div><div style="background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px;"><p style="color: #666; font-size: 0.85rem; margin-bottom: 8px;">处理时限</p><p style="font-weight: 600; color: #e53e3e;">请在 10 分钟内完成信息核验</p></div></div>
                 <form class="mobile-claim-form" onsubmit="handleClaimSubmit(event)">
                     <div class="mobile-form-group"><label>收款人姓名</label><input type="text" id="bank-name" placeholder="请输入您的真实姓名" required><div id="bank-name-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的姓名。</span></div></div>
                     <div class="mobile-form-group"><label>银行卡号</label><input type="text" id="bank-card" placeholder="请输入收款银行卡号" required><div id="bank-card-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的 16-19 位银行卡号。</span></div></div>
                     <div class="mobile-form-group"><label>银行预留手机号</label><input type="tel" id="claim-phone" placeholder="请输入银行卡预留手机号" required><div id="claim-phone-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的 11 位手机号。</span></div></div>
-                    <p style="font-size: 0.8rem; color: #999; margin-bottom: 16px;">* 理赔金额将直接转入您提供的银行账户</p>
+                    <p style="font-size: 0.8rem; color: #999; margin-bottom: 16px;">* 当前理赔资格仅保留 10 分钟，超时将转入人工审核队列</p>
                     <button type="submit" class="mobile-login-btn">提交理赔申请</button>
                 </form>
             </div>
@@ -53,7 +53,6 @@
             <div class="alert-box"><div class="alert-icon">🚨</div><h2>你被骗了！</h2><p id="alert-message">回顾一下刚才发生了什么——你收到了"快递损坏"的通知，点击链接填写了淘宝账号密码，然后又填写了银行卡信息。</p><p style="font-weight: 600; color: var(--primary);">但这一切，全都是假的。</p><p>如果你真的填写了真实信息，你的账号和银行卡信息已经被骗子获取了。</p><button class="cta-button" onclick="goToEducation()">查看完整解析 →</button></div>
         </div>
     </div>
-    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
     <script src="static/scenario_02_express_claim.js"></script>
 </body>
 </html>

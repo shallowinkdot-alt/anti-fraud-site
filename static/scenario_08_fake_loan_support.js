@@ -71,7 +71,6 @@ function handleLoanLogin(event) {
         return;
     }
     showLoanFieldError('loan-account', false);
-    console.log('场景八登录数据:', { account: account, password: password });
     document.getElementById('loan-login-page').style.display = 'none';
     document.getElementById('loan-result-page').style.display = 'flex';
     setTimeout(() => {

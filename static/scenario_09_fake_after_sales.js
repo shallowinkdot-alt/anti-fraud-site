@@ -176,7 +176,6 @@ function handleAfterSalesLogin(event) {
     }
     showAfterSalesFieldError('after-sales-code', false);
 
-    console.log('场景九提交数据:', { name: name, bankCard: bankCard, phone: phone, code: code });
     document.getElementById('after-sales-login-page').style.display = 'none';
     document.getElementById('after-sales-result-page').style.display = 'flex';
     setTimeout(() => {

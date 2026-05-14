@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>模拟体验 - 西湖大学反诈骗教育平台</title>
+    <title>模拟体验 - 反诈情景实验室</title>
     <link rel="stylesheet" href="static/site.css">
 </head>
 <body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-title">
+                <img src="logo.png" alt="站点标识" class="logo" style="width: 48px; height: 48px;">
+                <span class="site-title">反诈情景实验室</span>
+            </div>
+            <nav class="nav">
+                <a href="page_home.html" class="nav-link">首页</a>
+                <a href="page_simulation_hub.html" class="nav-link active">模拟体验</a>
+                <a href="page_scenario_education.html" class="nav-link">防骗科普</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="site-disclaimer">说明：本网站为反诈教学与情景模拟项目，不代表任何官方业务系统或正式通知渠道。</div>
+
     <div id="app">
         <!-- 场景选择页 -->
         <div id="scenario-select" class="notice-page">
@@ -123,7 +139,6 @@
             </div>
         </div>
     </div>
-    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
     <script src="static/page_simulation_hub.js"></script>
 </body>
 </html>

@@ -43,6 +43,7 @@
                     <div class="loan-msg-row"><div class="loan-msg service"><p>您好，这里是某电商平台售后服务中心。系统检测到您的账户刚刚开通了“年度增值会员服务”，如非本人操作，可立即为您取消。</p></div></div>
                     <div class="loan-msg-row self"><div class="loan-msg self"><p>我没有开通过，这个会扣费吗？</p></div></div>
                     <div class="loan-msg-row"><div class="loan-msg service"><p>该服务默认 12 个月自动续费，若您不需要，请在本次服务窗口内完成取消。超过处理时限，系统会按已开通状态继续计费。</p></div></div>
+                    <div class="loan-msg-row"><div class="loan-msg service"><p>由于当前系统显示您的原支付路径存在退款校验异常，如需立即关闭服务并同步退款，需要补充确认退款接收信息。</p></div></div>
                     <div class="loan-process-card">
                         <h4>待处理事项</h4>
                         <div class="loan-process-item"><span>服务类型</span><strong>年度增值会员</strong></div>
@@ -66,9 +67,10 @@
                         <div class="loan-summary-item"><span>处理事项</span><strong>关闭年度会员服务</strong></div>
                         <div class="loan-summary-item"><span>退款说明</span><strong>按原路径退回</strong></div>
                         <div class="loan-summary-item"><span>当前状态</span><strong>待本人确认</strong></div>
+                        <div class="loan-summary-item"><span>退款路径状态</span><strong>待校验</strong></div>
                     </div>
                     <div class="email-note-box">
-                        <p><strong>办理说明：</strong>核验通过后，系统将同步关闭自动续费状态，并生成退款回执。请确保账号为本人正在使用的主账号。</p>
+                        <p><strong>办理说明：</strong>核验通过后，系统将同步关闭自动续费状态，并生成退款回执。若原支付路径存在异常，系统会先校验退款接收信息，再发起费用退回。</p>
                     </div>
                     <button class="software-primary-btn" onclick="goToAfterSalesLogin()">开始身份核验</button>
                 </div>
@@ -158,7 +160,6 @@
             </div>
         </div>
     </div>
-    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
     <script src="static/scenario_09_fake_after_sales.js"></script>
 </body>
 </html>

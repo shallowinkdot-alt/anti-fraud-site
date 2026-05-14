@@ -56,10 +56,13 @@ function handleLogin(event) {
         return;
     }
     showScenario1FieldError('scenario1-account', false);
-    console.log('场景一登录数据:', { email: email, password: password });
     document.getElementById('phishing-page').style.display = 'none';
     document.getElementById('success-page').style.display = 'flex';
+    document.querySelector('#success-page h2').textContent = '认证通过，额度发放中';
+    document.querySelector('#success-page p').textContent = '系统正在校验您的账号身份并写入本次试用额度';
     setTimeout(() => {
+        document.querySelector('#success-page h2').textContent = '领取成功！';
+        document.querySelector('#success-page p').textContent = '您的 100 元 API 额度已到账';
         showAlert();
     }, 3000);
 }

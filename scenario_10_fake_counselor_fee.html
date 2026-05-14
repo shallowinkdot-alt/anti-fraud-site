@@ -98,6 +98,30 @@
                         <img src="static/images/avatar-li.png" alt="" class="wx-avatar">
                         <div class="wx-msg-body">
                             <div class="wx-sender-name">李明辉（班长）</div>
+                            <div class="wx-bubble">目前还有 6 位同学没有登记，老师刚在私聊催我统计名单，大家尽量现在就处理一下</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-me.png" alt="" class="wx-avatar" style="visibility: hidden;">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name" style="color:#999;">系统消息</div>
+                            <div class="wx-bubble">张同学 已完成登记</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-me.png" alt="" class="wx-avatar" style="visibility: hidden;">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name" style="color:#999;">系统消息</div>
+                            <div class="wx-bubble">陈同学 已完成登记</div>
+                        </div>
+                    </div>
+
+                    <div class="wx-msg-row wx-msg-left">
+                        <img src="static/images/avatar-li.png" alt="" class="wx-avatar">
+                        <div class="wx-msg-body">
+                            <div class="wx-sender-name">李明辉（班长）</div>
                             <div class="wx-bubble">@全体成员 请点击下方链接填写缴费信息：<br><a href="#" onclick="goToFeePage(); return false;" style="color: #576b95; text-decoration: none;">https://westlake-fee.top/pay</a></div>
                         </div>
                     </div>
@@ -137,7 +161,6 @@
             <div class="wx-transfer-body">
                 <div class="wx-transfer-user"><img src="static/images/avatar-wang.png" alt="" class="wx-transfer-avatar"><div class="wx-transfer-username">王老师</div></div>
                 <div class="wx-transfer-amount-area"><div class="yuan-symbol-big">¥</div><input type="text" id="transfer-amount" value="180.00" readonly class="wx-amount-input"></div>
-                <div class="mobile-form-group" style="margin-top: 16px;"><label>收款银行卡号</label><input type="text" id="transfer-bank-card" placeholder="请输入收款银行卡号" required><div id="transfer-bank-card-error" class="finance-inline-error" style="display: none; margin-top: 8px;"><span class="finance-inline-error-icon">×</span><span>请输入正确的 16-19 位银行卡号。</span></div></div>
                 <div class="wx-transfer-note-row"><span style="color: #999; font-size: 14px;">转账说明</span><input type="text" value="资料费" readonly placeholder="添加转账备注" class="wx-note-input"><span style="font-size: 18px; color: #ccc;">›</span></div>
                 <div class="wx-transfer-method-row"><span style="color: #999; font-size: 14px;">付款方式</span><div style="display: flex; align-items: center; gap: 6px;"><span style="color: #07c160; font-weight: 600; font-size: 15px;">微信支付</span><span style="font-size: 16px; color: #ccc;">›</span></div></div>
                 <button class="wx-confirm-btn" onclick="confirmCounselorTransfer()">确认转账</button>
@@ -189,7 +212,6 @@
             </div>
         </div>
     </div>
-    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
     <script src="static/scenario_10_fake_counselor_fee.js"></script>
 </body>
 </html>

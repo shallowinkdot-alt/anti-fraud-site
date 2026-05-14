@@ -64,8 +64,6 @@ function handleSoftwareLogin(event) {
     }
 
     showSoftwareFieldError('software-account', false);
-    console.log('场景五登录数据:', { account: account, password: password });
-
     document.getElementById('software-login-page').style.display = 'none';
     document.getElementById('software-result-page').style.display = 'flex';
 

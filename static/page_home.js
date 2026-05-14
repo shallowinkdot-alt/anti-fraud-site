@@ -1,9 +1,5 @@
 // 主页逻辑
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('西湖大学反诈骗教育平台已加载');
-});
-
 window.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
     if (window.scrollY > 0) {

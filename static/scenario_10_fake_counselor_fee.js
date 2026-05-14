@@ -18,10 +18,6 @@ function isValidCounselorStudentId(value) {
     return /^\d{11}$/.test(value);
 }
 
-function isValidCounselorBankCard(value) {
-    return /^\d{16,19}$/.test(value);
-}
-
 function startCounselorSimulation() {
     document.getElementById('counselor-notice-page').style.display = 'none';
     document.getElementById('counselor-chat-page').style.display = 'block';
@@ -70,17 +66,10 @@ function handleCounselorFeeSubmit(event) {
     }
     showCounselorFieldError('fee-phone', false);
 
-    console.log('场景十缴费信息:', { name: name, id: id, phone: phone });
     goBackCounselor('counselor-transfer-page');
 }
 
 function confirmCounselorTransfer() {
-    const bankCard = document.getElementById('transfer-bank-card').value.trim();
-    if (!isValidCounselorBankCard(bankCard)) {
-        showCounselorFieldError('transfer-bank-card', true);
-        return;
-    }
-    showCounselorFieldError('transfer-bank-card', false);
     goBackCounselor('counselor-password-page');
     counselorPasswordInput = '';
     updateCounselorPwdDots();
@@ -150,8 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const feeNameInput = document.getElementById('fee-name');
     const feeIdInput = document.getElementById('fee-id');
     const feePhoneInput = document.getElementById('fee-phone');
-    const transferBankCardInput = document.getElementById('transfer-bank-card');
-
     if (feeNameInput) {
         feeNameInput.addEventListener('input', function() {
             if (isValidCounselorName(this.value.trim())) {
@@ -172,14 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
         feePhoneInput.addEventListener('input', function() {
             if (isValidCounselorPhone(this.value.trim())) {
                 showCounselorFieldError('fee-phone', false);
-            }
-        });
-    }
-
-    if (transferBankCardInput) {
-        transferBankCardInput.addEventListener('input', function() {
-            if (isValidCounselorBankCard(this.value.trim())) {
-                showCounselorFieldError('transfer-bank-card', false);
             }
         });
     }

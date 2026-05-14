@@ -78,6 +78,7 @@
                             <li>如课程已修读但未计入，请在系统内提交申诉说明</li>
                             <li>逾期未核查将按当前培养方案记录进入后续审核队列</li>
                         </ul>
+                        <div class="email-note-box"><p><strong>复核提醒：</strong>当前异常记录已进入本轮注册前最后一次培养方案复核队列。若未在本次窗口期内完成核查，系统将暂按现有记录生成审核结果。</p></div>
                         <p>请务必登录下方“校内学分申诉平台”核对课程列表并提交核查结果。<strong>逾期系统将自动锁定异常状态</strong>，相关记录将同步至毕业审核队列。</p>
                         <button class="email-cta" onclick="goToCreditPhishingPage()">进入校内学分申诉平台 →</button>
                         <p style="color: var(--text-light); font-size: 0.9rem;">如有疑问，请在系统内提交申诉单，本邮件不接受直接回复。</p>
@@ -136,17 +137,18 @@
                     <div class="phishing-footer-info">
                         <p id="credit-footer-text">如无法登陆，请联系 ITS：0571-85771167（8:30-17:30）或<br><a href="#">itservices@westlake.edu.cn</a></p>
                         <div class="phishing-copyright">Copyright © Westlake University. All Rights Reserved</div>
+                        <div class="phishing-training-note">学生反诈练习平台</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="credit-result-page" class="credit-review-page" style="display: none;">
-            <div class="credit-result-card">
-                <div class="credit-result-badge">系统复核中</div>
-                <h2>学分核查提交成功</h2>
-                <p>你的身份认证信息已提交，系统正在同步培养方案课程数据。</p>
-                <div class="credit-course-list">
+                <div class="credit-result-card">
+                    <div class="credit-result-badge">系统复核中</div>
+                    <h2>学分核查提交成功</h2>
+                    <p>你的身份认证信息已提交，系统正在同步培养方案课程数据，并生成本轮异常复核回执。</p>
+                    <div class="credit-course-list">
                     <div class="credit-course-item">
                         <span>通用教育模块</span>
                         <strong>待复核</strong>
@@ -155,13 +157,17 @@
                         <span>专业选修模块</span>
                         <strong>待复核</strong>
                     </div>
-                    <div class="credit-course-item">
-                        <span>毕业资格状态</span>
-                        <strong>异常锁定中</strong>
+                        <div class="credit-course-item">
+                            <span>毕业资格状态</span>
+                            <strong>异常锁定中</strong>
+                        </div>
+                        <div class="credit-course-item">
+                            <span>复核回执编号</span>
+                            <strong>CR-20260428-1182</strong>
+                        </div>
                     </div>
+                    <p class="credit-result-note">系统将在 1-3 分钟内反馈结果，请勿重复提交。</p>
                 </div>
-                <p class="credit-result-note">系统将在 1-3 分钟内反馈结果，请勿重复提交。</p>
-            </div>
         </div>
 
         <div id="credit-alert-overlay" class="alert-overlay" style="display: none;">

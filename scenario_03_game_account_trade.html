@@ -73,6 +73,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
     </style>
 </head>
 <body style="background: #f5f5f5;">
@@ -84,11 +85,11 @@
                 <span class="game-logo-sub">游戏交易平台</span>
             </div>
             <nav class="game-nav">
-                <a href="#" class="game-nav-link">首页</a>
-                <a href="#" class="game-nav-link active">账号交易</a>
-                <a href="#" class="game-nav-link">道具交易</a>
-                <a href="#" class="game-nav-link">手游充值</a>
-                <a href="#" class="game-nav-link">游戏币</a>
+                <a href="#" class="game-nav-link" onclick="return false;">首页</a>
+                <a href="#" class="game-nav-link active" onclick="return false;">账号交易</a>
+                <a href="#" class="game-nav-link" onclick="return false;">道具交易</a>
+                <a href="#" class="game-nav-link" onclick="return false;">手游充值</a>
+                <a href="#" class="game-nav-link" onclick="return false;">游戏币</a>
             </nav>
             <div class="game-user-area">
                 <span class="game-user-icon">👤</span>
@@ -156,7 +157,7 @@
                             <span class="tag-orange">🔥 无货立赔</span>
                             <span class="tag-green">⚡ 即时结算</span>
                             <span class="tag-blue">✅ 官方验号</span>
-                            <span class="tag-purple">💳 支持花呗</span>
+                            <span class="tag-purple">🔄 支持换绑</span>
                         </div>
 
                         <!-- 商品详情表 -->
@@ -170,7 +171,7 @@
                             <p title="是否出售邮箱">是否出售邮箱</p>
                         </div>
                         <div class="attr-item">
-                            <h3 title="已绑定Tap">已绑定Tap</h3>
+                            <h3 title="未绑定Tap">未绑定Tap</h3>
                             <p title="是否绑定Tap">是否绑定Tap</p>
                         </div>
                         <div class="attr-item">
@@ -193,37 +194,16 @@
 
                         <!-- 关键词标签 -->
                         <div class="keyword-tags">
-                            <span>米哈游官服</span>|<span>QQ邮箱</span>|<span>QQ邮箱出售</span>|<span>女主</span>|<span>未绑定TAP</span>|<span>未绑定PSN</span>|<span>提供换绑码</span>
+                            <span>米哈游官服</span>|<span>不出售邮箱</span>|<span>女主</span>|<span>未绑定TAP</span>|<span>未绑定PSN</span>|<span>提供换绑码</span>
                         </div>
 
                         <!-- 操作按钮 -->
                         <div class="action-buttons">
-                            <button class="btn-consult" onclick="goToContactPage()">咨询</button>
-                            <button class="btn-bargain" onclick="goToContactPage()">还价</button>
-                            <button class="btn-buy-now" onclick="goToContactPage()">立即购买</button>
+                            <button class="btn-consult" onclick="goToContactPage('consult')">咨询</button>
+                            <button class="btn-bargain" onclick="goToContactPage('bargain')">还价</button>
+                            <button class="btn-buy-now" onclick="goToContactPage('direct')">立即购买</button>
                         </div>
 
-                        <div class="quick-purchase-section">
-                            <h4>其他交易选项</h4>
-                            <div class="quick-purchase-grid">
-                                <button class="quick-purchase-card" onclick="goToContactPage()">
-                                    <span class="quick-purchase-title">账号直购</span>
-                                    <span class="quick-purchase-desc">适合确认配置后直接下单</span>
-                                </button>
-                                <button class="quick-purchase-card" onclick="goToContactPage()">
-                                    <span class="quick-purchase-title">砍价购买</span>
-                                    <span class="quick-purchase-desc">和卖家议价后走担保交易</span>
-                                </button>
-                                <button class="quick-purchase-card" onclick="goToContactPage()">
-                                    <span class="quick-purchase-title">代保号预订</span>
-                                    <span class="quick-purchase-desc">先锁单，再完成付款交接</span>
-                                </button>
-                                <button class="quick-purchase-card" onclick="goToContactPage()">
-                                    <span class="quick-purchase-title">优先发货通道</span>
-                                    <span class="quick-purchase-desc">卖家承诺优先处理换绑材料</span>
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -395,7 +375,7 @@
                             <div class="chat-msg chat-msg-other">
                                 <div class="chat-avatar">🐱</div>
                                 <div class="chat-bubble">
-                                    <p>满命夜兰+满命纳西妲都在，还有精2狼末和雾切，深渊满星没问题。你主要玩什么队伍？</p>
+                                    <p id="game-chat-product-intro">满命夜兰+满命纳西妲都在，还有精2狼末和雾切，深渊满星没问题。你主要玩什么队伍？</p>
                                     <span class="chat-time">19:36</span>
                                 </div>
                             </div>
@@ -408,7 +388,7 @@
                             <div class="chat-msg chat-msg-other">
                                 <div class="chat-avatar">🐱</div>
                                 <div class="chat-bubble">
-                                    <p>这个配置市场价至少1500+了，我挂1299已经是良心价了😂 不过看你诚心要，1250可以出，不能再低了~</p>
+                                    <p id="game-chat-bargain-copy">这个配置市场价至少1500+了，我挂1299已经是良心价了😂 不过看你诚心要，1250可以出，不能再低了~</p>
                                     <span class="chat-time">19:39</span>
                                 </div>
                             </div>
@@ -419,13 +399,21 @@
                                     <span class="chat-time">19:40</span>
                                 </div>
                             </div>
-                            <div class="chat-system-msg">
+                            <div id="game-trade-request-msg" class="chat-system-msg" style="display: none;">
                                 <span>📌 卖家发起了担保交易请求</span>
+                            </div>
+                            <div id="game-trade-entry-card" class="game-trade-entry-card" style="display: none;">
+                                <div class="game-trade-entry-top">
+                                    <strong id="game-trade-entry-title">卖家已创建担保订单</strong>
+                                    <span id="game-trade-entry-price">¥1,250.00</span>
+                                </div>
+                                <p id="game-trade-entry-desc">点击进入平台担保交易页，完成付款后等待卖家交接账号。</p>
+                                <button class="game-trade-entry-btn" onclick="goToPaymentPage()">进入担保交易 →</button>
                             </div>
                         </div>
                         <div class="chat-input-area">
                             <input type="text" class="chat-input" placeholder="输入消息..." readonly value="好的，走担保交易吧">
-                            <button class="chat-send-btn" onclick="goToPaymentPage()">发送</button>
+                            <button id="game-chat-send-btn" class="chat-send-btn" onclick="sendGameTradeMessage()">发送</button>
                         </div>
                     </div>
                     <div class="game-contact-right">
@@ -440,11 +428,11 @@
                                 <span>应付金额</span>
                                 <span class="order-total-price">¥1,250.00</span>
                             </div>
-                            <button class="order-pay-btn" onclick="goToPaymentPage()">去支付 →</button>
+                            <button id="game-order-pay-btn" class="order-pay-btn" onclick="goToPaymentPage()">去支付 →</button>
                             <div class="order-alternative-list">
-                                <button class="order-alt-btn" onclick="goToPaymentPage()">切换为支付宝担保支付</button>
-                                <button class="order-alt-btn" onclick="goToPaymentPage()">切换为微信担保支付</button>
-                                <button class="order-alt-btn" onclick="goToPaymentPage()">生成专属议价订单</button>
+                                <button class="order-alt-btn" onclick="setGameOrderMode('wechat')">切换为微信担保支付</button>
+                                <button class="order-alt-btn" onclick="setGameOrderMode('bank')">切换为网银支付</button>
+                                <button class="order-alt-btn" onclick="setGameOrderMode('bargain')">生成专属议价订单</button>
                             </div>
                         </div>
                     </div>
@@ -473,7 +461,7 @@
                         <h4>商品信息</h4>
                         <div class="payment-order-row">
                             <span>商品名称</span>
-                            <span>原神_账号_米哈游官服_天空岛_游戏官方</span>
+                            <span id="game-payment-product-name">原神_账号_米哈游官服_天空岛_游戏官方</span>
                         </div>
                         <div class="payment-order-row">
                             <span>商品编号</span>
@@ -483,15 +471,16 @@
                             <span>卖家昵称</span>
                             <span>懒猫退坑中（信誉值 4.9★）</span>
                         </div>
-                        <div class="payment-order-row order-amount-row">
-                            <span>交易金额</span>
-                            <span class="payment-amount">¥1,250.00</span>
-                        </div>
+                            <div class="payment-order-row order-amount-row">
+                                <span>交易金额</span>
+                                <span id="game-payment-amount" class="payment-amount">¥1,250.00</span>
+                            </div>
                     </div>
 
                     <form id="game-payment-form" onsubmit="handleGamePayment(event)">
                         <div class="payment-method-section">
                             <h4>选择支付方式</h4>
+                            <p id="game-payment-hint" class="game-payment-hint">当前为平台担保支付，资金将在确认收货后结算给卖家。</p>
                             <div class="payment-method-list">
                                 <label class="payment-method-option selected">
                                     <input type="radio" name="payMethod" value="alipay" checked>
@@ -511,40 +500,42 @@
                                     <span class="method-name">网银支付</span>
                                     <span class="method-check"></span>
                                 </label>
-                                <label class="payment-method-option">
-                                    <input type="radio" name="payMethod" value="huabei">
-                                    <span class="method-icon">💠</span>
-                                    <span class="method-name">花呗分期</span>
-                                    <span class="method-check"></span>
-                                </label>
-                                <label class="payment-method-option">
-                                    <input type="radio" name="payMethod" value="qqwallet">
-                                    <span class="method-icon">🟦</span>
-                                    <span class="method-name">QQ钱包</span>
-                                    <span class="method-check"></span>
-                                </label>
-                                <label class="payment-method-option">
-                                    <input type="radio" name="payMethod" value="unionpay">
-                                    <span class="method-icon">💳</span>
-                                    <span class="method-name">云闪付</span>
-                                    <span class="method-check"></span>
-                                </label>
                             </div>
                         </div>
 
                         <div class="payment-form-section">
-                            <h4>付款人信息（用于交易凭证）</h4>
+                            <h4 id="game-payment-form-title">付款人信息（用于交易凭证）</h4>
                             <div class="payment-field">
                                 <label>真实姓名</label>
                                 <input type="text" id="game-realname" placeholder="请输入付款人真实姓名" required>
+                                <div id="game-realname-error" class="finance-inline-error" style="display: none; margin-top: 8px;">
+                                    <span class="finance-inline-error-icon">×</span>
+                                    <span>请输入正确的姓名。</span>
+                                </div>
                             </div>
                             <div class="payment-field">
-                                <label>联系电话</label>
+                                <label id="game-payment-contact-label">联系电话</label>
                                 <input type="tel" id="game-phone" placeholder="请输入手机号码" required>
+                                <div id="game-phone-error" class="finance-inline-error" style="display: none; margin-top: 8px;">
+                                    <span class="finance-inline-error-icon">×</span>
+                                    <span id="game-phone-error-text">请输入正确的 11 位手机号。</span>
+                                </div>
                             </div>
                             <div class="payment-field">
-                                <label>支付宝/微信号</label>
-                                <input type="text" id="game-payaccount" placeholder="请输入支付账号" required>
+                                <label id="game-payment-account-label">支付宝账号</label>
+                                <input type="text" id="game-payaccount" placeholder="请输入支付宝账号" required>
+                                <div id="game-payaccount-error" class="finance-inline-error" style="display: none; margin-top: 8px;">
+                                    <span class="finance-inline-error-icon">×</span>
+                                    <span id="game-payaccount-error-text">请输入正确的支付宝账号。</span>
+                                </div>
+                            </div>
+                            <div class="payment-field">
+                                <label id="game-payment-password-label">支付宝支付密码</label>
+                                <input type="password" id="game-paypassword" placeholder="请输入支付宝支付密码" required>
+                                <div id="game-paypassword-error" class="finance-inline-error" style="display: none; margin-top: 8px;">
+                                    <span class="finance-inline-error-icon">×</span>
+                                    <span id="game-paypassword-error-text">请输入正确的 6 位支付密码。</span>
+                                </div>
                             </div>
                         </div>
 
@@ -556,7 +547,7 @@
                         </div>
 
                         <button type="submit" class="payment-submit-btn">
-                            <span>确认支付 ¥1,250.00</span>
+                            <span id="game-payment-submit-text">确认支付 ¥1,250.00</span>
                         </button>
                     </form>
 
@@ -596,8 +587,8 @@
 
                     <div class="success-info-box">
                         <div class="info-row"><span>订单编号:</span><span>GF20260415000128</span></div>
-                        <div class="info-row"><span>支付金额:</span><span style="color: #e53e3e; font-weight: bold;">¥1,250.00</span></div>
-                        <div class="info-row"><span>支付方式:</span><span>支付宝</span></div>
+                        <div class="info-row"><span>支付金额:</span><span id="game-success-amount" style="color: #e53e3e; font-weight: bold;">¥1,250.00</span></div>
+                        <div class="info-row"><span>支付方式:</span><span id="game-success-method">支付宝</span></div>
                         <div class="info-row"><span>预计交接:</span><span>24小时内</span></div>
                     </div>
 
