@@ -11,7 +11,6 @@ function scrollPatch11ToResources() {
 }
 
 function openPatch11Installer(source) {
-    console.log('场景十一下载来源:', source);
     document.getElementById('patch11-site-page').style.display = 'none';
     document.getElementById('patch11-installer-page').style.display = 'flex';
 }

@@ -9,14 +9,17 @@
     <style>
         .scenario12-shell {
             min-height: 100vh;
-            padding: 36px 20px 72px;
+            height: 100vh;
+            padding: 4px 20px 24px;
             background: linear-gradient(180deg, #edf2f7 0%, #dbe7f5 100%);
+            overflow: hidden;
+            box-sizing: border-box;
         }
         .scenario12-phone {
-            width: 390px;
+            width: 430px;
             max-width: 100%;
-            height: 844px;
-            max-height: calc(100vh - 120px);
+            height: 1095px;
+            max-height: calc(100vh - 8px);
             margin: 0 auto;
             background: #0f172a;
             border-radius: 38px;
@@ -784,6 +787,7 @@
             border-radius: 20px;
             text-align: center;
             max-width: 100%;
+            animation: shake 0.5s ease-in-out;
         }
         .scenario12-malware-alert-icon {
             font-size: 3.5rem;
@@ -808,9 +812,10 @@
         }
         @media (max-width: 480px) {
             .scenario12-shell {
-                padding: 20px 12px 60px;
+                padding: 4px 12px 14px;
             }
             .scenario12-phone {
+                width: 390px;
                 height: calc(100vh - 90px);
                 border-radius: 28px;
                 padding: 7px;
@@ -981,9 +986,9 @@
                                 <div class="scenario12-browser-card">
                                     <div class="scenario12-browser-chip">夸克网盘分享</div>
                                      <div class="scenario12-browser-header">
-                                         <img class="scenario12-browser-icon" src="static/media/icon.webp" alt="MakeLove.tv 图标">
+                                         <img class="scenario12-browser-icon" src="static/media/icon.webp" alt="MakeLov*.tv 图标">
                                          <div>
-                                             <h2>MakeLove.tv</h2>
+                                             <h2>MakeLov*.tv</h2>
                                              <p>内测直播聚合播放器 · Android 安装包</p>
                                          </div>
                                      </div>
@@ -1027,7 +1032,7 @@
                             <div class="scenario12-download-top">
                                 <div class="scenario12-download-icon">📥</div>
                                 <div class="scenario12-download-meta">
-                                    <strong>MakeLove_tv_2.7.4.apk</strong>
+                                    <strong>MakeLov*_tv_2.7.4.apk</strong>
                                     <span id="scenario12-download-text">下载中... 0%</span>
                                 </div>
                             </div>
@@ -1035,7 +1040,7 @@
                                 <div id="scenario12-download-fill" class="scenario12-download-fill"></div>
                             </div>
                             <div id="scenario12-download-complete" class="scenario12-download-complete" onclick="goToScenario12Fraud()">
-                                <strong>MakeLove_tv_2.7.4.apk</strong>
+                                <strong>MakeLov*_tv_2.7.4.apk</strong>
                                 <span>下载完成，点击继续安装</span>
                             </div>
                         </div>
@@ -1049,7 +1054,7 @@
                                     <div class="scenario12-malware-desc">为了提供更好的播放体验，请开启无障碍服务权限</div>
                                     <div class="scenario12-malware-steps">
                                         <div class="scenario12-malware-step"><span class="scenario12-malware-step-num">1</span> 点击下方按钮进入设置</div>
-                                        <div class="scenario12-malware-step"><span class="scenario12-malware-step-num">2</span> 找到「MakeLove.tv」并开启</div>
+                                        <div class="scenario12-malware-step"><span class="scenario12-malware-step-num">2</span> 找到「MakeLov*.tv」并开启</div>
                                         <div class="scenario12-malware-step"><span class="scenario12-malware-step-num">3</span> 返回应用完成设置</div>
                                     </div>
                                     <button class="scenario12-malware-btn" type="button" onclick="openAccessibility()">前往设置</button>
@@ -1059,12 +1064,12 @@
                             <div id="scenario12-accessibility-page" class="scenario12-malware-view">
                                 <div class="scenario12-malware-card">
                                     <div class="scenario12-malware-title">⚙️ 无障碍设置</div>
-                                    <div class="scenario12-malware-desc">请开启 MakeLove.tv 的无障碍权限</div>
+                                    <div class="scenario12-malware-desc">请开启 MakeLov*.tv 的无障碍权限</div>
                                     <div class="scenario12-malware-accessibility-item">
                                         <div class="scenario12-malware-accessibility-row">
                                             <div class="scenario12-malware-accessibility-left">
-                                                <img class="scenario12-malware-accessibility-icon" src="static/media/icon.webp" alt="MakeLove.tv 图标">
-                                                <span class="scenario12-malware-accessibility-name">MakeLove.tv</span>
+                                                <img class="scenario12-malware-accessibility-icon" src="static/media/icon.webp" alt="MakeLov*.tv 图标">
+                                                <span class="scenario12-malware-accessibility-name">MakeLov*.tv</span>
                                             </div>
                                             <label class="scenario12-malware-switch">
                                                 <input type="checkbox" id="scenario12-access-switch" onchange="toggleAccessibility()">
@@ -1118,7 +1123,7 @@
                             <div id="scenario12-malware-alert-overlay" class="scenario12-malware-alert-overlay">
                                 <div class="scenario12-malware-alert-box">
                                     <div class="scenario12-malware-alert-icon">🚨</div>
-                                    <div class="scenario12-malware-alert-title">你被欺骗了！</div>
+                                    <div class="scenario12-malware-alert-title">你被骗了！</div>
                                     <div class="scenario12-malware-alert-desc">这个所谓的「直播软件」其实是恶意软件！<br><br>它通过无障碍功能获取了你的手机完全控制权，包括：<br>• 监控你的屏幕、摄像头、麦克风<br>• 读取你的银行卡和身份信息<br>• 在你不知情的情况下进行转账和贷款<br><br>「卸载」按钮只是移除了桌面图标，恶意软件仍在后台运行！</div>
                                     <button class="scenario12-malware-alert-btn" type="button" onclick="goToEducation()">查看完整科普解释</button>
                                 </div>
@@ -1129,7 +1134,6 @@
             </div>
         </div>
     </div>
-    <a href="page_home.html" class="simulate-back-home">返回主界面</a>
     <script src="static/scenario_12_sex.js"></script>
 </body>
 </html>

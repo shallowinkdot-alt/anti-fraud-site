@@ -8,7 +8,27 @@
 </head>
 <body>
     <div id="app">
-        <div id="sms-page" class="mobile-simulate">
+        <div id="scenario2-notice-page" class="notice-page">
+            <div class="notice-card">
+                <h2>⚠️ 体验须知</h2>
+                <ul class="notice-content">
+                    <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                    <li>你将收到一条看似来自快递平台的<strong>理赔通知</strong></li>
+                    <li>请像平时一样判断并操作，体验骗子如何利用<strong>订单细节与时限压力</strong>推进骗局</li>
+                    <li>体验结束后，你将看到完整的套路解析</li>
+                </ul>
+                <div class="notice-tips">
+                    <h4>💡 小提示</h4>
+                    <ul>
+                        <li>这不是考试，没有标准答案</li>
+                        <li>重点是感受自己为什么会愿意继续点下去</li>
+                    </ul>
+                </div>
+                <button class="cta-button" onclick="startExpressSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+            </div>
+        </div>
+
+        <div id="sms-page" class="mobile-simulate" style="display: none;">
             <div class="mobile-header"><span>← 返回</span><span>消息</span><span>更多</span></div>
             <div class="mobile-content">
                 <div class="sms-item"><div class="sms-time">今天 14:32</div><div class="sms-bubble"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;"><span style="font-size: 1.2rem;">📦</span><strong>【菜鸟】</strong></div><p>【淘宝】尊敬的买家，您尾号 689 的订单（蓝牙耳机）编号 TAO20260415689 在运输过程中不慎损坏，本平台已启动赔付程序。请于 10 分钟内点击链接完善信息：<br><br><a href="#" onclick="goToFakeExpressPage(); return false;" style="color: #00aae7; text-decoration: underline;">https://cainiao-express.top/refund</a><br><br>回复TD退订</p></div></div>

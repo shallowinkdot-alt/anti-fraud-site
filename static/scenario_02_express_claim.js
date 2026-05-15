@@ -4,6 +4,11 @@ function showScenario2FieldError(fieldId, show) {
     error.style.display = show ? 'flex' : 'none';
 }
 
+function startExpressSimulation() {
+    document.getElementById('scenario2-notice-page').style.display = 'none';
+    document.getElementById('sms-page').style.display = 'block';
+}
+
 function isValidMobilePhone(value) {
     return /^\d{11}$/.test(value);
 }

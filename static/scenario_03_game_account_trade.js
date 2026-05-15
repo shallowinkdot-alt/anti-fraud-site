@@ -4,6 +4,12 @@ let currentGamePurchaseMode = 'default';
 let hasGameTradeEntryBeenSent = false;
 let currentGameAmount = '¥1,299.00';
 
+function startGameSimulation() {
+    document.getElementById('scenario3-notice-page').style.display = 'none';
+    document.getElementById('scenario3-main-content').style.display = 'block';
+    document.getElementById('app').style.display = 'block';
+}
+
 function showGameFieldError(fieldId, show) {
     const error = document.getElementById(fieldId + '-error');
     if (!error) return;

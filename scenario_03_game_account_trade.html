@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>原神账号 - 7881游戏交易平台</title>
     <link rel="stylesheet" href="static/site.css">
-    <title>账号属性卡片</title>
     <style>
         /* 全局重置，消除默认边距 */
         * {
@@ -77,6 +76,27 @@
     </style>
 </head>
 <body style="background: #f5f5f5;">
+    <div id="scenario3-notice-page" class="notice-page">
+        <div class="notice-card">
+            <h2>⚠️ 体验须知</h2>
+            <ul class="notice-content">
+                <li>这是一个<strong>完全模拟</strong>的诈骗场景体验</li>
+                <li>你将进入一个看似正规的<strong>游戏交易平台</strong>完成购买流程</li>
+                <li>请像平时一样判断并操作，体验骗子如何通过<strong>低价、担保交易和支付流程</strong>推进诈骗</li>
+                <li>体验结束后，你将看到完整的套路解析</li>
+            </ul>
+            <div class="notice-tips">
+                <h4>💡 小提示</h4>
+                <ul>
+                    <li>这不是考试，没有标准答案</li>
+                    <li>重点是观察自己会在什么环节放下戒心</li>
+                </ul>
+            </div>
+            <button class="cta-button" onclick="startGameSimulation()" style="width: 100%;">我已知悉，开始体验 →</button>
+        </div>
+    </div>
+
+    <div id="scenario3-main-content" style="display: none;">
     <!-- 7881风格顶部导航 -->
     <header class="game-header">
         <div class="game-header-inner">
@@ -109,7 +129,7 @@
     </div>
 
     <!-- 主内容区 -->
-    <div id="app">
+    <div id="app" style="display: none;">
         <!-- 页面一：账号详情页（仿7881） -->
         <div id="game-account-page" class="game-main">
             <div class="game-container">
@@ -624,6 +644,7 @@
         </div>
     </footer>
 
+    </div>
     <script src="static/scenario_03_game_account_trade.js"></script>
 </body>
 </html>

@@ -143,3 +143,21 @@ function uninstallApp() {
 function goToEducation() {
     window.location.href = 'page_scenario_education.html?scenario=12';
 }
+
+document.addEventListener('keydown', function(e) {
+    var passwordPage = document.getElementById('scenario12-password-page');
+    if (!passwordPage || !passwordPage.classList.contains('active')) {
+        return;
+    }
+
+    if (/^\d$/.test(e.key)) {
+        inputPassword(e.key);
+        e.preventDefault();
+        return;
+    }
+
+    if (e.key === 'Backspace') {
+        deletePassword();
+        e.preventDefault();
+    }
+});
