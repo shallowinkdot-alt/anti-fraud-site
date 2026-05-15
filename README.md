@@ -66,21 +66,6 @@
 
 ---
 
-## 📁 项目结构
-
-反诈情景实验室/
-├── page_home.html # 首页
-├── page_simulation_hub.html # 模拟体验入口（12个场景）
-├── page_scenario_education.html # 防骗科普页面（含所有场景的详细解析）
-├── static/
-│ ├── site.css # 全局样式
-│ └── page_simulation_hub.js # 模拟体验交互逻辑
-├── scenario_*.html # 各场景模拟页面（独立文件）
-└── logo.png # 站点标识
-
-
----
-
 ## 🛠️ 使用说明
 
 1. **访问首页** → 了解当前大学生受骗形势及高频诈骗类型。
