@@ -45,6 +45,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     setLoanLanguage('zh');
+
+    if (window.AntiFraudLLMChat) {
+        window.AntiFraudLLMChat.setup({
+            scenarioId: 8,
+            llmRootId: 'loan-llm-chat',
+            legacyRootId: 'loan-legacy-chat',
+            messagesId: 'loan-llm-messages',
+            inputId: 'loan-llm-input',
+            sendId: 'loan-llm-send',
+            actionId: 'loan-llm-action',
+            variant: 'plain',
+            onAction: goToLoanPortal
+        });
+    }
 });
 
 function startLoanSimulation() {

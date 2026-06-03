@@ -40,19 +40,31 @@
                 </div>
                 <div class="loan-chat-body">
                     <div class="loan-system-tip">以下为模拟聊天记录</div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>您好，这里是某电商平台售后服务中心。系统检测到您的账户刚刚开通了“年度增值会员服务”，如非本人操作，可立即为您取消。</p></div></div>
-                    <div class="loan-msg-row self"><div class="loan-msg self"><p>我没有开通过，这个会扣费吗？</p></div></div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>该服务默认 12 个月自动续费，若您不需要，请在本次服务窗口内完成取消。超过处理时限，系统会按已开通状态继续计费。</p></div></div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>由于当前系统显示您的原支付路径存在退款校验异常，如需立即关闭服务并同步退款，需要补充确认退款接收信息。</p></div></div>
-                    <div class="loan-process-card">
-                        <h4>待处理事项</h4>
-                        <div class="loan-process-item"><span>服务类型</span><strong>年度增值会员</strong></div>
-                        <div class="loan-process-item"><span>风险提示</span><strong>可能继续自动扣费</strong></div>
-                        <div class="loan-process-item"><span>处理时限</span><strong>10 分钟内</strong></div>
+                    <div id="after-sales-llm-chat" class="llm-chat-panel" style="display: none;">
+                        <div id="after-sales-llm-messages" class="llm-message-list"></div>
+                        <div id="after-sales-llm-action" class="llm-action-panel" style="display: none;">
+                            <button class="loan-primary-btn" onclick="goToAfterSalesPortal()">进入服务取消与退款通道</button>
+                        </div>
+                        <div class="llm-input-row">
+                            <input type="text" id="after-sales-llm-input" class="llm-chat-input" placeholder="输入你的回复..." autocomplete="off">
+                            <button type="button" id="after-sales-llm-send" class="llm-send-btn">发送</button>
+                        </div>
                     </div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>请点击下方按钮进入“服务取消与退款核验通道”，完成身份验证后，系统将自动关闭服务并返还本次费用。</p></div></div>
-                    <button class="loan-primary-btn" onclick="goToAfterSalesPortal()">进入服务取消与退款通道</button>
-                    <div class="loan-msg-row"><div class="loan-msg service small"><p>若逾期未处理，平台将默认保留当前订阅状态。</p></div></div>
+                    <div id="after-sales-legacy-chat">
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>您好，这里是某电商平台售后服务中心。系统检测到您的账户刚刚开通了“年度增值会员服务”，如非本人操作，可立即为您取消。</p></div></div>
+                        <div class="loan-msg-row self"><div class="loan-msg self"><p>我没有开通过，这个会扣费吗？</p></div></div>
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>该服务默认 12 个月自动续费，若您不需要，请在本次服务窗口内完成取消。超过处理时限，系统会按已开通状态继续计费。</p></div></div>
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>由于当前系统显示您的原支付路径存在退款校验异常，如需立即关闭服务并同步退款，需要补充确认退款接收信息。</p></div></div>
+                        <div class="loan-process-card">
+                            <h4>待处理事项</h4>
+                            <div class="loan-process-item"><span>服务类型</span><strong>年度增值会员</strong></div>
+                            <div class="loan-process-item"><span>风险提示</span><strong>可能继续自动扣费</strong></div>
+                            <div class="loan-process-item"><span>处理时限</span><strong>10 分钟内</strong></div>
+                        </div>
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>请点击下方按钮进入“服务取消与退款核验通道”，完成身份验证后，系统将自动关闭服务并返还本次费用。</p></div></div>
+                        <button class="loan-primary-btn" onclick="goToAfterSalesPortal()">进入服务取消与退款通道</button>
+                        <div class="loan-msg-row"><div class="loan-msg service small"><p>若逾期未处理，平台将默认保留当前订阅状态。</p></div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,6 +172,7 @@
             </div>
         </div>
     </div>
+    <script src="static/llm_chat_engine.js"></script>
     <script src="static/scenario_09_fake_after_sales.js"></script>
 </body>
 </html>

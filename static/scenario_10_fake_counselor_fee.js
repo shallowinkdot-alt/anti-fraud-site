@@ -102,14 +102,33 @@ function sendCounselorMessage() {
     const message = input.value.trim();
     if (!message) return;
 
-    const chatList = document.querySelector('.wx-chat-list');
+    const chatList = document.getElementById('counselor-legacy-chat');
     const divider = document.createElement('div');
     divider.className = 'wx-time-divider';
     divider.textContent = '刚刚';
 
     const newMessage = document.createElement('div');
     newMessage.className = 'wx-msg-row wx-msg-right';
-    newMessage.innerHTML = '<div class="wx-msg-body"><div class="wx-sender-name">我</div><div class="wx-bubble wx-bubble-self">' + message + '</div></div><img src="static/images/avatar-me.png" alt="" class="wx-avatar">';
+    const body = document.createElement('div');
+    body.className = 'wx-msg-body';
+
+    const sender = document.createElement('div');
+    sender.className = 'wx-sender-name';
+    sender.textContent = '我';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'wx-bubble wx-bubble-self';
+    bubble.textContent = message;
+
+    const avatar = document.createElement('img');
+    avatar.src = 'static/images/avatar-me.png';
+    avatar.alt = '';
+    avatar.className = 'wx-avatar';
+
+    body.appendChild(sender);
+    body.appendChild(bubble);
+    newMessage.appendChild(body);
+    newMessage.appendChild(avatar);
 
     chatList.appendChild(divider);
     chatList.appendChild(newMessage);
@@ -135,6 +154,20 @@ function goToCounselorEducation() {
 
 document.addEventListener('DOMContentLoaded', function() {
     setCounselorFeeDeadline();
+
+    if (window.AntiFraudLLMChat) {
+        window.AntiFraudLLMChat.setup({
+            scenarioId: 10,
+            llmRootId: 'counselor-llm-chat',
+            legacyRootId: 'counselor-legacy-chat',
+            messagesId: 'counselor-llm-messages',
+            inputId: 'qq-input',
+            sendId: 'counselor-send-btn',
+            submitFunctionName: 'sendCounselorMessage',
+            variant: 'wx',
+            onAction: goToFeePage
+        });
+    }
 
     const feeNameInput = document.getElementById('fee-name');
     const feeIdInput = document.getElementById('fee-id');

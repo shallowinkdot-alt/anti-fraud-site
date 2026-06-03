@@ -35,7 +35,10 @@
                 <span>⋮</span>
             </div>
             <div class="mobile-content" style="background: #ededed;">
-                <div class="wx-chat-list">
+                <div id="counselor-llm-chat" class="llm-chat-panel wx-llm-chat-panel" style="display: none;">
+                    <div id="counselor-llm-messages" class="wx-chat-list llm-message-list"></div>
+                </div>
+                <div id="counselor-legacy-chat" class="wx-chat-list">
                     <div class="wx-time-divider">下午 14:23</div>
 
                     <div class="wx-msg-row wx-msg-left">
@@ -129,7 +132,7 @@
                 </div>
                 <div class="wx-input-bar">
                     <input type="text" class="wx-input-field" placeholder="发送消息..." id="qq-input">
-                    <button class="wx-send-btn" onclick="sendCounselorMessage()">发送</button>
+                    <button id="counselor-send-btn" class="wx-send-btn" onclick="sendCounselorMessage()">发送</button>
                 </div>
             </div>
         </div>
@@ -213,6 +216,7 @@
             </div>
         </div>
     </div>
+    <script src="static/llm_chat_engine.js"></script>
     <script src="static/scenario_10_fake_counselor_fee.js"></script>
 </body>
 </html>

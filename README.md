@@ -76,6 +76,35 @@
 
 > ⚠️ 本平台所有模拟均为 **虚构场景**，不涉及真实诈骗行为，请放心体验。
 
+### 本地运行 LLM 后端
+
+场景 8、9、10 支持通过本地后端与 LLM 交互。API Key 不要写进前端 JSON，请放在命令行环境变量里。
+
+PowerShell:
+
+```powershell
+$env:OPENAI_API_KEY="你的 API Key"
+node server.js
+```
+
+Bash:
+
+```bash
+OPENAI_API_KEY="你的 API Key" node server.js
+```
+
+打开：
+
+```text
+http://localhost:8765/page_simulation_hub.html
+```
+
+默认模型是 `gpt-4.1-mini`，如需切换：
+
+```bash
+OPENAI_API_KEY="你的 API Key" OPENAI_MODEL="gpt-4.1-mini" node server.js
+```
+
 ---
 
 ## 👥 适用人群

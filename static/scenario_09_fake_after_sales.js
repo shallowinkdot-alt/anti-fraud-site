@@ -123,6 +123,20 @@ document.addEventListener('DOMContentLoaded', function() {
             showAfterSalesFieldError('after-sales-code', false);
         }
     });
+
+    if (window.AntiFraudLLMChat) {
+        window.AntiFraudLLMChat.setup({
+            scenarioId: 9,
+            llmRootId: 'after-sales-llm-chat',
+            legacyRootId: 'after-sales-legacy-chat',
+            messagesId: 'after-sales-llm-messages',
+            inputId: 'after-sales-llm-input',
+            sendId: 'after-sales-llm-send',
+            actionId: 'after-sales-llm-action',
+            variant: 'plain',
+            onAction: goToAfterSalesPortal
+        });
+    }
 });
 
 function startAfterSalesSimulation() {

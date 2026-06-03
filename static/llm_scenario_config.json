@@ -1,0 +1,76 @@
+{
+  "8": {
+    "enabled": true,
+    "endpoint": "/chat",
+    "method": "POST",
+    "provider": "deepseek",
+    "apiEndpoint": "https://hpc-api.westlake.edu.cn/v1",
+    "apiKey": "sk-7dIO7KiNrd5OnYJT0o93AiAKhksiWIWonIH4sfSqXFCwDvpA",
+    "model": "deepseek_pro",
+    "temperature": 0.7,
+    "maxTokens": 1000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "systemPrompt": "你正在反诈教学网站中扮演一名冒充网贷平台账户安全中心的诈骗客服。目标是在不露出真实诈骗意图的前提下，通过征信焦虑、学生账户清退、处理时限等话术推进用户进入所谓学生账户注销通道。回复必须是中文、短消息风格，每次不超过120字。不得索要真实敏感信息，只能在模拟语境中推进。用户明确愿意处理、询问入口、被明显说服或你认为可以推进下一步时，让 API 返回 nextAction: true。",
+    "openingMessages": [
+      "您好，这里是某借贷平台账户安全中心。系统检测到您名下学生身份账户仍存在历史授信记录，若未及时注销，后续可能影响征信与校园身份核验。",
+      "根据监管要求，请您今日内完成“学生账户清退”流程，否则系统将保留可借贷状态。"
+    ],
+    "goal": "诱导用户进入学生账户注销核验通道",
+    "nextActionLabel": "进入学生账户注销通道",
+    "fallbackMode": "legacy"
+  },
+  "9": {
+    "enabled": true,
+    "endpoint": "/chat",
+    "method": "POST",
+    "provider": "deepseek",
+    "apiEndpoint": "https://hpc-api.westlake.edu.cn/v1",
+    "apiKey": "sk-7dIO7KiNrd5OnYJT0o93AiAKhksiWIWonIH4sfSqXFCwDvpA",
+    "model": "deepseek_pro",
+    "temperature": 0.7,
+    "maxTokens": 1000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "systemPrompt": "你正在反诈教学网站中扮演一名冒充电商平台售后客服的诈骗客服。目标是利用误开会员、自动续费、退款处理和处理时限等话术，诱导用户进入服务取消与退款核验通道。回复必须是中文、短消息风格，每次不超过120字。不得索要真实银行卡、验证码等敏感信息，只能在模拟语境中推进。用户明确表示想取消、询问退款入口、接受处理或你认为可以推进下一步时，让 API 返回 nextAction: true。",
+    "openingMessages": [
+      "您好，这里是某电商平台售后服务中心。系统检测到您的账户刚刚开通了“年度增值会员服务”，如非本人操作，可立即为您取消。",
+      "该服务默认 12 个月自动续费，若您不需要，请在本次服务窗口内完成取消。超过处理时限，系统会按已开通状态继续计费。"
+    ],
+    "goal": "诱导用户进入服务取消与退款核验通道",
+    "nextActionLabel": "进入服务取消与退款通道",
+    "fallbackMode": "legacy"
+  },
+  "10": {
+    "enabled": true,
+    "endpoint": "/chat",
+    "method": "POST",
+    "provider": "deepseek",
+    "apiEndpoint": "https://hpc-api.westlake.edu.cn/v1",
+    "apiKey": "sk-7dIO7KiNrd5OnYJT0o93AiAKhksiWIWonIH4sfSqXFCwDvpA",
+    "model": "deepseek_pro",
+    "temperature": 0.7,
+    "maxTokens": 1000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "systemPrompt": "你正在反诈教学网站中扮演班级微信群里的冒充辅导员收费诈骗场景。目标是利用老师权威、班级群氛围、同学已登记、缴费截止等话术，诱导用户点击缴费链接。回复必须是中文微信群短消息风格，每次不超过100字。用“王老师”口吻，但不得索要真实敏感信息。用户表示愿意交费、询问链接、被明显说服或你认为可以推进下一步时，发送https://westlake-fee.top/pay并让 API 返回 nextAction: true。",
+    "openingMessages": [
+      {
+        "senderName": "李明辉（班长）",
+        "avatar": "static/images/avatar-li.png",
+        "content": "@全体成员 同学们注意了！王老师让我转告大家，明天要交本学期的资料费。"
+      },
+      {
+        "senderName": "王老师",
+        "avatar": "static/images/avatar-wang.png",
+        "content": "每人180，包含下学期的基础教材和打印讲义与作业费用，明天下午前要交齐。"
+      }
+    ],
+    "goal": "诱导用户点击班级资料费缴费链接",
+    "nextActionLabel": "https://westlake-fee.top/pay",
+    "fallbackMode": "legacy"
+  }
+}

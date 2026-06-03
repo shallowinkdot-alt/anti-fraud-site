@@ -40,25 +40,37 @@
                 </div>
                 <div class="loan-chat-body">
                     <div class="loan-system-tip">以下为模拟聊天记录</div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>您好，这里是某借贷平台账户安全中心。系统检测到您名下学生身份账户仍存在历史授信记录，若未及时注销，后续可能影响征信与校园身份核验。</p></div></div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>根据监管要求，请您今日内完成“学生账户清退”流程，否则系统将保留可借贷状态。</p></div></div>
-                    <div class="loan-msg-row self"><div class="loan-msg self"><p>我没有借过钱，为什么会有记录？</p></div></div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>很多用户是以前注册过校园分期、助学额度或身份证信息被自动关联。您不用担心，我们可以直接帮您在线关闭。</p></div></div>
-                    <div class="loan-evidence-card">
-                        <div class="loan-evidence-title">账户风险记录截图</div>
-                        <div class="loan-evidence-row"><span>风险账户编号</span><strong>EDU-2026-0418-7281</strong></div>
-                        <div class="loan-evidence-row"><span>身份标记</span><strong>学生授信待清退</strong></div>
-                        <div class="loan-evidence-row"><span>处理状态</span><strong>需本人核验</strong></div>
+                    <div id="loan-llm-chat" class="llm-chat-panel" style="display: none;">
+                        <div id="loan-llm-messages" class="llm-message-list"></div>
+                        <div id="loan-llm-action" class="llm-action-panel" style="display: none;">
+                            <button class="loan-primary-btn" onclick="goToLoanPortal()">进入学生账户注销通道</button>
+                        </div>
+                        <div class="llm-input-row">
+                            <input type="text" id="loan-llm-input" class="llm-chat-input" placeholder="输入你的回复..." autocomplete="off">
+                            <button type="button" id="loan-llm-send" class="llm-send-btn">发送</button>
+                        </div>
                     </div>
-                    <div class="loan-process-card">
-                        <h4>待处理事项</h4>
-                        <div class="loan-process-item"><span>账户状态</span><strong>学生身份待注销</strong></div>
-                        <div class="loan-process-item"><span>风险影响</span><strong>可能影响征信</strong></div>
-                        <div class="loan-process-item"><span>处理时限</span><strong>今日 20:00 前</strong></div>
+                    <div id="loan-legacy-chat">
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>您好，这里是某借贷平台账户安全中心。系统检测到您名下学生身份账户仍存在历史授信记录，若未及时注销，后续可能影响征信与校园身份核验。</p></div></div>
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>根据监管要求，请您今日内完成“学生账户清退”流程，否则系统将保留可借贷状态。</p></div></div>
+                        <div class="loan-msg-row self"><div class="loan-msg self"><p>我没有借过钱，为什么会有记录？</p></div></div>
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>很多用户是以前注册过校园分期、助学额度或身份证信息被自动关联。您不用担心，我们可以直接帮您在线关闭。</p></div></div>
+                        <div class="loan-evidence-card">
+                            <div class="loan-evidence-title">账户风险记录截图</div>
+                            <div class="loan-evidence-row"><span>风险账户编号</span><strong>EDU-2026-0418-7281</strong></div>
+                            <div class="loan-evidence-row"><span>身份标记</span><strong>学生授信待清退</strong></div>
+                            <div class="loan-evidence-row"><span>处理状态</span><strong>需本人核验</strong></div>
+                        </div>
+                        <div class="loan-process-card">
+                            <h4>待处理事项</h4>
+                            <div class="loan-process-item"><span>账户状态</span><strong>学生身份待注销</strong></div>
+                            <div class="loan-process-item"><span>风险影响</span><strong>可能影响征信</strong></div>
+                            <div class="loan-process-item"><span>处理时限</span><strong>今日 20:00 前</strong></div>
+                        </div>
+                        <div class="loan-msg-row"><div class="loan-msg service"><p>请点击下方按钮进入“学生账户注销核验通道”，完成身份验证后，系统会自动清退额度并生成注销回执。</p></div></div>
+                        <button class="loan-primary-btn" onclick="goToLoanPortal()">进入学生账户注销通道</button>
+                        <div class="loan-msg-row"><div class="loan-msg service small"><p>如未在时限内处理，平台默认视为您继续保留贷款资格。</p></div></div>
                     </div>
-                    <div class="loan-msg-row"><div class="loan-msg service"><p>请点击下方按钮进入“学生账户注销核验通道”，完成身份验证后，系统会自动清退额度并生成注销回执。</p></div></div>
-                    <button class="loan-primary-btn" onclick="goToLoanPortal()">进入学生账户注销通道</button>
-                    <div class="loan-msg-row"><div class="loan-msg service small"><p>如未在时限内处理，平台默认视为您继续保留贷款资格。</p></div></div>
                 </div>
             </div>
         </div>
@@ -139,6 +151,7 @@
             </div>
         </div>
     </div>
+    <script src="static/llm_chat_engine.js"></script>
     <script src="static/scenario_08_fake_loan_support.js"></script>
 </body>
 </html>
