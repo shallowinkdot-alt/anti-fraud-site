@@ -371,11 +371,10 @@
                     }
                     return initChat(options, scenarioConfig);
                 })
-                .catch(function() {
-                    const llmRoot = document.getElementById(options.llmRootId);
-                    const legacyRoot = document.getElementById(options.legacyRootId);
-                    setDisplay(llmRoot, 'none');
-                    setDisplay(legacyRoot, 'block');
+                .catch(function(err) {
+                    if (window.console && console.error) {
+                        console.error('LLM setup failed:', err);
+                    }
                     return false;
                 });
         }
