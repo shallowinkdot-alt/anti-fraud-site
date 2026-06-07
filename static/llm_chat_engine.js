@@ -266,7 +266,7 @@
 
         function send() {
             const content = inputEl.value.trim();
-            if (!content || waiting || actionShown) return;
+            if (!content || waiting) return;
 
             inputEl.value = '';
             messages.push({ role: 'user', content: content });
