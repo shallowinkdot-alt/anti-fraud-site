@@ -61,7 +61,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function formatDateStamp(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}${m}${d}`;
+}
+
+function formatYearMonth(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    return `${y}${m}`;
+}
+
+function setScenario8DynamicDates() {
+    const now = new Date();
+    // 账户编号 - 包含今日日期
+    const randomSuffix1 = Math.floor(Math.random() * 9000) + 1000;
+    document.getElementById('s8-account-no').textContent = `EDU-${formatDateStamp(now)}-${randomSuffix1}`;
+
+    // 处理流水号 - 包含年月
+    const randomSuffix2 = Math.floor(Math.random() * 9000) + 1000;
+    document.getElementById('s8-flow-no').textContent = `CL-${randomSuffix2}-${formatYearMonth(now)}`;
+}
+
 function startLoanSimulation() {
+    setScenario8DynamicDates();
     document.getElementById('loan-notice-page').style.display = 'none';
     document.getElementById('loan-chat-page').style.display = 'block';
 }

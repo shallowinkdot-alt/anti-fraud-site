@@ -37,7 +37,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function formatChineseDate(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}年${month}月${day}日`;
+}
+
+function formatDateStamp(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}${m}${d}`;
+}
+
+function setScenario4DynamicDates() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timeStr = hours >= 12 ? `下午 ${hours > 12 ? hours - 12 : hours}:${minutes}` : `上午 ${hours === 0 ? 12 : hours}:${minutes}`;
+
+    // 邮件日期 - 今天
+    document.getElementById('s4-email-date').textContent = `${formatChineseDate(now)} ${timeStr}`;
+
+    // 复核回执编号 - 包含今日日期
+    const randomNum = Math.floor(Math.random() * 9000) + 1000;
+    document.getElementById('s4-receipt-no').textContent = `CR-${formatDateStamp(now)}-${randomNum}`;
+}
+
 function startCreditSimulation() {
+    setScenario4DynamicDates();
     document.getElementById('credit-notice-page').style.display = 'none';
     document.getElementById('credit-email-page').style.display = 'block';
 }

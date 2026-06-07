@@ -40,7 +40,7 @@
                     <div class="email-header">
                         <div class="email-from">Westlake IT Center <span>&lt;license-renewal@westlake-it.help&gt;</span></div>
                         <div class="email-subject">IT 中心：您的校内正版软件授权即将失效</div>
-                        <div class="email-date">2026年4月28日 下午 17:42</div>
+                        <div class="email-date" id="s5-email-date"></div>
                     </div>
                     <div class="email-body">
                         <div class="email-alert-strip">License Notice: Your campus software entitlement requires renewal verification.</div>
@@ -69,7 +69,7 @@
                             <ul>
                                 <li>授权产品：Microsoft 365 Education</li>
                                 <li>受影响资源：OneDrive / Outlook / Office 桌面端</li>
-                                <li>到期时间：明日 23:59</li>
+                                <li>到期时间：<span id="s5-expire-time"></span></li>
                             </ul>
                         </div>
                         <div class="email-section-title">处理说明</div>
@@ -211,7 +211,7 @@
                         </div>
                         <div class="software-summary-item">
                             <span>同步批次</span>
-                            <strong>2026-04-28 Final</strong>
+                            <span id="s5-sync-batch"></span>
                         </div>
                     </div>
                     <p class="software-result-note">请勿关闭页面或重复提交，以免影响授权同步。</p>

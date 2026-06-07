@@ -37,7 +37,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function formatChineseDate(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}年${month}月${day}日`;
+}
+
+function formatDateStamp(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
+function setScenario5DynamicDates() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timeStr = hours >= 12 ? `下午 ${hours > 12 ? hours - 12 : hours}:${minutes}` : `上午 ${hours === 0 ? 12 : hours}:${minutes}`;
+
+    // 邮件日期 - 今天
+    document.getElementById('s5-email-date').textContent = `${formatChineseDate(now)} ${timeStr}`;
+
+    // 到期时间 - 明天 23:59
+    const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+    document.getElementById('s5-expire-time').textContent = `${formatChineseDate(tomorrow)} 23:59`;
+
+    // 同步批次 - 今天日期 Final
+    document.getElementById('s5-sync-batch').textContent = `${formatDateStamp(now)} Final`;
+}
+
 function startSoftwareSimulation() {
+    setScenario5DynamicDates();
     document.getElementById('software-notice-page').style.display = 'none';
     document.getElementById('software-email-page').style.display = 'block';
 }

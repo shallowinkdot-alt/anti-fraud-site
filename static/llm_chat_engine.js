@@ -264,17 +264,6 @@
             sendEl.textContent = value ? '等待中' : '发送';
         }
 
-        function fallback() {
-            if (arguments[0] && window.console && console.error) {
-                console.error('LLM chat failed, falling back to legacy flow:', arguments[0]);
-            }
-            setDisplay(llmRoot, 'none');
-            setDisplay(legacyRoot, isWx ? 'block' : 'block');
-            inputEl.disabled = false;
-            sendEl.disabled = false;
-            return false;
-        }
-
         function send() {
             const content = inputEl.value.trim();
             if (!content || waiting || actionShown) return;
@@ -288,10 +277,15 @@
             }
 
             setWaiting(true);
+            const controller = new AbortController();
+            const timeoutMs = (scenarioConfig.timeoutMs || 30000);
+            const timer = setTimeout(function() { controller.abort(); }, timeoutMs);
+
             fetch(scenarioConfig.endpoint, {
                 method: scenarioConfig.method || 'POST',
                 headers: scenarioConfig.headers || { 'Content-Type': 'application/json' },
-                body: JSON.stringify(makePayload(options.scenarioId, scenarioConfig, messages))
+                body: JSON.stringify(makePayload(options.scenarioId, scenarioConfig, messages)),
+                signal: controller.signal
             })
                 .then(function(response) {
                     if (!response.ok) {
@@ -319,8 +313,21 @@
                         showAction();
                     }
                 })
-                .catch(fallback)
+                .catch(function(err) {
+                    if (window.console && console.error) {
+                        console.error('LLM chat failed:', err);
+                    }
+                    const errMsg = err && err.name === 'AbortError'
+                        ? '回复超时，请稍后再试'
+                        : '网络异常，请稍后再试';
+                    if (isWx) {
+                        appendWxMessage(messagesEl, 'assistant', errMsg);
+                    } else {
+                        appendPlainMessage(messagesEl, 'assistant', errMsg);
+                    }
+                })
                 .finally(function() {
+                    clearTimeout(timer);
                     setWaiting(false);
                 });
         }

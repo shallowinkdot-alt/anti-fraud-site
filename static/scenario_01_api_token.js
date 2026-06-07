@@ -37,7 +37,43 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function formatChineseDate(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}年${month}月${day}日`;
+}
+
+function getMonthEndDate(date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+}
+
+function setScenario1DynamicDates() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timeStr = hours >= 12 ? `下午 ${hours > 12 ? hours - 12 : hours}:${minutes}` : `上午 ${hours === 0 ? 12 : hours}:${minutes}`;
+
+    // 邮件日期 - 今天
+    document.getElementById('s1-email-date').textContent = `${formatChineseDate(now)} ${timeStr}`;
+
+    // 截止日期 - 本月月底
+    const endDate = getMonthEndDate(now);
+    const endDateFormat = formatChineseDate(endDate);
+
+    // 开放周期
+    document.getElementById('s1-open-period').textContent = `即日起至 ${endDateFormat}`;
+
+    // 领取截止时间
+    document.getElementById('s1-deadline').textContent = `${endDateFormat} 23:59`;
+
+    // 额度到期 - 30天后
+    const expireDate = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+    document.getElementById('s1-expire-date').textContent = formatChineseDate(expireDate);
+}
+
 function startSimulation() {
+    setScenario1DynamicDates();
     document.getElementById('notice-page').style.display = 'none';
     document.getElementById('email-page').style.display = 'block';
 }

@@ -128,7 +128,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function formatChineseDate(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}年${month}月${day}日`;
+}
+
+function setScenario6DynamicDates() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timeStr = hours >= 12 ? `下午 ${hours > 12 ? hours - 12 : hours}:${minutes}` : `上午 ${hours === 0 ? 12 : hours}:${minutes}`;
+
+    // 邮件日期 - 今天
+    document.getElementById('s6-email-date').textContent = `${formatChineseDate(now)} ${timeStr}`;
+}
+
 function startFinanceSimulation() {
+    setScenario6DynamicDates();
     document.getElementById('finance-notice-page').style.display = 'none';
     document.getElementById('finance-email-page').style.display = 'block';
 }

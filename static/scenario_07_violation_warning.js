@@ -37,7 +37,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function formatChineseDate(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}年${month}月${day}日`;
+}
+
+function formatDateISO(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
+function setScenario7DynamicDates() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timeStr = hours >= 12 ? `下午 ${hours > 12 ? hours - 12 : hours}:${minutes}` : `上午 ${hours === 0 ? 12 : hours}:${minutes}`;
+
+    // 邮件日期 - 今天
+    document.getElementById('s7-email-date').textContent = `${formatChineseDate(now)} ${timeStr}`;
+
+    // 记录时间 - 2天前（模拟违规发生在前几天）
+    const recordDate = new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000);
+    const recordHour = Math.floor(Math.random() * 4) + 19; // 19-22点之间
+    const recordMin = String(Math.floor(Math.random() * 60)).padStart(2, '0');
+    document.getElementById('s7-record-time').textContent = `${formatDateISO(recordDate)} ${recordHour}:${recordMin}`;
+}
+
 function startViolationSimulation() {
+    setScenario7DynamicDates();
     document.getElementById('violation-notice-page').style.display = 'none';
     document.getElementById('violation-email-page').style.display = 'block';
 }

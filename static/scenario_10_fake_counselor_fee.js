@@ -18,7 +18,30 @@ function isValidCounselorStudentId(value) {
     return /^\d{11}$/.test(value);
 }
 
+function setScenario10DynamicTimes() {
+    const now = new Date();
+    const baseHour = Math.max(9, now.getHours() - 2); // 从2小时前开始
+    const times = [
+        { h: baseHour, m: Math.floor(Math.random() * 10) * 3 + 20 },
+        { h: baseHour, m: Math.floor(Math.random() * 10) * 3 + 23 },
+        { h: baseHour + (baseHour === 23 ? 0 : 1), m: Math.floor(Math.random() * 10) * 3 + 25 },
+        { h: baseHour + (baseHour >= 22 ? 0 : 1), m: Math.floor(Math.random() * 10) * 3 + 28 },
+        { h: baseHour + (baseHour >= 22 ? 0 : 1), m: Math.floor(Math.random() * 10) * 3 + 30 }
+    ];
+
+    for (let i = 1; i <= 5; i++) {
+        const el = document.getElementById('s10-time-' + i);
+        if (el && times[i - 1]) {
+            const t = times[i - 1];
+            const hour12 = t.h > 12 ? t.h - 12 : (t.h === 0 ? 12 : t.h);
+            const period = t.h >= 12 ? '下午' : '上午';
+            el.textContent = `${period} ${String(hour12).padStart(2, '0')}:${String(t.m).padStart(2, '0')}`;
+        }
+    }
+}
+
 function startCounselorSimulation() {
+    setScenario10DynamicTimes();
     document.getElementById('counselor-notice-page').style.display = 'none';
     document.getElementById('counselor-chat-page').style.display = 'block';
 }
